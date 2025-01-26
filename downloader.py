@@ -18,7 +18,7 @@ load_dotenv()
 url = os.getenv('ECHO_O')
 
 
-async def download_lecture_files(output_dir: str, lectures: list[Echo360Lecture], set_progress: Callable[[int, int, int], None]) -> None:
+async def download_lecture_files(output_dir: str, lectures: list[Echo360Lecture], set_progress: Callable[[int, int], None]) -> None:
     logger.info('Downloading files...')
     async with aiohttp.ClientSession() as session:
         # Initial request to get the cookies
@@ -45,7 +45,7 @@ async def download_lecture_files(output_dir: str, lectures: list[Echo360Lecture]
 
                 destination_path = os.path.join(folder, info.file_name)
                 info.local_path = os.path.abspath(destination_path)
-                task = asyncio.create_task(download_file(session, destination_path, info.url, (lambda bound_i: lambda downloaded, total: set_progress(bound_i, downloaded, total))(i)))
+                task = asyncio.create_task(download_file(session, destination_path, info.url, (lambda bound_i: lambda downloaded: set_progress(bound_i, downloaded))(i)))
                 tasks.append(task)
                 logger.debug(f'Started downloading {info.url} to {destination_path}')
                 i += 1
@@ -55,7 +55,7 @@ async def download_lecture_files(output_dir: str, lectures: list[Echo360Lecture]
     logger.info('All files downloaded')
 
 
-async def download_file(session: aiohttp.ClientSession, destination_path: str, url: str, progress_update_callback: Callable[[int, int], None]) -> None:
+async def download_file(session: aiohttp.ClientSession, destination_path: str, url: str, progress_update_callback: Callable[[int], None]) -> None:
     try:
         async with session.get(url, timeout=30 * 60) as response:
             downloaded_size = 0
@@ -63,7 +63,7 @@ async def download_file(session: aiohttp.ClientSession, destination_path: str, u
 
             # Return if the file already exists
             if os.path.exists(destination_path) and os.path.getsize(destination_path) == total_size:
-                progress_update_callback(total_size, total_size)
+                progress_update_callback(total_size)
                 return
             response.raise_for_status()
 
@@ -71,7 +71,7 @@ async def download_file(session: aiohttp.ClientSession, destination_path: str, u
                 async for chunk in response.content.iter_any():  # type: bytes
                     await f.write(chunk)
                     downloaded_size += len(chunk)
-                    progress_update_callback(downloaded_size, total_size)
+                    progress_update_callback(downloaded_size)
     except aiohttp.ClientError as e:
         logger.error(f"Failed to download {url}: {e}")
         await asyncio.sleep(0)  # Yield to the event loop to prevent blocking

@@ -122,14 +122,15 @@ def create_path_dialog(continue_callback: Callable[[], None]) -> tuple[Dialog, A
 
 def create_download_dialog(
         files: list[FileInfo],
-        run_callback: Callable[[Callable[[int, int, int], None]], None] = (
+        run_callback: Callable[[Callable[[int, int], None]], None] = (
                 lambda *a: None
         ),
 ):
     file_count = len(files)
     progress_bars = [ProgressBar() for _ in range(file_count)]
     labels = [Label('0 / 0 MiB', width=25) for _ in range(file_count)]
-    total_size_strings = [get_file_size_string(file.size) for file in files]
+    total_sizes = [file.size for file in files]
+    total_size_strings = [get_file_size_string(size) for size in total_sizes]
 
     for bar in progress_bars:
         bar.percentage = 0
@@ -143,8 +144,8 @@ def create_download_dialog(
         with_background=True,
     )
 
-    def set_progress(i: int, downloaded: int, total: int) -> None:
-        progress_bars[i].percentage = (downloaded / total) * 100
+    def set_progress(i: int, downloaded: int) -> None:
+        progress_bars[i].percentage = (downloaded / total_sizes[i]) * 100
         downloaded_str = get_file_size_string(downloaded)
         labels[i].text = f'{downloaded_str} / {total_size_strings[i]}'
         app.invalidate()
