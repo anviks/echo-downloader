@@ -12,7 +12,6 @@ from dotenv import load_dotenv
 
 from domain import Echo360Lecture
 
-logging.basicConfig(filename='echo_downloader.log', level=logging.DEBUG, format="%(asctime)s - %(name)s - %(levelname)-8s - %(message)s", datefmt="%Y-%m-%d %H:%M:%S")
 logger = logging.getLogger(__name__)
 SAFE_CHARS = ' #[]'
 load_dotenv()
@@ -64,6 +63,7 @@ async def download_file(session: aiohttp.ClientSession, destination_path: str, u
 
             # Return if the file already exists
             if os.path.exists(destination_path) and os.path.getsize(destination_path) == total_size:
+                progress_update_callback(total_size, total_size)
                 return
             response.raise_for_status()
 

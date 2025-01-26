@@ -2,7 +2,7 @@ import logging
 import os
 import subprocess
 from functools import partial
-from multiprocessing import Pool
+from multiprocessing.pool import Pool
 
 from domain import Echo360Lecture, FileInfo
 from config_wrapper import EchoDownloaderConfig
@@ -11,8 +11,12 @@ from urllib.parse import quote
 logger = logging.getLogger(__name__)
 SAFE_CHARS = ' #[]'
 
-def merge_files_concurrently(config: EchoDownloaderConfig, output_dir: str, lectures: list[Echo360Lecture],
-                             delete_originals: bool = True) -> None:
+def merge_files_concurrently(
+        config: EchoDownloaderConfig,
+        output_dir: str,
+        lectures: list[Echo360Lecture],
+        delete_originals: bool = True
+) -> list[str]:
     file_infos = get_file_infos(config, output_dir, lectures)
 
     with Pool() as pool:
@@ -33,9 +37,11 @@ def merge_files_concurrently(config: EchoDownloaderConfig, output_dir: str, lect
             if not os.listdir(directory):
                 os.rmdir(directory)
 
+    return [os.path.abspath(info['output_path']) for info in file_infos]
 
-def merge_files_wrapper(file_info: dict[str, str]) -> None:
-    merge_files(**file_info)
+
+def merge_files_wrapper(file_infos: dict[str, str]) -> None:
+    merge_files(**file_infos)
 
 
 def merge_files(*, audio_path: str, video_path: str, output_path: str) -> None:

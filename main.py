@@ -45,6 +45,7 @@ def create_app(dialog: AnyContainer, style: BaseStyle | None) -> Application[Any
         full_screen=True,
     )
 
+
 def create_lectures_dialog(continue_callback: Callable[[], None]) -> Dialog:
     def ok_handler() -> None:
         dialog_choices['lectures'] = cb_list.current_values
@@ -121,7 +122,6 @@ def create_path_dialog(continue_callback: Callable[[], None]) -> tuple[Dialog, A
 
 def create_download_dialog(
         files: list[FileInfo],
-        continue_callback: Callable[[], None],
         run_callback: Callable[[Callable[[int, int, int], None]], None] = (
                 lambda *a: None
         ),
@@ -137,9 +137,9 @@ def create_download_dialog(
     dialog = Dialog(
         title='Downloading files...',
         body=VSplit([
-                HSplit(labels, padding=1),
-                HSplit(progress_bars, padding=1)
-            ], padding=1),
+            HSplit(labels, padding=1),
+            HSplit(progress_bars, padding=1),
+        ], padding=1),
         with_background=True,
     )
 
@@ -151,19 +151,12 @@ def create_download_dialog(
 
     def start() -> None:
         run_callback(set_progress)
-        time.sleep(1)
-        continue_callback()
+        dialog.title = 'Muxing files...'
+        app.invalidate()
+        output_files = merge_files_concurrently(config, dialog_choices['path'], dialog_choices['lectures'], False)
+        app.exit(result=f'Lectures downloaded and muxed to\n{'\n'.join(output_files)}')
 
     return dialog, start
-
-
-def create_merge_dialog():
-    dialog = Dialog(
-        title='Muxing files...',
-        body=Label('Muxing files...'),
-    )
-
-    return dialog
 
 
 def continue_to_path_selection():
@@ -175,22 +168,19 @@ def continue_to_path_selection():
 
 def continue_to_download():
     files = [info for lecture in dialog_choices['lectures'] for info in lecture.file_infos]
-    download_dialog, start = create_download_dialog(files, continue_to_merge, lambda set_progress: asyncio.run(download_lecture_files(dialog_choices['path'], dialog_choices['lectures'], set_progress)))
+    download_dialog, start = create_download_dialog(files, lambda set_progress: asyncio.run(download_lecture_files(dialog_choices['path'], dialog_choices['lectures'], set_progress)))
     app.layout = Layout(download_dialog)
     app.invalidate()
     run_in_executor_with_context(start)
 
 
-def continue_to_merge():
-    merge_dialog = create_merge_dialog()
-    app.layout = Layout(merge_dialog)
-    app.invalidate()
-    merge_files_concurrently(config, dialog_choices['path'], dialog_choices['lectures'], False)
-    app.exit()
-
-
 if __name__ == '__main__':
-    logging.basicConfig(filename='echo_downloader.log', level=logging.DEBUG, format="%(asctime)s - %(name)s - %(levelname)-8s - %(message)s", datefmt="%Y-%m-%d %H:%M:%S")
+    logging.basicConfig(
+        filename='echo_downloader.log',
+        level=logging.DEBUG,
+        format="%(asctime)s - %(name)s - %(levelname)-8s - %(message)s",
+        datefmt="%Y-%m-%d %H:%M:%S"
+    )
     logger = logging.getLogger(__name__)
 
     load_dotenv()
