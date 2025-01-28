@@ -15,14 +15,18 @@ from domain import Echo360Lecture
 logger = logging.getLogger(__name__)
 SAFE_CHARS = ' #[]'
 load_dotenv()
-url = os.getenv('ECHO_O')
+initial_url = os.getenv('ECHO_O')
 
 
-async def download_lecture_files(output_dir: str, lectures: list[Echo360Lecture], set_progress: Callable[[int, int], None]) -> None:
+async def download_lecture_files(
+        output_dir: str,
+        lectures: list[Echo360Lecture],
+        set_progress: Callable[[int, int], None]
+) -> None:
     logger.info('Downloading files...')
     async with aiohttp.ClientSession() as session:
         # Initial request to get the cookies
-        await session.get(url)
+        await session.get(initial_url)
 
         i = 0
         tasks = []
@@ -55,7 +59,12 @@ async def download_lecture_files(output_dir: str, lectures: list[Echo360Lecture]
     logger.info('All files downloaded')
 
 
-async def download_file(session: aiohttp.ClientSession, destination_path: str, url: str, progress_update_callback: Callable[[int], None]) -> None:
+async def download_file(
+        session: aiohttp.ClientSession,
+        destination_path: str,
+        url: str,
+        progress_update_callback: Callable[[int], None]
+) -> None:
     try:
         async with session.get(url, timeout=30 * 60) as response:
             downloaded_size = 0

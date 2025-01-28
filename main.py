@@ -1,7 +1,6 @@
 import asyncio
 import logging
 import os
-import time
 from typing import Any, Callable
 
 import jsonpickle
@@ -21,9 +20,10 @@ from utils_anviks import dict_to_object
 from dotenv import load_dotenv
 
 from config_wrapper import EchoDownloaderConfig
-from domain import FileInfo
+from domain import Echo360Lecture, FileInfo
 from downloader import download_lecture_files
 from merger import merge_files_concurrently
+from scraper import EchoScraper
 
 
 def get_file_size_string(size: int) -> str:
@@ -46,8 +46,10 @@ def create_app(dialog: AnyContainer, style: BaseStyle | None) -> Application[Any
     )
 
 
-def create_lectures_dialog(continue_callback: Callable[[], None]) -> Dialog:
+def create_lectures_dialog(selection: list[tuple[Echo360Lecture, str]], continue_callback: Callable[[], None]) -> Dialog:
     def ok_handler() -> None:
+        if not cb_list.current_values:
+            app.exit(result='No lectures selected')
         dialog_choices['lectures'] = cb_list.current_values
         logger.debug(dialog_choices['lectures'])
         continue_callback()
@@ -55,7 +57,7 @@ def create_lectures_dialog(continue_callback: Callable[[], None]) -> Dialog:
     def _return_none() -> None:
         app.exit(result=None)
 
-    cb_list = CheckboxList(values=sel)
+    cb_list = CheckboxList(values=selection)
 
     dialog = Dialog(
         title='Select some items',
@@ -155,12 +157,15 @@ def create_download_dialog(
         dialog.title = 'Muxing files...'
         app.invalidate()
         output_files = merge_files_concurrently(config, dialog_choices['path'], dialog_choices['lectures'], False)
-        app.exit(result=f'Lectures downloaded and muxed to\n{'\n'.join(output_files)}')
+        result = f'Lectures downloaded and muxed to\n{'\n'.join(output_files)}' if output_files else 'Muxed files already exist'
+        app.exit(result=result)
 
     return dialog, start
 
 
-def continue_to_path_selection():
+def continue_to_path_selection(scrap: EchoScraper):
+    for lecture in dialog_choices['lectures']:  # type: Echo360Lecture
+        lecture.file_infos = scrap.get_lecture_files(lecture.url)
     path_dialog, element_to_focus = create_path_dialog(continue_to_download)
     app.layout = Layout(path_dialog)
     app.layout.focus(element_to_focus)
@@ -206,22 +211,22 @@ if __name__ == '__main__':
 
     config = dict_to_object(config_dict, EchoDownloaderConfig)
 
-    # with EchoScraper(config, url, headless=False) as scraper:
-    #     sel = scraper.get_lecture_selection()
-    #     # exit(0)
-    #
-    # with open('test_lectures.json', 'w') as f:
-    #     f.write(jsonpickle.encode(sel, indent=2))
-    #     exit(0)
-
-    with open('test_lectures.json', 'r') as f:
-        sel = jsonpickle.decode(f.read())
-
     dialog_choices: dict[str, Any] = {
         'lectures': None,
         'path': None,
         'download': None,
     }
-    lectures_dialog = create_lectures_dialog(continue_to_path_selection)
-    app = create_app(lectures_dialog, None)
-    print(app.run())
+
+    with EchoScraper(config, url, headless=False) as scraper:
+        sel = scraper.get_lecture_selection()
+        lectures_dialog = create_lectures_dialog(sel, lambda: continue_to_path_selection(scraper))
+        app = create_app(lectures_dialog, None)
+        print(app.run())
+
+    # with open('test_lectures.json', 'w') as f:
+    #     f.write(jsonpickle.encode(sel, indent=2))
+    #     exit(0)
+
+    # with open('test_lectures.json', 'r') as f:
+    #     sel = jsonpickle.decode(f.read())
+
