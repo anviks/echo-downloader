@@ -16,6 +16,7 @@ from prompt_toolkit.keys import Keys
 from prompt_toolkit.layout import Layout, VSplit
 from prompt_toolkit.layout.containers import AnyContainer, HSplit
 from prompt_toolkit.styles import BaseStyle
+from prompt_toolkit.validation import Validator
 from prompt_toolkit.widgets import Button, CheckboxList, Dialog, Label, ProgressBar, TextArea
 from utils_anviks import dict_to_object
 from dotenv import load_dotenv
@@ -47,7 +48,60 @@ def create_app(dialog: AnyContainer, style: BaseStyle | None) -> Application[Any
     )
 
 
-def create_lectures_dialog(selection: list[tuple[Echo360Lecture, str]], continue_callback: Callable[[], None]) -> Dialog:
+def create_url_dialog(continue_callback: Callable[[], None]) -> Dialog:
+    hex_ = '[0-9a-f]'
+    uuid_regex = fr'{hex_}{{8}}-{hex_}{{4}}-{hex_}{{4}}-{hex_}{{4}}-{hex_}{{12}}'
+    echo_url_regex = re.compile(fr'^https?://echo360\.org\.uk/section/({uuid_regex})/(public|home)$')
+
+    def on_input(event):
+        if error_label.text:
+            error_label.text = ''
+            app.invalidate()
+
+    def on_submit():
+        if not url_input.buffer.validate():
+            error_label.text = 'Invalid Echo360 URL'
+            app.invalidate()
+            return
+
+        match = echo_url_regex.search(url_input.text)
+        dialog_choices['url'] = match.group(0)
+        continue_callback()
+
+    def on_cancel():
+        app.exit()
+
+    def validate_url(urlz: str) -> bool:
+        return bool(echo_url_regex.search(urlz))
+
+    url_input = TextArea(
+        multiline=False,
+        height=1,
+        width=80,
+        validator=Validator.from_callable(validate_url),
+    )
+    url_input.buffer.on_text_changed += on_input
+
+    url_label = Label(text='URL:', dont_extend_width=True)
+    error_label = Label(text='', style='class:red')
+
+    dialog = Dialog(
+        title='Enter Echo360 URL',
+        body=HSplit([
+            VSplit([url_label, url_input], padding=1),
+            error_label
+        ]),
+        buttons=[
+            Button(text="Continue", handler=on_submit),
+            Button(text="Cancel", handler=on_cancel),
+        ],
+        with_background=True,
+    )
+
+    return dialog
+
+
+def create_lectures_dialog(selection: list[tuple[Echo360Lecture, str]], continue_callback: Callable[[], None]) -> tuple[Dialog, AnyContainer]:
     def ok_handler() -> None:
         if not cb_list.current_values:
             app.exit(result='No lectures selected')
@@ -73,7 +127,7 @@ def create_lectures_dialog(selection: list[tuple[Echo360Lecture, str]], continue
         with_background=True,
     )
 
-    return dialog
+    return dialog, cb_list
 
 
 def create_path_dialog(continue_callback: Callable[[], None]) -> tuple[Dialog, AnyContainer]:
@@ -117,7 +171,8 @@ def create_path_dialog(continue_callback: Callable[[], None]) -> tuple[Dialog, A
         buttons=[
             Button(text="Begin download", width=18, handler=on_submit),
             Button(text="Cancel", handler=on_cancel),
-        ]
+        ],
+        with_background=True,
     )
 
     return dialog, path_input
@@ -162,6 +217,15 @@ def create_download_dialog(
         app.exit(result=result)
 
     return dialog, start
+
+
+def continue_to_lecture_selection():
+    with EchoScraper(config, dialog_choices["url"], headless=False) as scraper:
+        sel = scraper.get_lecture_selection()
+    lectures_dialog, element_to_focus = create_lectures_dialog(sel, continue_to_path_selection)
+    app.layout = Layout(lectures_dialog)
+    app.layout.focus(element_to_focus)
+    app.invalidate()
 
 
 def continue_to_path_selection():
@@ -214,15 +278,16 @@ if __name__ == '__main__':
         'lectures': None,
         'path': None,
         'download': None,
+        'url': None,
     }
 
     # with open('test_lectures.json', 'w') as f:
     #     f.write(jsonpickle.encode(sel, indent=2))
     #     exit(0)
+    #
+    # with open('test_lectures.json', 'r') as f:
+    #     sel = jsonpickle.decode(f.read())
 
-    with open('test_lectures.json', 'r') as f:
-        sel = jsonpickle.decode(f.read())
-
-    lectures_dialog = create_lectures_dialog(sel, continue_to_path_selection)
-    app = create_app(lectures_dialog, None)
+    url_dialog = create_url_dialog(continue_to_lecture_selection)
+    app = create_app(url_dialog, None)
     print(app.run())
