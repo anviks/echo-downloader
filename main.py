@@ -1,6 +1,7 @@
 import asyncio
 import logging
 import os
+import re
 from typing import Any, Callable
 
 import jsonpickle
@@ -163,9 +164,7 @@ def create_download_dialog(
     return dialog, start
 
 
-def continue_to_path_selection(scrap: EchoScraper):
-    for lecture in dialog_choices['lectures']:  # type: Echo360Lecture
-        lecture.file_infos = scrap.get_lecture_files(lecture.url)
+def continue_to_path_selection():
     path_dialog, element_to_focus = create_path_dialog(continue_to_download)
     app.layout = Layout(path_dialog)
     app.layout.focus(element_to_focus)
@@ -217,16 +216,13 @@ if __name__ == '__main__':
         'download': None,
     }
 
-    with EchoScraper(config, url, headless=False) as scraper:
-        sel = scraper.get_lecture_selection()
-        lectures_dialog = create_lectures_dialog(sel, lambda: continue_to_path_selection(scraper))
-        app = create_app(lectures_dialog, None)
-        print(app.run())
-
     # with open('test_lectures.json', 'w') as f:
     #     f.write(jsonpickle.encode(sel, indent=2))
     #     exit(0)
 
-    # with open('test_lectures.json', 'r') as f:
-    #     sel = jsonpickle.decode(f.read())
+    with open('test_lectures.json', 'r') as f:
+        sel = jsonpickle.decode(f.read())
 
+    lectures_dialog = create_lectures_dialog(sel, continue_to_path_selection)
+    app = create_app(lectures_dialog, None)
+    print(app.run())
