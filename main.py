@@ -2,15 +2,20 @@ import asyncio
 import logging
 import os
 import re
+import time
+from datetime import datetime
 from typing import Any, Callable
 
+import aiohttp
 import jsonpickle
 import platformdirs
+import requests
 import wx
 import yaml
 from prompt_toolkit.application import Application
 from prompt_toolkit.completion import PathCompleter
 from prompt_toolkit.eventloop import run_in_executor_with_context
+from prompt_toolkit.filters import to_filter
 from prompt_toolkit.key_binding import KeyBindings
 from prompt_toolkit.keys import Keys
 from prompt_toolkit.layout import Layout, VSplit
@@ -65,7 +70,12 @@ def create_url_dialog(continue_callback: Callable[[], None]) -> Dialog:
             return
 
         match = echo_url_regex.search(url_input.text)
-        dialog_choices['url'] = match.group(0)
+        if match.group(2) == 'home':
+            dialog_choices['course_uuid'] = match.group(1)
+        else:  # 'public'
+            response = requests.get(url_input.text, allow_redirects=False)
+            redirect_match = echo_url_regex.search('https://echo360.org.uk' + response.headers['Location'])
+            dialog_choices['course_uuid'] = redirect_match.group(1)
         continue_callback()
 
     def on_cancel():
@@ -101,7 +111,7 @@ def create_url_dialog(continue_callback: Callable[[], None]) -> Dialog:
     return dialog
 
 
-def create_lectures_dialog(selection: list[tuple[Echo360Lecture, str]], continue_callback: Callable[[], None]) -> tuple[Dialog, AnyContainer]:
+def create_lectures_dialog(selection: list[tuple[Echo360Lecture, str]], continue_callback: Callable[[], None]) -> Dialog:
     def ok_handler() -> None:
         if not cb_list.current_values:
             app.exit(result='No lectures selected')
@@ -127,7 +137,7 @@ def create_lectures_dialog(selection: list[tuple[Echo360Lecture, str]], continue
         with_background=True,
     )
 
-    return dialog, cb_list
+    return dialog
 
 
 def create_path_dialog(continue_callback: Callable[[], None]) -> tuple[Dialog, AnyContainer]:
@@ -220,11 +230,57 @@ def create_download_dialog(
 
 
 def continue_to_lecture_selection():
-    with EchoScraper(config, dialog_choices["url"], headless=False) as scraper:
-        sel = scraper.get_lecture_selection()
-    lectures_dialog, element_to_focus = create_lectures_dialog(sel, continue_to_path_selection)
+    lectures = []
+
+    start = time.perf_counter()
+    with requests.Session() as sess:
+        sess.get(arbitrary_url)
+        response = sess.get(f'https://echo360.org.uk/section/{dialog_choices['course_uuid']}/syllabus')
+
+        for lesson in response.json()['data']:
+            if not lesson['lesson']['medias']:
+                continue
+
+            institution_id = lesson['lesson']['lesson']['institutionId']
+            media_id = lesson['lesson']['medias'][0]['id']
+
+            lecture = Echo360Lecture()
+            lecture.title = lesson['lesson']['lesson']['name']
+            lecture.course_name = lesson['lesson']['lesson']['sectionId']
+
+            if lesson['lesson']['isScheduled']:
+                start_dt_str = lesson['lesson']['captureStartedAt']
+                end_dt_str = lesson['lesson']['captureEndedAt']
+            else:
+                start_dt_str = lesson['lesson']['lesson']['timing']['start']
+                end_dt_str = lesson['lesson']['lesson']['timing']['end']
+
+            start_dt = datetime.fromisoformat(start_dt_str)
+            end_dt = datetime.fromisoformat(end_dt_str)
+
+            lecture.date = start_dt.date()
+            lecture.start_time = start_dt.time()
+            lecture.end_time = end_dt.time()
+
+            for source in [0, 1, 2]:
+                for quality in [1, 0]:
+                    file_name = f's{source}q{quality}.m4s'
+                    url = f'https://content.echo360.org.uk/0000.{institution_id}/{media_id}/1/{file_name}'
+                    response = sess.head(url)
+                    logger.debug(f's{source}q{quality}.m4s - {response.status_code}')
+                    if response.status_code == 200:
+                        file_size = int(response.headers['Content-Length'])
+                        lecture.file_infos.append(FileInfo(file_name, file_size, url=url))
+                        break
+
+            lectures.append((lecture, lecture.title))
+
+    end = time.perf_counter()
+    logger.debug(f'Elapsed time: {end - start}')
+    logger.debug(f'Number of lectures: {len(lectures)}')
+
+    lectures_dialog = create_lectures_dialog(lectures, continue_to_path_selection)
     app.layout = Layout(lectures_dialog)
-    app.layout.focus(element_to_focus)
     app.invalidate()
 
 
@@ -253,7 +309,7 @@ if __name__ == '__main__':
     logger = logging.getLogger(__name__)
 
     load_dotenv()
-    url = os.getenv('ECHO_O')
+    arbitrary_url = os.getenv('ECHO_O')
 
     config_dir = platformdirs.user_config_dir('echo-downloader', 'anviks', roaming=True)
     default_config_path = os.path.join(os.path.dirname(__file__), 'config.yaml')
@@ -278,7 +334,7 @@ if __name__ == '__main__':
         'lectures': None,
         'path': None,
         'download': None,
-        'url': None,
+        'course_uuid': None,
     }
 
     # with open('test_lectures.json', 'w') as f:

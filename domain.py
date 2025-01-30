@@ -1,5 +1,5 @@
 from dataclasses import dataclass, field
-from datetime import datetime
+import datetime as dt
 
 
 @dataclass(slots=True, eq=False)
@@ -12,9 +12,9 @@ class FileInfo:
 
 @dataclass(init=True, slots=True, repr=False)
 class Echo360Lecture:
-    date: datetime | None = None
-    start_time: datetime | None = None
-    end_time: datetime | None = None
+    date: dt.date | None = None
+    start_time: dt.time | None = None
+    end_time: dt.time | None = None
     course_name: str = ''
     title: str = ''
     url: str = ''
