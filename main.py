@@ -53,7 +53,7 @@ def create_app(dialog: AnyContainer, style: BaseStyle | None) -> Application[Any
     )
 
 
-def create_url_dialog(continue_callback: Callable[[], None]) -> Dialog:
+def create_url_dialog(continue_callback: Callable[[], Any]) -> Dialog:
     hex_ = '[0-9a-f]'
     uuid_regex = fr'{hex_}{{8}}-{hex_}{{4}}-{hex_}{{4}}-{hex_}{{4}}-{hex_}{{12}}'
     echo_url_regex = re.compile(fr'^https?://echo360\.org\.uk/section/({uuid_regex})/(public|home)$')
@@ -229,51 +229,52 @@ def create_download_dialog(
     return dialog, start
 
 
-def continue_to_lecture_selection():
+async def continue_to_lecture_selection():
     lectures = []
 
     start = time.perf_counter()
-    with requests.Session() as sess:
-        sess.get(arbitrary_url)
-        response = sess.get(f'https://echo360.org.uk/section/{dialog_choices['course_uuid']}/syllabus')
+    async with aiohttp.ClientSession() as sess:
+        await sess.get(arbitrary_url)
 
-        for lesson in response.json()['data']:
-            if not lesson['lesson']['medias']:
-                continue
+        async with sess.get(f'https://echo360.org.uk/section/{dialog_choices['course_uuid']}/syllabus') as response:
+            json_data = await response.json()
+            for lesson in json_data['data']:
+                if not lesson['lesson']['medias']:
+                    continue
 
-            institution_id = lesson['lesson']['lesson']['institutionId']
-            media_id = lesson['lesson']['medias'][0]['id']
+                institution_id = lesson['lesson']['lesson']['institutionId']
+                media_id = lesson['lesson']['medias'][0]['id']
 
-            lecture = Echo360Lecture()
-            lecture.title = lesson['lesson']['lesson']['name']
-            lecture.course_name = lesson['lesson']['lesson']['sectionId']
+                lecture = Echo360Lecture()
+                lecture.title = lesson['lesson']['lesson']['name']
+                lecture.course_name = lesson['lesson']['lesson']['sectionId']
 
-            if lesson['lesson']['isScheduled']:
-                start_dt_str = lesson['lesson']['captureStartedAt']
-                end_dt_str = lesson['lesson']['captureEndedAt']
-            else:
-                start_dt_str = lesson['lesson']['lesson']['timing']['start']
-                end_dt_str = lesson['lesson']['lesson']['timing']['end']
+                if lesson['lesson']['isScheduled']:
+                    start_dt_str = lesson['lesson']['captureStartedAt']
+                    end_dt_str = lesson['lesson']['captureEndedAt']
+                else:
+                    start_dt_str = lesson['lesson']['lesson']['timing']['start']
+                    end_dt_str = lesson['lesson']['lesson']['timing']['end']
 
-            start_dt = datetime.fromisoformat(start_dt_str)
-            end_dt = datetime.fromisoformat(end_dt_str)
+                start_dt = datetime.fromisoformat(start_dt_str)
+                end_dt = datetime.fromisoformat(end_dt_str)
 
-            lecture.date = start_dt.date()
-            lecture.start_time = start_dt.time()
-            lecture.end_time = end_dt.time()
+                lecture.date = start_dt.date()
+                lecture.start_time = start_dt.time()
+                lecture.end_time = end_dt.time()
 
-            for source in [0, 1, 2]:
-                for quality in [1, 0]:
-                    file_name = f's{source}q{quality}.m4s'
-                    url = f'https://content.echo360.org.uk/0000.{institution_id}/{media_id}/1/{file_name}'
-                    response = sess.head(url)
-                    logger.debug(f's{source}q{quality}.m4s - {response.status_code}')
-                    if response.status_code == 200:
-                        file_size = int(response.headers['Content-Length'])
-                        lecture.file_infos.append(FileInfo(file_name, file_size, url=url))
-                        break
+                for source in [0, 1, 2]:
+                    for quality in [1, 0]:
+                        file_name = f's{source}q{quality}.m4s'
+                        url = f'https://content.echo360.org.uk/0000.{institution_id}/{media_id}/1/{file_name}'
+                        async with sess.head(url) as head_response:
+                            logger.debug(f's{source}q{quality}.m4s - {head_response.status}')
+                            if head_response.status == 200:
+                                file_size = int(head_response.headers['Content-Length'])
+                                lecture.file_infos.append(FileInfo(file_name, file_size, url=url))
+                                break
 
-            lectures.append((lecture, lecture.title))
+                lectures.append((lecture, lecture.title))
 
     end = time.perf_counter()
     logger.debug(f'Elapsed time: {end - start}')
@@ -344,6 +345,6 @@ if __name__ == '__main__':
     # with open('test_lectures.json', 'r') as f:
     #     sel = jsonpickle.decode(f.read())
 
-    url_dialog = create_url_dialog(continue_to_lecture_selection)
+    url_dialog = create_url_dialog(lambda: asyncio.get_running_loop().create_task(continue_to_lecture_selection()))
     app = create_app(url_dialog, None)
     print(app.run())
