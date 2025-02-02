@@ -11,6 +11,7 @@ from urllib.parse import quote
 logger = logging.getLogger(__name__)
 SAFE_CHARS = ' #[]'
 
+
 def merge_files_concurrently(
         config: EchoDownloaderConfig,
         output_dir: str,
@@ -64,26 +65,36 @@ def merge_files(*, audio_path: str, video_path: str, output_path: str) -> None:
 
 def get_file_infos(config: EchoDownloaderConfig, output_dir: str, lectures: list[Echo360Lecture]) -> list[dict[str, str]]:
     file_infos = []
+    qualities = ['q1', 'q0']
+    sources = {'screen': 's1', 'camera': 's2'}
 
     for lecture in lectures:
-        course_folder = os.path.join(output_dir, quote(lecture.course_name, SAFE_CHARS))
+        course_folder = os.path.join(output_dir, quote(lecture.course_uuid, SAFE_CHARS))
         folder_join = partial(os.path.join, course_folder)
         info: FileInfo
         file_names = {info.file_name for info in lecture.file_infos}
 
-        for title_suffix, av_pairs in config.file_pairs.items():
-            output_path = folder_join(quote(repr(lecture), SAFE_CHARS) + title_suffix + '.mp4')
-            if os.path.exists(output_path):
-                logger.info(f'File already exists: {output_path}, skipping...')
+        for q_audio in qualities:
+            audio = f's0{q_audio}.m4s'
+            if audio not in file_names:
                 continue
 
-            for audio, video in av_pairs:
-                if audio in file_names and video in file_names:
-                    kwargs = dict(audio_path=folder_join(quote(repr(lecture), SAFE_CHARS), audio),
-                                  video_path=folder_join(quote(repr(lecture), SAFE_CHARS), video),
-                                  output_path=output_path)
+            for source_type, source in sources.items():
+                title_suffix = config.title_suffixes[source_type]
+                output_path = folder_join(quote(repr(lecture), SAFE_CHARS) + title_suffix + '.mp4')
+                if os.path.exists(output_path):
+                    logger.info(f'File already exists: {output_path}, skipping...')
+                    continue
 
-                    file_infos.append(kwargs)
-                    break
+                for q_video in qualities:
+                    video = f'{source}{q_video}.m4s'
+
+                    if video in file_names:
+                        file_infos.append({
+                            'audio_path': folder_join(quote(repr(lecture), SAFE_CHARS), audio),
+                            'video_path': folder_join(quote(repr(lecture), SAFE_CHARS), video),
+                            'output_path': output_path
+                        })
+                        break
 
     return file_infos

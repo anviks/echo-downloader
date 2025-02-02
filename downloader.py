@@ -38,7 +38,7 @@ async def download_lecture_files(
             if not lecture.file_infos:
                 continue
 
-            folder = os.path.join(output_dir, quote(lecture.course_name, safe=SAFE_CHARS), quote(repr(lecture), safe=SAFE_CHARS))
+            folder = os.path.join(output_dir, quote(lecture.course_uuid, safe=SAFE_CHARS), quote(repr(lecture), safe=SAFE_CHARS))
             os.makedirs(folder, exist_ok=True)
 
             for info in lecture.file_infos:

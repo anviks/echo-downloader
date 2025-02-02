@@ -15,7 +15,7 @@ class Echo360Lecture:
     date: dt.date | None = None
     start_time: dt.time | None = None
     end_time: dt.time | None = None
-    course_name: str = ''
+    course_uuid: str = ''
     title: str = ''
     url: str = ''
     week_number: int = 0

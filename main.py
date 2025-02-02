@@ -30,7 +30,6 @@ from config_wrapper import EchoDownloaderConfig
 from domain import Echo360Lecture, FileInfo
 from downloader import download_lecture_files
 from merger import merge_files_concurrently
-from scraper import EchoScraper
 
 
 def get_file_size_string(size: int) -> str:
@@ -38,6 +37,17 @@ def get_file_size_string(size: int) -> str:
         return f'{size / (1 << 30):.2f} GiB'
     else:
         return f'{size / (1 << 20):.2f} MiB'
+
+
+async def animate_loading(done_event: asyncio.Event, label: Label):
+    original_text = label.text
+    dots = ["   ", ".  ", ".. ", "..."]
+    i = 0
+    while not done_event.is_set():
+        label.text = f"{original_text}{dots[i % 4]}"
+        app.invalidate()
+        i += 1
+        await asyncio.sleep(0.5)
 
 
 def create_app(dialog: AnyContainer, style: BaseStyle | None) -> Application[Any]:
@@ -58,7 +68,7 @@ def create_url_dialog(continue_callback: Callable[[], Any]) -> Dialog:
     uuid_regex = fr'{hex_}{{8}}-{hex_}{{4}}-{hex_}{{4}}-{hex_}{{4}}-{hex_}{{12}}'
     echo_url_regex = re.compile(fr'^https?://echo360\.org\.uk/section/({uuid_regex})/(public|home)$')
 
-    def on_input(event):
+    def on_input(_):
         if error_label.text:
             error_label.text = ''
             app.invalidate()
@@ -81,8 +91,8 @@ def create_url_dialog(continue_callback: Callable[[], Any]) -> Dialog:
     def on_cancel():
         app.exit()
 
-    def validate_url(urlz: str) -> bool:
-        return bool(echo_url_regex.search(urlz))
+    def validate_url(url: str) -> bool:
+        return bool(echo_url_regex.search(url))
 
     url_input = TextArea(
         multiline=False,
@@ -111,7 +121,7 @@ def create_url_dialog(continue_callback: Callable[[], Any]) -> Dialog:
     return dialog
 
 
-def create_lectures_dialog(selection: list[tuple[Echo360Lecture, str]], continue_callback: Callable[[], None]) -> Dialog:
+def create_lectures_dialog(selection: list[tuple[Echo360Lecture, str]], continue_callback: Callable[[], None]) -> tuple[Dialog, AnyContainer]:
     def ok_handler() -> None:
         if not cb_list.current_values:
             app.exit(result='No lectures selected')
@@ -125,11 +135,8 @@ def create_lectures_dialog(selection: list[tuple[Echo360Lecture, str]], continue
     cb_list = CheckboxList(values=selection)
 
     dialog = Dialog(
-        title='Select some items',
-        body=HSplit(
-            [Label(text='yo', dont_extend_height=True), cb_list],
-            padding=1,
-        ),
+        title='Select lectures to download',
+        body=cb_list,
         buttons=[
             Button(text='Continue', handler=ok_handler),
             Button(text='Cancel', handler=_return_none),
@@ -137,7 +144,7 @@ def create_lectures_dialog(selection: list[tuple[Echo360Lecture, str]], continue
         with_background=True,
     )
 
-    return dialog
+    return dialog, cb_list
 
 
 def create_path_dialog(continue_callback: Callable[[], None]) -> tuple[Dialog, AnyContainer]:
@@ -149,7 +156,7 @@ def create_path_dialog(continue_callback: Callable[[], None]) -> tuple[Dialog, A
         app.exit()
 
     def ask_for_directory():
-        wx_app = wx.App(False)
+        _ = wx.App(False)
         dir_dialog = wx.DirDialog(
             None,
             'Select directory',
@@ -230,9 +237,17 @@ def create_download_dialog(
 
 
 async def continue_to_lecture_selection():
+    loading_label = Label(text="Fetching lectures")
+    loading_dialog = Dialog(title="Please wait", body=HSplit([loading_label]), with_background=True)
+
+    app.layout = Layout(loading_dialog)
+    app.invalidate()
+
+    done_event = asyncio.Event()
+    asyncio.create_task(animate_loading(done_event, loading_label))
+
     lectures = []
 
-    start = time.perf_counter()
     async with aiohttp.ClientSession() as sess:
         await sess.get(arbitrary_url)
 
@@ -247,7 +262,7 @@ async def continue_to_lecture_selection():
 
                 lecture = Echo360Lecture()
                 lecture.title = lesson['lesson']['lesson']['name']
-                lecture.course_name = lesson['lesson']['lesson']['sectionId']
+                lecture.course_uuid = lesson['lesson']['lesson']['sectionId']
 
                 if lesson['lesson']['isScheduled']:
                     start_dt_str = lesson['lesson']['captureStartedAt']
@@ -276,12 +291,19 @@ async def continue_to_lecture_selection():
 
                 lectures.append((lecture, lecture.title))
 
-    end = time.perf_counter()
-    logger.debug(f'Elapsed time: {end - start}')
-    logger.debug(f'Number of lectures: {len(lectures)}')
+    # with open('tarkvaratehnika.json', 'w') as f:
+    #     f.write(jsonpickle.encode(lectures, indent=2))
 
-    lectures_dialog = create_lectures_dialog(lectures, continue_to_path_selection)
+    # await asyncio.sleep(2)
+
+    done_event.set()
+
+    # with open('tarkvaratehnika.json', 'r') as f:
+    #     lectures = jsonpickle.decode(f.read())
+
+    lectures_dialog, element_to_focus = create_lectures_dialog(lectures, continue_to_path_selection)
     app.layout = Layout(lectures_dialog)
+    app.layout.focus(element_to_focus)
     app.invalidate()
 
 
@@ -337,13 +359,6 @@ if __name__ == '__main__':
         'download': None,
         'course_uuid': None,
     }
-
-    # with open('test_lectures.json', 'w') as f:
-    #     f.write(jsonpickle.encode(sel, indent=2))
-    #     exit(0)
-    #
-    # with open('test_lectures.json', 'r') as f:
-    #     sel = jsonpickle.decode(f.read())
 
     url_dialog = create_url_dialog(lambda: asyncio.get_running_loop().create_task(continue_to_lecture_selection()))
     app = create_app(url_dialog, None)
