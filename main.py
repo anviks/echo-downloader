@@ -27,6 +27,8 @@ from utils_anviks import dict_to_object
 from dotenv import load_dotenv
 
 from config_wrapper import EchoDownloaderConfig
+
+from config import load_config
 from domain import Echo360Lecture, FileInfo
 from downloader import download_lecture_files
 from merger import merge_files_concurrently
@@ -334,24 +336,7 @@ if __name__ == '__main__':
     load_dotenv()
     arbitrary_url = os.getenv('ECHO_O')
 
-    config_dir = platformdirs.user_config_dir('echo-downloader', 'anviks', roaming=True)
-    default_config_path = os.path.join(os.path.dirname(__file__), 'config.yaml')
-    custom_config_path = os.path.join(config_dir, 'config.yaml')
-
-    with open(default_config_path) as f:
-        file_contents = f.read()
-
-    config_dict = yaml.safe_load(file_contents)
-
-    if not os.path.exists(custom_config_path):
-        os.makedirs(os.path.dirname(custom_config_path), exist_ok=True)
-        with open(custom_config_path, 'w') as f:
-            f.write(file_contents)
-    else:
-        with open(custom_config_path) as f:
-            config_dict.update(yaml.safe_load(f))
-
-    config = dict_to_object(config_dict, EchoDownloaderConfig)
+    config = load_config()
 
     dialog_choices: dict[str, Any] = {
         'lectures': None,
