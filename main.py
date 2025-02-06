@@ -27,16 +27,7 @@ async def animate_loading(done_event: asyncio.Event, label: Label):
         await asyncio.sleep(0.5)
 
 
-async def continue_to_lecture_selection(course_uuid: str):
-    loading_label = Label(text="Fetching lectures")
-    loading_dialog = Dialog(title="Please wait", body=HSplit([loading_label]), with_background=True)
-
-    app.layout = Layout(loading_dialog)
-    app.invalidate()
-
-    done_event = asyncio.Event()
-    asyncio.create_task(animate_loading(done_event, loading_label))
-
+async def get_lecture_selection(course_uuid: str):
     lectures = []
 
     async with aiohttp.ClientSession() as sess:
@@ -69,18 +60,36 @@ async def continue_to_lecture_selection(course_uuid: str):
                 lecture.start_time = start_dt.time()
                 lecture.end_time = end_dt.time()
 
-                for source in [0, 1, 2]:
-                    for quality in [1, 0]:
-                        file_name = f's{source}q{quality}.m4s'
+                for source in ['s0', 's1', 's2']:
+                    for quality in ['q1', 'q0']:
+                        file_name = f'{source}{quality}.m4s'
                         url = f'https://content.echo360.org.uk/0000.{institution_id}/{media_id}/1/{file_name}'
                         async with sess.head(url) as head_response:
-                            logger.debug(f's{source}q{quality}.m4s - {head_response.status}')
+                            logger.debug(f'{source}{quality}.m4s - {head_response.status}')
                             if head_response.status == 200:
                                 file_size = int(head_response.headers['Content-Length'])
                                 lecture.file_infos.append(FileInfo(file_name, file_size, url=url))
                                 break
 
-                lectures.append((lecture, lecture.title))
+                date_str = lecture.date.strftime('%B %d, %Y')
+                time_range_str = f'{lecture.start_time:%H:%M}-{lecture.end_time:%H:%H}'
+
+                lectures.append((lecture, f'{lecture.title}   {date_str} {time_range_str}'))
+
+    return lectures
+
+
+async def continue_to_lecture_selection(course_uuid: str):
+    loading_label = Label(text="Fetching lectures")
+    loading_dialog = Dialog(title="Please wait", body=HSplit([loading_label]), with_background=True)
+
+    app.layout = Layout(loading_dialog)
+    app.invalidate()
+
+    done_event = asyncio.Event()
+    asyncio.create_task(animate_loading(done_event, loading_label))
+
+    lectures = await get_lecture_selection(course_uuid)
 
     # with open('tarkvaratehnika.json', 'w') as f:
     #     f.write(jsonpickle.encode(lectures, indent=2))
