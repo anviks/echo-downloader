@@ -5,7 +5,7 @@ from functools import partial
 from multiprocessing.pool import Pool
 
 from domain import Echo360Lecture, FileInfo
-from config_wrapper import EchoDownloaderConfig
+from config import EchoDownloaderConfig
 from urllib.parse import quote
 
 logger = logging.getLogger(__name__)
