@@ -11,6 +11,7 @@ from prompt_toolkit.layout.containers import HSplit
 from prompt_toolkit.widgets import Dialog, Label
 
 from config import load_config
+from debug_tools import lecture_cache
 from domain import Echo360Lecture, FileInfo
 from downloader import download_lecture_files
 from ui import create_app, create_download_dialog, create_lectures_dialog, create_path_dialog, create_url_dialog
@@ -27,6 +28,7 @@ async def animate_loading(done_event: asyncio.Event, label: Label):
         await asyncio.sleep(0.5)
 
 
+@lecture_cache.write
 async def get_lecture_selection(course_uuid: str):
     lectures = []
 
@@ -88,18 +90,8 @@ async def continue_to_lecture_selection(course_uuid: str):
 
     done_event = asyncio.Event()
     asyncio.create_task(animate_loading(done_event, loading_label))
-
     lectures = await get_lecture_selection(course_uuid)
-
-    # with open('tarkvaratehnika.json', 'w') as f:
-    #     f.write(jsonpickle.encode(lectures, indent=2))
-
-    # await asyncio.sleep(2)
-
     done_event.set()
-
-    # with open('tarkvaratehnika.json', 'r') as f:
-    #     lectures = jsonpickle.decode(f.read())
 
     lectures_dialog, element_to_focus = create_lectures_dialog(lectures, continue_to_path_selection)
     app.layout = Layout(lectures_dialog)
