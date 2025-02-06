@@ -26,8 +26,6 @@ from prompt_toolkit.widgets import Button, CheckboxList, Dialog, Label, Progress
 from utils_anviks import dict_to_object
 from dotenv import load_dotenv
 
-from config_wrapper import EchoDownloaderConfig
-
 from config import load_config
 from domain import Echo360Lecture, FileInfo
 from downloader import download_lecture_files
@@ -65,7 +63,7 @@ def create_app(dialog: AnyContainer, style: BaseStyle | None) -> Application[Any
     )
 
 
-def create_url_dialog(continue_callback: Callable[[], Any]) -> Dialog:
+def create_url_dialog(continue_callback: Callable[[str], Any]) -> Dialog:
     hex_ = '[0-9a-f]'
     uuid_regex = fr'{hex_}{{8}}-{hex_}{{4}}-{hex_}{{4}}-{hex_}{{4}}-{hex_}{{12}}'
     echo_url_regex = re.compile(fr'^https?://echo360\.org\.uk/section/({uuid_regex})/(public|home)$')
@@ -83,12 +81,12 @@ def create_url_dialog(continue_callback: Callable[[], Any]) -> Dialog:
 
         match = echo_url_regex.search(url_input.text)
         if match.group(2) == 'home':
-            dialog_choices['course_uuid'] = match.group(1)
+            course_uuid = match.group(1)
         else:  # 'public'
             response = requests.get(url_input.text, allow_redirects=False)
             redirect_match = echo_url_regex.search('https://echo360.org.uk' + response.headers['Location'])
-            dialog_choices['course_uuid'] = redirect_match.group(1)
-        continue_callback()
+            course_uuid = redirect_match.group(1)
+        continue_callback(course_uuid)
 
     def on_cancel():
         app.exit()
@@ -123,13 +121,16 @@ def create_url_dialog(continue_callback: Callable[[], Any]) -> Dialog:
     return dialog
 
 
-def create_lectures_dialog(selection: list[tuple[Echo360Lecture, str]], continue_callback: Callable[[], None]) -> tuple[Dialog, AnyContainer]:
+def create_lectures_dialog(
+        selection: list[tuple[Echo360Lecture, str]],
+        continue_callback: Callable[[list[Echo360Lecture]], None]
+) -> tuple[Dialog, AnyContainer]:
     def ok_handler() -> None:
         if not cb_list.current_values:
             app.exit(result='No lectures selected')
-        dialog_choices['lectures'] = cb_list.current_values
-        logger.debug(dialog_choices['lectures'])
-        continue_callback()
+        lectures = cb_list.current_values
+        logger.debug(lectures)
+        continue_callback(lectures)
 
     def _return_none() -> None:
         app.exit(result=None)
@@ -149,10 +150,9 @@ def create_lectures_dialog(selection: list[tuple[Echo360Lecture, str]], continue
     return dialog, cb_list
 
 
-def create_path_dialog(continue_callback: Callable[[], None]) -> tuple[Dialog, AnyContainer]:
+def create_path_dialog(continue_callback: Callable[[str], None]) -> tuple[Dialog, AnyContainer]:
     def on_submit():
-        dialog_choices['path'] = path_input.text
-        continue_callback()
+        continue_callback(path_input.text)
 
     def on_cancel():
         app.exit()
@@ -227,18 +227,18 @@ def create_download_dialog(
         labels[i].text = f'{downloaded_str} / {total_size_strings[i]}'
         app.invalidate()
 
-    def start() -> None:
+    def start(path, lectures) -> None:
         run_callback(set_progress)
         dialog.title = 'Muxing files...'
         app.invalidate()
-        output_files = merge_files_concurrently(config, dialog_choices['path'], dialog_choices['lectures'], False)
+        output_files = merge_files_concurrently(config, path, lectures, False)
         result = f'Lectures downloaded and muxed to\n{'\n'.join(output_files)}' if output_files else 'Muxed files already exist'
         app.exit(result=result)
 
     return dialog, start
 
 
-async def continue_to_lecture_selection():
+async def continue_to_lecture_selection(course_uuid: str):
     loading_label = Label(text="Fetching lectures")
     loading_dialog = Dialog(title="Please wait", body=HSplit([loading_label]), with_background=True)
 
@@ -253,7 +253,7 @@ async def continue_to_lecture_selection():
     async with aiohttp.ClientSession() as sess:
         await sess.get(arbitrary_url)
 
-        async with sess.get(f'https://echo360.org.uk/section/{dialog_choices['course_uuid']}/syllabus') as response:
+        async with sess.get(f'https://echo360.org.uk/section/{course_uuid}/syllabus') as response:
             json_data = await response.json()
             for lesson in json_data['data']:
                 if not lesson['lesson']['medias']:
@@ -309,19 +309,19 @@ async def continue_to_lecture_selection():
     app.invalidate()
 
 
-def continue_to_path_selection():
-    path_dialog, element_to_focus = create_path_dialog(continue_to_download)
+def continue_to_path_selection(lectures: list[Echo360Lecture]):
+    path_dialog, element_to_focus = create_path_dialog(lambda path: continue_to_download(lectures, path))
     app.layout = Layout(path_dialog)
     app.layout.focus(element_to_focus)
     app.invalidate()
 
 
-def continue_to_download():
-    files = [info for lecture in dialog_choices['lectures'] for info in lecture.file_infos]
-    download_dialog, start = create_download_dialog(files, lambda set_progress: asyncio.run(download_lecture_files(dialog_choices['path'], dialog_choices['lectures'], set_progress)))
+def continue_to_download(lectures: list[Echo360Lecture], path: str):
+    files = [info for lecture in lectures for info in lecture.file_infos]
+    download_dialog, start = create_download_dialog(files, lambda set_progress: asyncio.run(download_lecture_files(path, lectures, set_progress)))
     app.layout = Layout(download_dialog)
     app.invalidate()
-    run_in_executor_with_context(start)
+    run_in_executor_with_context(lambda: start(path, lectures))
 
 
 if __name__ == '__main__':
@@ -345,6 +345,6 @@ if __name__ == '__main__':
         'course_uuid': None,
     }
 
-    url_dialog = create_url_dialog(lambda: asyncio.get_running_loop().create_task(continue_to_lecture_selection()))
+    url_dialog = create_url_dialog(lambda course_uuid: asyncio.get_running_loop().create_task(continue_to_lecture_selection(course_uuid)))
     app = create_app(url_dialog, None)
     print(app.run())
