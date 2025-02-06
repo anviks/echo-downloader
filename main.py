@@ -16,6 +16,7 @@ from domain import Echo360Lecture, FileInfo
 from downloader import download_lecture_files
 from merger import merge_files_concurrently
 from ui import create_app, create_download_dialog, create_lectures_dialog, create_path_dialog, create_url_dialog
+from helpers import run_coroutine_sync
 
 
 async def animate_loading(done_event: asyncio.Event, label: Label):
@@ -107,22 +108,18 @@ def continue_to_path_selection(lectures: list[Echo360Lecture]):
     app.invalidate()
 
 
-def continue_to_download(lectures: list[Echo360Lecture], path: str):
-    def done_callback(done_task: Task):
-        download_dialog.title = 'Muxing files...'
-        app.layout = Layout(download_dialog)
-        app.invalidate()
-        output_files = merge_files_concurrently(config, path, lectures, False)
-        result = f'Lectures downloaded and muxed to\n{'\n'.join(output_files)}' if output_files else 'Muxed files already exist'
-        app.exit(result=result)
-
+async def continue_to_download(lectures: list[Echo360Lecture], path: str):
     files = [info for lecture in lectures for info in lecture.file_infos]
-    download_dialog, start, set_progrezz = create_download_dialog(files, lambda set_progress: asyncio.run(
-        download_lecture_files(path, lectures, set_progress)))
-    task = asyncio.create_task(download_lecture_files(path, lectures, set_progrezz))
+    download_dialog, set_progrezz = create_download_dialog(files)
     app.layout = Layout(download_dialog)
     app.invalidate()
-    task.add_done_callback(done_callback)
+    await download_lecture_files(path, lectures, set_progrezz)
+    download_dialog.title = 'Muxing files...'
+    app.layout = Layout(download_dialog)
+    app.invalidate()
+    output_files = merge_files_concurrently(config, path, lectures, False)
+    result = f'Lectures downloaded and muxed to\n{'\n'.join(output_files)}' if output_files else 'Muxed files already exist'
+    app.exit(result=result)
     # run_in_executor_with_context(start)
     # start()
 
@@ -141,7 +138,6 @@ if __name__ == '__main__':
 
     config = load_config()
 
-    url_dialog = create_url_dialog(
-        lambda course_uuid: asyncio.get_running_loop().create_task(continue_to_lecture_selection(course_uuid)))
+    url_dialog = create_url_dialog(lambda course_uuid: asyncio.get_running_loop().create_task(continue_to_lecture_selection(course_uuid)))
     app = create_app(url_dialog, None)
     print(app.run())

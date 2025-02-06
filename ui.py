@@ -4,9 +4,10 @@ import os
 import re
 import time
 from datetime import datetime
-from typing import Any, Callable
+from typing import Any, Callable, Coroutine
 
 import aiohttp
+from helpers import run_coroutine_sync
 import jsonpickle
 import platformdirs
 import requests
@@ -137,11 +138,11 @@ def create_lectures_dialog(
     return dialog, cb_list
 
 
-def create_path_dialog(continue_callback: Callable[[str], None]) -> tuple[Dialog, AnyContainer]:
+def create_path_dialog(continue_callback: Callable[[str], Coroutine[None, None, None]]) -> tuple[Dialog, AnyContainer]:
     app = get_app()
 
     def on_submit():
-        continue_callback(path_input.text)
+        asyncio.create_task(continue_callback(path_input.text))
 
     def on_cancel():
         app.exit()
@@ -189,9 +190,9 @@ def create_path_dialog(continue_callback: Callable[[str], None]) -> tuple[Dialog
 
 def create_download_dialog(
         files: list[FileInfo],
-        run_callback: Callable[[Callable[[int, int], None]], None] = (
-                lambda *a: None
-        ),
+        # run_callback: Callable[[Callable[[int, int], None]], None] = (
+        #         lambda *a: None
+        # ),
 ):
     app = get_app()
     file_count = len(files)
@@ -227,4 +228,4 @@ def create_download_dialog(
         # result = f'Lectures downloaded and muxed to\n{'\n'.join(output_files)}' if output_files else 'Muxed files already exist'
         # app.exit(result=result)
 
-    return dialog, start, set_progress
+    return dialog, set_progress
