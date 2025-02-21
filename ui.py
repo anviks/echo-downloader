@@ -1,3 +1,4 @@
+import logging
 import re
 from typing import Any, Callable
 
@@ -7,7 +8,7 @@ from prompt_toolkit.application import Application, get_app
 from prompt_toolkit.completion import PathCompleter
 from prompt_toolkit.key_binding import KeyBindings
 from prompt_toolkit.keys import Keys
-from prompt_toolkit.layout import Layout, VSplit
+from prompt_toolkit.layout import Dimension, Layout, VSplit
 from prompt_toolkit.layout.containers import AnyContainer, HSplit
 from prompt_toolkit.styles import BaseStyle
 from prompt_toolkit.validation import Validator
@@ -16,6 +17,8 @@ from prompt_toolkit.widgets import Button, CheckboxList, Dialog, Label, Progress
 from domain import Echo360Lecture, FileInfo
 from helpers import get_file_size_string
 from merger import merge_files_concurrently
+
+logger = logging.getLogger(__name__)
 
 
 def create_app(dialog: AnyContainer, style: BaseStyle | None) -> Application[Any]:
@@ -67,7 +70,6 @@ def create_url_dialog(continue_callback: Callable[[str], Any]) -> Dialog:
     url_input = TextArea(
         multiline=False,
         height=1,
-        width=80,
         validator=Validator.from_callable(validate_url),
     )
     url_input.buffer.on_text_changed += on_input
@@ -81,6 +83,7 @@ def create_url_dialog(continue_callback: Callable[[str], Any]) -> Dialog:
             VSplit([url_label, url_input], padding=1),
             error_label
         ]),
+        width=Dimension(min=85),
         buttons=[
             Button(text="Continue", handler=on_submit),
             Button(text="Cancel", handler=on_cancel),
@@ -111,6 +114,7 @@ def create_lectures_dialog(
     dialog = Dialog(
         title='Select lectures to download',
         body=cb_list,
+        width=Dimension(min=85),
         buttons=[
             Button(text='Continue', handler=ok_handler),
             Button(text='Cancel', handler=_return_none),
@@ -160,6 +164,7 @@ def create_path_dialog(continue_callback: Callable[[str], None]) -> tuple[Dialog
     dialog = Dialog(
         title='Enter output path',
         body=VSplit([Button(text='Select directory', width=20, handler=open_selector), path_input], padding=2),
+        width=Dimension(min=85),
         buttons=[
             Button(text="Begin download", width=18, handler=on_submit),
             Button(text="Cancel", handler=on_cancel),
@@ -193,6 +198,7 @@ def create_download_dialog(
             HSplit(labels, padding=1),
             HSplit(progress_bars, padding=1),
         ], padding=1),
+        width=Dimension(min=85),
         with_background=True,
     )
 
