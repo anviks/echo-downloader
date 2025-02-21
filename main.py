@@ -74,7 +74,7 @@ async def get_lecture_selection(course_uuid: str):
                                 break
 
                 date_str = lecture.date.strftime('%B %d, %Y')
-                time_range_str = f'{lecture.start_time:%H:%M}-{lecture.end_time:%H:%H}'
+                time_range_str = f'{lecture.start_time:%H:%M}-{lecture.end_time:%H:%M}'
 
                 lectures.append((lecture, f'{lecture.title}   {date_str} {time_range_str}'))
 
@@ -89,9 +89,10 @@ async def continue_to_lecture_selection(course_uuid: str):
     app.invalidate()
 
     done_event = asyncio.Event()
-    asyncio.create_task(animate_loading(done_event, loading_label))
+    loading_task = asyncio.create_task(animate_loading(done_event, loading_label))
     lectures = await get_lecture_selection(course_uuid)
     done_event.set()
+    await loading_task  # Ensure the loading animation is stopped before continuing
 
     lectures_dialog, element_to_focus = create_lectures_dialog(lectures, continue_to_path_selection)
     app.layout = Layout(lectures_dialog)
@@ -128,7 +129,6 @@ if __name__ == '__main__':
 
     config = load_config()
 
-    url_dialog = create_url_dialog(
-        lambda course_uuid: asyncio.get_running_loop().create_task(continue_to_lecture_selection(course_uuid)))
+    url_dialog = create_url_dialog(lambda course_uuid: asyncio.get_running_loop().create_task(continue_to_lecture_selection(course_uuid)))
     app = create_app(url_dialog, None)
     print(app.run())

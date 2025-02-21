@@ -3,7 +3,7 @@ from typing import Literal
 
 import platformdirs
 import yaml
-from utils_anviks import dict_to_object
+from objectify import dict_to_object
 
 
 class EchoDownloaderConfig:
