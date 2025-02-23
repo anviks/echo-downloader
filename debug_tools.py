@@ -25,7 +25,7 @@ class lecture_cache:
             with open('test_lectures.json', 'r') as f:
                 result = jsonpickle.decode(f.read())
 
-            await asyncio.sleep(2)
+            await asyncio.sleep(1)
             return result
 
         return wrapper

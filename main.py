@@ -1,11 +1,11 @@
 import asyncio
 import logging
 import os
-from asyncio import Task
 from datetime import datetime
 
 import aiohttp
 from dotenv import load_dotenv
+from prompt_toolkit.eventloop import run_in_executor_with_context
 from prompt_toolkit.layout import Layout
 from prompt_toolkit.layout.containers import HSplit
 from prompt_toolkit.widgets import Dialog, Label
@@ -14,23 +14,21 @@ from config import load_config
 from debug_tools import lecture_cache
 from domain import Echo360Lecture, FileInfo
 from downloader import download_lecture_files
-from merger import merge_files_concurrently
 from ui import create_app, create_download_dialog, create_lectures_dialog, create_path_dialog, create_url_dialog
-from helpers import run_coroutine_sync
 
 
 async def animate_loading(done_event: asyncio.Event, label: Label):
     original_text = label.text
-    dots = ['   ', '.  ', '.. ', '...']
+    dots = ["   ", ".  ", ".. ", "..."]
     i = 0
     while not done_event.is_set():
-        label.text = f'{original_text}{dots[i % 4]}'
+        label.text = f"{original_text}{dots[i % 4]}"
         app.invalidate()
         i += 1
         await asyncio.sleep(0.5)
 
 
-@lecture_cache.read
+@lecture_cache.write
 async def get_lecture_selection(course_uuid: str):
     lectures = []
 
@@ -76,7 +74,7 @@ async def get_lecture_selection(course_uuid: str):
                                 break
 
                 date_str = lecture.date.strftime('%B %d, %Y')
-                time_range_str = f'{lecture.start_time:%H:%M}-{lecture.end_time:%H:%H}'
+                time_range_str = f'{lecture.start_time:%H:%M}-{lecture.end_time:%H:%M}'
 
                 lectures.append((lecture, f'{lecture.title}   {date_str} {time_range_str}'))
 
@@ -84,18 +82,19 @@ async def get_lecture_selection(course_uuid: str):
 
 
 async def continue_to_lecture_selection(course_uuid: str):
-    loading_label = Label(text='Fetching lectures')
-    loading_dialog = Dialog(title='Please wait', body=HSplit([loading_label]), with_background=True)
+    loading_label = Label(text="Fetching lectures")
+    loading_dialog = Dialog(title="Please wait", body=HSplit([loading_label]), with_background=True)
 
     app.layout = Layout(loading_dialog)
     app.invalidate()
 
     done_event = asyncio.Event()
-    asyncio.create_task(animate_loading(done_event, loading_label))
-    lecture_selection = await get_lecture_selection(course_uuid)
+    loading_task = asyncio.create_task(animate_loading(done_event, loading_label))
+    lectures = await get_lecture_selection(course_uuid)
     done_event.set()
+    await loading_task  # Ensure the loading animation is stopped before continuing
 
-    lectures_dialog, element_to_focus = create_lectures_dialog(lecture_selection, continue_to_path_selection)
+    lectures_dialog, element_to_focus = create_lectures_dialog(lectures, continue_to_path_selection)
     app.layout = Layout(lectures_dialog)
     app.layout.focus(element_to_focus)
     app.invalidate()
@@ -108,28 +107,20 @@ def continue_to_path_selection(lectures: list[Echo360Lecture]):
     app.invalidate()
 
 
-async def continue_to_download(lectures: list[Echo360Lecture], path: str):
+def continue_to_download(lectures: list[Echo360Lecture], path: str):
     files = [info for lecture in lectures for info in lecture.file_infos]
-    download_dialog, set_progrezz = create_download_dialog(files)
+    download_dialog, start = create_download_dialog(files, lambda set_progress: asyncio.run(download_lecture_files(path, lectures, set_progress)))
     app.layout = Layout(download_dialog)
     app.invalidate()
-    await download_lecture_files(path, lectures, set_progrezz)
-    download_dialog.title = 'Muxing files...'
-    app.layout = Layout(download_dialog)
-    app.invalidate()
-    output_files = merge_files_concurrently(config, path, lectures, False)
-    result = f'Lectures downloaded and muxed to\n{'\n'.join(output_files)}' if output_files else 'Muxed files already exist'
-    app.exit(result=result)
-    # run_in_executor_with_context(start)
-    # start()
+    run_in_executor_with_context(lambda: start(config, path, lectures))
 
 
 if __name__ == '__main__':
     logging.basicConfig(
         filename='echo_downloader.log',
         level=logging.DEBUG,
-        format='%(asctime)s - %(name)s - %(levelname)-8s - %(message)s',
-        datefmt='%Y-%m-%d %H:%M:%S'
+        format="%(asctime)s - %(name)s - %(levelname)-8s - %(message)s",
+        datefmt="%Y-%m-%d %H:%M:%S"
     )
     logger = logging.getLogger(__name__)
 
