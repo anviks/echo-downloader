@@ -11,6 +11,7 @@ import jsonpickle
 from dotenv import load_dotenv
 
 from domain import Echo360Lecture
+from helpers import get_long_path
 
 logger = logging.getLogger(__name__)
 SAFE_CHARS = ' #[]'
@@ -38,7 +39,8 @@ async def download_lecture_files(
             if not lecture.file_infos:
                 continue
 
-            folder = os.path.join(output_dir, quote(lecture.course_uuid, safe=SAFE_CHARS), quote(repr(lecture), safe=SAFE_CHARS))
+            folder = os.path.join(output_dir, lecture.course_uuid, quote(repr(lecture), safe=SAFE_CHARS))
+            folder = get_long_path(folder)
             os.makedirs(folder, exist_ok=True)
 
             for info in lecture.file_infos:
@@ -48,7 +50,7 @@ async def download_lecture_files(
                     continue
 
                 destination_path = os.path.join(folder, info.file_name)
-                info.local_path = os.path.abspath(destination_path)
+                info.local_path = destination_path
                 task = asyncio.create_task(download_file(session, destination_path, info.url, (lambda bound_i: lambda downloaded: set_progress(bound_i, downloaded))(i)))
                 tasks.append(task)
                 logger.debug(f'Started downloading {info.url} to {destination_path}')
@@ -84,4 +86,3 @@ async def download_file(
     except aiohttp.ClientError as e:
         logger.error(f"Failed to download {url}: {e}")
         await asyncio.sleep(0)  # Yield to the event loop to prevent blocking
-
