@@ -5,16 +5,13 @@ from typing import Callable
 
 import aiofiles
 import aiohttp
-from urllib.parse import quote
-
 import jsonpickle
 from dotenv import load_dotenv
 
 from domain import Echo360Lecture
-from helpers import get_long_path
+from helpers import get_long_path, encode_path
 
 logger = logging.getLogger(__name__)
-SAFE_CHARS = ' #[]'
 load_dotenv()
 initial_url = os.getenv('ECHO_O')
 
@@ -39,7 +36,7 @@ async def download_lecture_files(
             if not lecture.file_infos:
                 continue
 
-            folder = os.path.join(output_dir, lecture.course_uuid, quote(repr(lecture), safe=SAFE_CHARS))
+            folder = os.path.join(output_dir, lecture.course_uuid, encode_path(repr(lecture)))
             folder = get_long_path(folder)
             os.makedirs(folder, exist_ok=True)
 

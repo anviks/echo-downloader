@@ -1,5 +1,12 @@
 import os
 import sys
+from urllib.parse import quote
+
+SAFE_CHARS = ' #[]'
+
+
+def encode_path(s: str) -> str:
+    return quote(s, safe=SAFE_CHARS)
 
 
 def get_long_path(path: str) -> str:

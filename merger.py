@@ -6,10 +6,9 @@ from multiprocessing.pool import Pool
 
 from config import EchoDownloaderConfig
 from domain import Echo360Lecture, FileInfo
-from urllib.parse import quote
+from helpers import encode_path
 
 logger = logging.getLogger(__name__)
-SAFE_CHARS = ' #[]'
 
 
 def merge_files_concurrently(
@@ -69,7 +68,7 @@ def get_file_infos(config: EchoDownloaderConfig, output_dir: str, lectures: list
     sources = {'screen': 's1', 'camera': 's2'}
 
     for lecture in lectures:
-        course_folder = os.path.join(output_dir, quote(lecture.course_uuid, SAFE_CHARS))
+        course_folder = os.path.join(output_dir, encode_path(lecture.course_uuid))
         folder_join = partial(os.path.join, course_folder)
         info: FileInfo
         file_names = {info.file_name for info in lecture.file_infos}
@@ -81,7 +80,7 @@ def get_file_infos(config: EchoDownloaderConfig, output_dir: str, lectures: list
 
             for source_type, source in sources.items():
                 title_suffix = config.title_suffixes[source_type]
-                output_path = folder_join(quote(repr(lecture), SAFE_CHARS) + title_suffix + '.mp4')
+                output_path = folder_join(encode_path(repr(lecture)) + title_suffix + '.mp4')
                 if os.path.exists(output_path):
                     logger.info(f'File already exists: {output_path}, skipping...')
                     continue
@@ -91,8 +90,8 @@ def get_file_infos(config: EchoDownloaderConfig, output_dir: str, lectures: list
 
                     if video in file_names:
                         file_infos.append({
-                            'audio_path': folder_join(quote(repr(lecture), SAFE_CHARS), audio),
-                            'video_path': folder_join(quote(repr(lecture), SAFE_CHARS), video),
+                            'audio_path': folder_join(encode_path(repr(lecture)), audio),
+                            'video_path': folder_join(encode_path(repr(lecture)), video),
                             'output_path': output_path
                         })
                         break
