@@ -1,4 +1,4 @@
-import os
+from pathlib import Path
 from typing import Literal
 
 import platformdirs
@@ -17,17 +17,17 @@ class EchoDownloaderConfig:
 
 
 def load_config() -> EchoDownloaderConfig:
-    default_config_path = os.path.join(os.path.dirname(__file__), 'config.yaml')
+    default_config_path = Path(__file__).parent / 'config.yaml'
     config_dir = platformdirs.user_config_dir('echo-downloader', 'anviks', roaming=True)
-    custom_config_path = os.path.join(config_dir, 'config.yaml')
+    custom_config_path = Path(config_dir) / 'config.yaml'
 
     with open(default_config_path) as f:
         file_contents = f.read()
 
     config_dict = yaml.safe_load(file_contents)
 
-    if not os.path.exists(custom_config_path):
-        os.makedirs(os.path.dirname(custom_config_path), exist_ok=True)
+    if not custom_config_path.exists():
+        custom_config_path.parent.mkdir(parents=True, exist_ok=True)
         with open(custom_config_path, 'w') as f:
             f.write(file_contents)
     else:

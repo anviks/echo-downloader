@@ -1,5 +1,6 @@
 import logging
 import re
+from pathlib import Path
 from typing import Any, Callable
 
 import requests
@@ -124,11 +125,11 @@ def create_lectures_dialog(
     return dialog, cb_list
 
 
-def create_path_dialog(continue_callback: Callable[[str], None]) -> tuple[Dialog, AnyContainer]:
+def create_path_dialog(continue_callback: Callable[[Path], None]) -> tuple[Dialog, AnyContainer]:
     app = get_app()
 
     def on_submit():
-        continue_callback(get_long_path(path_input.text))
+        continue_callback(get_long_path(Path(path_input.text)))
 
     def on_cancel():
         app.exit()

@@ -2,6 +2,7 @@ import asyncio
 import logging
 import os
 from datetime import datetime
+from pathlib import Path
 
 import aiohttp
 from dotenv import load_dotenv
@@ -108,7 +109,7 @@ def continue_to_path_selection(lectures: list[Echo360Lecture]):
     app.invalidate()
 
 
-def continue_to_download(lectures: list[Echo360Lecture], path: str):
+def continue_to_download(lectures: list[Echo360Lecture], path: Path):
     files = [info for lecture in lectures for info in lecture.file_infos]
     download_dialog, set_progress = create_download_dialog(files)
     app.layout = Layout(download_dialog)
@@ -119,7 +120,7 @@ def continue_to_download(lectures: list[Echo360Lecture], path: str):
         download_dialog.title = 'Muxing files...'
         app.invalidate()
         output_files = merge_files_concurrently(config, path, lectures, False)
-        result = f'Lectures downloaded and muxed to\n{'\n'.join(output_files)}' if output_files else 'Muxed files already exist'
+        result = f'Lectures downloaded and muxed to\n{'\n'.join(map(str, output_files))}' if output_files else 'Muxed files already exist'
         app.exit(result=result)
 
     run_in_executor_with_context(download_and_merge)

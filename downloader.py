@@ -1,6 +1,7 @@
 import asyncio
 import logging
 import os
+from pathlib import Path
 from typing import Callable
 
 import aiofiles
@@ -17,7 +18,7 @@ initial_url = os.getenv('ECHO_O')
 
 
 async def download_lecture_files(
-        output_dir: str,
+        output_dir: Path,
         lectures: list[Echo360Lecture],
         set_progress: Callable[[int, int], None]
 ) -> None:
@@ -36,8 +37,8 @@ async def download_lecture_files(
             if not lecture.file_infos:
                 continue
 
-            folder = os.path.join(output_dir, lecture.course_uuid, encode_path(repr(lecture)))
-            os.makedirs(folder, exist_ok=True)
+            folder = output_dir / lecture.course_uuid / encode_path(repr(lecture))
+            folder.mkdir(parents=True, exist_ok=True)
 
             for info in lecture.file_infos:
                 progresses.append(None)
@@ -45,7 +46,7 @@ async def download_lecture_files(
                 if info.url is None:
                     continue
 
-                destination_path = os.path.join(folder, info.file_name)
+                destination_path = folder / info.file_name
                 info.local_path = destination_path
                 task = asyncio.create_task(download_file(session, destination_path, info.url, (lambda bound_i: lambda downloaded: set_progress(bound_i, downloaded))(i)))
                 tasks.append(task)
@@ -59,7 +60,7 @@ async def download_lecture_files(
 
 async def download_file(
         session: aiohttp.ClientSession,
-        destination_path: str,
+        destination_path: Path,
         url: str,
         progress_update_callback: Callable[[int], None]
 ) -> None:
@@ -69,7 +70,7 @@ async def download_file(
             total_size = int(response.headers.get('Content-Length', 0))
 
             # Return if the file already exists
-            if os.path.exists(destination_path) and os.path.getsize(destination_path) == total_size:
+            if destination_path.exists() and destination_path.stat().st_size == total_size:
                 progress_update_callback(total_size)
                 return
             response.raise_for_status()

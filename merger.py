@@ -1,8 +1,7 @@
 import logging
-import os
 import subprocess
-from functools import partial
 from multiprocessing.pool import Pool
+from pathlib import Path
 
 from config import EchoDownloaderConfig
 from domain import Echo360Lecture, FileInfo
@@ -13,10 +12,10 @@ logger = logging.getLogger(__name__)
 
 def merge_files_concurrently(
         config: EchoDownloaderConfig,
-        output_dir: str,
+        output_dir: Path,
         lectures: list[Echo360Lecture],
         delete_originals: bool = True
-) -> list[str]:
+) -> list[Path]:
     file_infos = get_file_infos(config, output_dir, lectures)
 
     with Pool() as pool:
@@ -29,22 +28,21 @@ def merge_files_concurrently(
             for key, path in info.items():
                 if key == 'output_path':
                     continue
-                if os.path.exists(path):
-                    os.remove(path)
-                directories.add(os.path.dirname(path))
+                path.unlink(missing_ok=True)
+                directories.add(path.parent)
 
         for directory in directories:
-            if not os.listdir(directory):
-                os.rmdir(directory)
+            if not list(directory.iterdir()):
+                directory.rmdir()
 
-    return [os.path.abspath(info['output_path']) for info in file_infos]
+    return [info['output_path'] for info in file_infos]
 
 
-def merge_files_wrapper(file_infos: dict[str, str]) -> None:
+def merge_files_wrapper(file_infos: dict[str, Path]) -> None:
     merge_files(**file_infos)
 
 
-def merge_files(*, audio_path: str, video_path: str, output_path: str) -> None:
+def merge_files(*, audio_path: Path, video_path: Path, output_path: Path) -> None:
     ffmpeg_cmd = [
         'ffmpeg',
         '-i', audio_path,
@@ -62,14 +60,18 @@ def merge_files(*, audio_path: str, video_path: str, output_path: str) -> None:
         logger.exception(f'Error while muxing: {e}')
 
 
-def get_file_infos(config: EchoDownloaderConfig, output_dir: str, lectures: list[Echo360Lecture]) -> list[dict[str, str]]:
+def get_file_infos(
+        config: EchoDownloaderConfig,
+        output_dir: Path,
+        lectures: list[Echo360Lecture]
+) -> list[dict[str, Path]]:
     file_infos = []
     qualities = ['q1', 'q0']
     sources = {'screen': 's1', 'camera': 's2'}
 
     for lecture in lectures:
-        course_folder = os.path.join(output_dir, encode_path(lecture.course_uuid))
-        folder_join = partial(os.path.join, course_folder)
+        encoded_title = encode_path(repr(lecture))
+        course_folder = output_dir / encode_path(lecture.course_uuid)
         info: FileInfo
         file_names = {info.file_name for info in lecture.file_infos}
 
@@ -80,8 +82,8 @@ def get_file_infos(config: EchoDownloaderConfig, output_dir: str, lectures: list
 
             for source_type, source in sources.items():
                 title_suffix = config.title_suffixes[source_type]
-                output_path = folder_join(encode_path(repr(lecture)) + title_suffix + '.mp4')
-                if os.path.exists(output_path):
+                output_path = course_folder / (encoded_title + title_suffix + '.mp4')
+                if output_path.exists():
                     logger.info(f'File already exists: {output_path}, skipping...')
                     continue
 
@@ -90,8 +92,8 @@ def get_file_infos(config: EchoDownloaderConfig, output_dir: str, lectures: list
 
                     if video in file_names:
                         file_infos.append({
-                            'audio_path': folder_join(encode_path(repr(lecture)), audio),
-                            'video_path': folder_join(encode_path(repr(lecture)), video),
+                            'audio_path': course_folder / encoded_title / audio,
+                            'video_path': course_folder / encoded_title / video,
                             'output_path': output_path
                         })
                         break
