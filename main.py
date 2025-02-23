@@ -20,10 +20,10 @@ from ui import create_app, create_download_dialog, create_lectures_dialog, creat
 
 async def animate_loading(done_event: asyncio.Event, label: Label):
     original_text = label.text
-    dots = ["   ", ".  ", ".. ", "..."]
+    dots = ['   ', '.  ', '.. ', '...']
     i = 0
     while not done_event.is_set():
-        label.text = f"{original_text}{dots[i % 4]}"
+        label.text = f'{original_text}{dots[i % 4]}'
         app.invalidate()
         i += 1
         await asyncio.sleep(0.5)
@@ -83,8 +83,8 @@ async def get_lecture_selection(course_uuid: str):
 
 
 async def continue_to_lecture_selection(course_uuid: str):
-    loading_label = Label(text="Fetching lectures")
-    loading_dialog = Dialog(title="Please wait", body=HSplit([loading_label]), with_background=True)
+    loading_label = Label(text='Fetching lectures')
+    loading_dialog = Dialog(title='Please wait', body=HSplit([loading_label]), with_background=True)
 
     app.layout = Layout(loading_dialog)
     app.invalidate()
@@ -129,8 +129,8 @@ if __name__ == '__main__':
     logging.basicConfig(
         filename='echo_downloader.log',
         level=logging.DEBUG,
-        format="%(asctime)s - %(name)s - %(levelname)-8s - %(message)s",
-        datefmt="%Y-%m-%d %H:%M:%S"
+        format='%(asctime)s - %(name)s - %(levelname)-8s - %(message)s',
+        datefmt='%Y-%m-%d %H:%M:%S'
     )
     logger = logging.getLogger(__name__)
 
@@ -141,4 +141,6 @@ if __name__ == '__main__':
 
     url_dialog = create_url_dialog(lambda course_uuid: asyncio.get_running_loop().create_task(continue_to_lecture_selection(course_uuid)))
     app = create_app(url_dialog, None)
-    print(app.run())
+    run_result = app.run()
+    logger.info(f'Application exited with result: {run_result}')
+    print(run_result)
