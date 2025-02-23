@@ -9,7 +9,7 @@ import jsonpickle
 from dotenv import load_dotenv
 
 from domain import Echo360Lecture
-from helpers import get_long_path, encode_path
+from helpers import encode_path
 
 logger = logging.getLogger(__name__)
 load_dotenv()
@@ -37,7 +37,6 @@ async def download_lecture_files(
                 continue
 
             folder = os.path.join(output_dir, lecture.course_uuid, encode_path(repr(lecture)))
-            folder = get_long_path(folder)
             os.makedirs(folder, exist_ok=True)
 
             for info in lecture.file_infos:

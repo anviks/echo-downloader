@@ -15,7 +15,7 @@ from prompt_toolkit.validation import Validator
 from prompt_toolkit.widgets import Button, CheckboxList, Dialog, Label, ProgressBar, TextArea
 
 from domain import Echo360Lecture, FileInfo
-from helpers import get_file_size_string
+from helpers import get_file_size_string, get_long_path
 from merger import merge_files_concurrently
 
 logger = logging.getLogger(__name__)
@@ -129,7 +129,7 @@ def create_path_dialog(continue_callback: Callable[[str], None]) -> tuple[Dialog
     app = get_app()
 
     def on_submit():
-        continue_callback(path_input.text)
+        continue_callback(get_long_path(path_input.text))
 
     def on_cancel():
         app.exit()
