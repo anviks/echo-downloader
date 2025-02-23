@@ -14,6 +14,7 @@ from config import load_config
 from debug_tools import lecture_cache
 from domain import Echo360Lecture, FileInfo
 from downloader import download_lecture_files
+from merger import merge_files_concurrently
 from ui import create_app, create_download_dialog, create_lectures_dialog, create_path_dialog, create_url_dialog
 
 
@@ -28,7 +29,7 @@ async def animate_loading(done_event: asyncio.Event, label: Label):
         await asyncio.sleep(0.5)
 
 
-@lecture_cache.write
+@lecture_cache.read
 async def get_lecture_selection(course_uuid: str):
     lectures = []
 
@@ -109,10 +110,19 @@ def continue_to_path_selection(lectures: list[Echo360Lecture]):
 
 def continue_to_download(lectures: list[Echo360Lecture], path: str):
     files = [info for lecture in lectures for info in lecture.file_infos]
-    download_dialog, start = create_download_dialog(files, lambda set_progress: asyncio.run(download_lecture_files(path, lectures, set_progress)))
+    download_dialog, set_progress = create_download_dialog(files)
     app.layout = Layout(download_dialog)
     app.invalidate()
-    run_in_executor_with_context(lambda: start(config, path, lectures))
+
+    def download_and_merge():
+        asyncio.run(download_lecture_files(path, lectures, set_progress))
+        download_dialog.title = 'Muxing files...'
+        app.invalidate()
+        output_files = merge_files_concurrently(config, path, lectures, False)
+        result = f'Lectures downloaded and muxed to\n{'\n'.join(output_files)}' if output_files else 'Muxed files already exist'
+        app.exit(result=result)
+
+    run_in_executor_with_context(download_and_merge)
 
 
 if __name__ == '__main__':

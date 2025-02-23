@@ -16,7 +16,6 @@ from prompt_toolkit.widgets import Button, CheckboxList, Dialog, Label, Progress
 
 from domain import Echo360Lecture, FileInfo
 from helpers import get_file_size_string, get_long_path
-from merger import merge_files_concurrently
 
 logger = logging.getLogger(__name__)
 
@@ -175,12 +174,7 @@ def create_path_dialog(continue_callback: Callable[[str], None]) -> tuple[Dialog
     return dialog, path_input
 
 
-def create_download_dialog(
-        files: list[FileInfo],
-        run_callback: Callable[[Callable[[int, int], None]], None] = (
-                lambda *a: None
-        ),
-):
+def create_download_dialog(files: list[FileInfo]):
     app = get_app()
 
     file_count = len(files)
@@ -208,12 +202,4 @@ def create_download_dialog(
         labels[i].text = f'{downloaded_str} / {total_size_strings[i]}'
         app.invalidate()
 
-    def start(config, path, lectures) -> None:
-        run_callback(set_progress)
-        dialog.title = 'Muxing files...'
-        app.invalidate()
-        output_files = merge_files_concurrently(config, path, lectures, False)
-        result = f'Lectures downloaded and muxed to\n{'\n'.join(output_files)}' if output_files else 'Muxed files already exist'
-        app.exit(result=result)
-
-    return dialog, start
+    return dialog, set_progress
