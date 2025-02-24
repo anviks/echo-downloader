@@ -1,0 +1,13 @@
+# Maximum number of logs to keep in the logs directory
+max_logs: 10
+
+# If true, tab completion will be enabled, when prompted for download path
+path_completion: true
+
+# If true, source files will be deleted after muxing
+delete_source_files: true
+
+# Title suffixes for the screen and camera recordings (will be added to the end of output file names)
+title_suffixes:
+  screen: " %7C Screen"
+  camera: " %7C Camera"
