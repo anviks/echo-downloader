@@ -11,7 +11,7 @@ class lecture_cache:
         async def wrapper(*args, **kwargs):
             result = await func(*args, **kwargs)
 
-            with open('test_lectures.json', 'w') as f:
+            with open('../test_lectures.json', 'w') as f:
                 f.write(jsonpickle.encode(result, indent=2))
 
             return result
@@ -22,7 +22,7 @@ class lecture_cache:
     def read(func):
         @wraps(func)
         async def wrapper(*args, **kwargs):
-            with open('test_lectures.json', 'r') as f:
+            with open('../test_lectures.json', 'r') as f:
                 result = jsonpickle.decode(f.read())
 
             await asyncio.sleep(1)

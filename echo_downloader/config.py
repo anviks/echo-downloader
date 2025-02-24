@@ -13,7 +13,7 @@ class EchoDownloaderConfig:
 
 
 def load_config() -> EchoDownloaderConfig:
-    default_config_path = Path(__file__).parent / 'config.yaml'
+    default_config_path = Path(__file__).parent.parent / 'config.yaml'
     config_dir = platformdirs.user_config_path('echo_downloader', appauthor=False, roaming=True)
     config_dir.mkdir(parents=True, exist_ok=True)
     custom_config_path = config_dir / 'config.yaml'
