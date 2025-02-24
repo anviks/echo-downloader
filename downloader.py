@@ -41,7 +41,9 @@ async def download_lecture_files(
 
                 destination_path = folder / info.file_name
                 info.local_path = destination_path
-                task = asyncio.create_task(download_file(session, destination_path, info.url, (lambda bound_i: lambda downloaded: set_progress(bound_i, downloaded))(i)))
+                # Inner lambda needs to be wrapped in another lambda to capture the current value of i
+                progress_update_callback = (lambda bound_i: lambda downloaded: set_progress(bound_i, downloaded))(i)
+                task = asyncio.create_task(download_file(session, destination_path, info.url, progress_update_callback))
                 tasks.append(task)
                 logger.debug(f'Started downloading {info.url} to {destination_path}')
                 i += 1

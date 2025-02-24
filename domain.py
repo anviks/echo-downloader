@@ -1,5 +1,5 @@
-from dataclasses import dataclass, field
 import datetime as dt
+from dataclasses import dataclass, field
 
 
 @dataclass(slots=True, eq=False)

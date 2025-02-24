@@ -124,7 +124,10 @@ def create_lectures_dialog(
     return dialog, cb_list
 
 
-def create_path_dialog(config: EchoDownloaderConfig, continue_callback: Callable[[Path], None]) -> tuple[Dialog, AnyContainer]:
+def create_path_dialog(
+        config: EchoDownloaderConfig,
+        continue_callback: Callable[[Path], None]
+) -> tuple[Dialog, AnyContainer]:
     def on_submit():
         continue_callback(get_long_path(Path(path_input.text)))
 
@@ -133,15 +136,18 @@ def create_path_dialog(config: EchoDownloaderConfig, continue_callback: Callable
 
     def ask_for_directory():
         _ = wx.App(False)
+
         dir_dialog = wx.DirDialog(
             None,
             'Select directory',
             style=(wx.DD_DEFAULT_STYLE | wx.DD_DIR_MUST_EXIST)
         )
+
         if dir_dialog.ShowModal() == wx.ID_OK:
             chosen_dir = dir_dialog.GetPath()
         else:
             chosen_dir = None
+
         dir_dialog.Destroy()
 
         return chosen_dir

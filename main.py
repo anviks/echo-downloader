@@ -126,7 +126,10 @@ def continue_to_download(lectures: list[Echo360Lecture], path: Path):
         download_dialog.title = 'Muxing files...'
         app.invalidate()
         output_files = merge_files_concurrently(config, path, lectures)
-        result = f'Lectures downloaded and muxed to\n{'\n'.join(map(str, output_files))}' if output_files else 'Muxed files already exist'
+        if output_files:
+            result = f'Lectures downloaded and muxed to\n{'\n'.join(map(str, output_files))}'
+        else:
+            result = 'Muxed files already exist'
         app.exit(result=result)
 
     run_in_executor_with_context(download_and_merge)
@@ -156,7 +159,9 @@ if __name__ == '__main__':
     # Arbitrary '/public' URL to get the cookies
     arbitrary_url = 'https://echo360.org.uk/section/6432fa3a-61e1-4cfe-b7c3-94c72e1b6386/public'
 
-    url_dialog = create_url_dialog(lambda course_uuid: asyncio.get_running_loop().create_task(continue_to_lecture_selection(course_uuid)))
+    url_dialog = create_url_dialog(
+        lambda course_uuid: asyncio.get_running_loop().create_task(continue_to_lecture_selection(course_uuid))
+    )
     app = create_app(url_dialog, None)
     run_result = app.run()
     logger.info(f'Application exited with result: {run_result}')
