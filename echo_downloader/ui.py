@@ -15,9 +15,9 @@ from prompt_toolkit.styles import BaseStyle
 from prompt_toolkit.validation import Validator
 from prompt_toolkit.widgets import Button, CheckboxList, Dialog, Label, ProgressBar, TextArea
 
-from config import EchoDownloaderConfig
-from domain import Echo360Lecture, FileInfo
-from helpers import get_file_size_string, get_long_path
+from .config import EchoDownloaderConfig
+from .domain import Echo360Lecture, FileInfo
+from .helpers import get_file_size_string, get_long_path
 
 logger = logging.getLogger(__name__)
 

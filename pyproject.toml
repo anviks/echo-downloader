@@ -1,0 +1,49 @@
+[build-system]
+requires = ["setuptools"]
+build-backend = "setuptools.build_meta"
+
+[project]
+name = "echo_downloader"
+version = "1.0.0"
+authors = [
+    { name = "Andreas Marten Viks", email = "andreasviks0@gmail.com" },
+]
+description = "A downloader for Echo360 lectures"
+readme = "README.md"
+requires-python = ">=3.10"
+classifiers = [
+    "Programming Language :: Python :: 3",
+    "License :: OSI Approved :: GNU General Public License v3 (GPLv3)",
+    "Operating System :: OS Independent",
+]
+dependencies = [
+    "aiofiles",
+    "aiohttp",
+    "beautifulsoup4",
+    "objectify",
+    "platformdirs",
+    "prompt-toolkit",
+    "pyyaml",
+    "requests",
+    "wxpython",
+]
+
+[project.optional-dependencies]
+dev = [
+    "jsonpickle",
+    "pytest"
+]
+
+[project.scripts]
+echo-downloader = "echo_downloader.main"
+
+[tool.setuptools]
+packages = ["echo_downloader"]
+
+[tool.setuptools.package-data]
+"echo_downloader" = ["config.yaml"]
+
+[project.urls]
+"Homepage" = "https://github.com/anviks/echo-downloader/"
+"Issues" = "https://github.com/anviks/echo-downloader/issues"
+"Changelog" = "https://github.com/anviks/echo-downloader/blob/main/CHANGELOG.md"

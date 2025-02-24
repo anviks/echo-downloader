@@ -3,9 +3,9 @@ import subprocess
 from multiprocessing.pool import Pool
 from pathlib import Path
 
-from config import EchoDownloaderConfig
-from domain import Echo360Lecture, FileInfo
-from helpers import encode_path
+from .config import EchoDownloaderConfig
+from .domain import Echo360Lecture, FileInfo
+from .helpers import encode_path
 
 logger = logging.getLogger(__name__)
 
