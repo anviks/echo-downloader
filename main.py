@@ -1,13 +1,11 @@
 import asyncio
 import logging
-import os
 from datetime import datetime
 from pathlib import Path
 
 import aiohttp
 import platformdirs
 from bs4 import BeautifulSoup
-from dotenv import load_dotenv
 from prompt_toolkit.eventloop import run_in_executor_with_context
 from prompt_toolkit.layout import Layout
 from prompt_toolkit.layout.containers import HSplit
@@ -124,7 +122,7 @@ def continue_to_download(lectures: list[Echo360Lecture], path: Path):
     app.invalidate()
 
     def download_and_merge():
-        asyncio.run(download_lecture_files(path, lectures, set_progress))
+        asyncio.run(download_lecture_files(path, arbitrary_url, lectures, set_progress))
         download_dialog.title = 'Muxing files...'
         app.invalidate()
         output_files = merge_files_concurrently(config, path, lectures)
@@ -155,8 +153,8 @@ if __name__ == '__main__':
     )
     logger = logging.getLogger(__name__)
 
-    load_dotenv()
-    arbitrary_url = os.getenv('ECHO_O')
+    # Arbitrary '/public' URL to get the cookies
+    arbitrary_url = 'https://echo360.org.uk/section/6432fa3a-61e1-4cfe-b7c3-94c72e1b6386/public'
 
     url_dialog = create_url_dialog(lambda course_uuid: asyncio.get_running_loop().create_task(continue_to_lecture_selection(course_uuid)))
     app = create_app(url_dialog, None)

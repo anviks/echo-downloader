@@ -1,29 +1,25 @@
 import asyncio
 import logging
-import os
 from pathlib import Path
 from typing import Callable
 
 import aiofiles
 import aiohttp
-from dotenv import load_dotenv
 
 from domain import Echo360Lecture
 from helpers import encode_path
 
 logger = logging.getLogger(__name__)
-load_dotenv()
-initial_url = os.getenv('ECHO_O')
 
 
 async def download_lecture_files(
         output_dir: Path,
+        initial_url: str,
         lectures: list[Echo360Lecture],
         set_progress: Callable[[int, int], None]
 ) -> None:
     logger.info('Downloading files...')
     async with aiohttp.ClientSession() as session:
-        # Initial request to get the cookies
         await session.get(initial_url)
 
         i = 0
