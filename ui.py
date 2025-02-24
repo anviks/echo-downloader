@@ -49,9 +49,12 @@ def create_url_dialog(continue_callback: Callable[[str], Any]) -> Dialog:
 
     def on_submit():
         if not url_input.buffer.validate():
+            logger.debug(f'Invalid Echo360 URL entered: {url_input.text}')
             error_label.text = 'Invalid Echo360 URL'
             app.invalidate()
             return
+
+        logger.debug(f'Echo360 URL entered: {url_input.text}')
 
         match = echo_url_regex.search(url_input.text)
         if match.group(2) == 'home':
@@ -60,6 +63,7 @@ def create_url_dialog(continue_callback: Callable[[str], Any]) -> Dialog:
             response = requests.get(url_input.text, allow_redirects=False)
             redirect_match = echo_url_regex.search('https://echo360.org.uk' + response.headers['Location'])
             course_uuid = redirect_match.group(1)
+
         continue_callback(course_uuid)
 
     def on_cancel():
@@ -129,12 +133,15 @@ def create_path_dialog(
         continue_callback: Callable[[Path], None]
 ) -> tuple[Dialog, AnyContainer]:
     def on_submit():
-        continue_callback(get_long_path(Path(path_input.text)))
+        selected_path = path_input.text
+        logger.debug(f'Output path selected: {selected_path}')
+        continue_callback(get_long_path(Path(selected_path)))
 
     def on_cancel():
         get_app().exit()
 
     def ask_for_directory():
+        logger.debug('Opening directory selection dialog...')
         _ = wx.App(False)
 
         dir_dialog = wx.DirDialog(
