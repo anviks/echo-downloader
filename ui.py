@@ -63,7 +63,7 @@ def create_url_dialog(continue_callback: Callable[[str], Any]) -> Dialog:
         continue_callback(course_uuid)
 
     def on_cancel():
-        app.exit()
+        get_app().exit()
 
     def validate_url(url: str) -> bool:
         return bool(echo_url_regex.search(url))
@@ -99,16 +99,14 @@ def create_lectures_dialog(
         selection: list[tuple[Echo360Lecture, str]],
         continue_callback: Callable[[list[Echo360Lecture]], None]
 ) -> tuple[Dialog, AnyContainer]:
-    app = get_app()
-
-    def ok_handler() -> None:
+    def on_submit() -> None:
         if not cb_list.current_values:
-            app.exit(result='No lectures selected')
+            get_app().exit(result='No lectures selected')
         lectures = cb_list.current_values
         continue_callback(lectures)
 
-    def _return_none() -> None:
-        app.exit(result=None)
+    def on_cancel() -> None:
+        get_app().exit()
 
     cb_list = CheckboxList(values=selection)
 
@@ -117,8 +115,8 @@ def create_lectures_dialog(
         body=cb_list,
         width=Dimension(min=85),
         buttons=[
-            Button(text='Continue', handler=ok_handler),
-            Button(text='Cancel', handler=_return_none),
+            Button(text='Continue', handler=on_submit),
+            Button(text='Cancel', handler=on_cancel),
         ],
         with_background=True,
     )
@@ -127,13 +125,11 @@ def create_lectures_dialog(
 
 
 def create_path_dialog(config: EchoDownloaderConfig, continue_callback: Callable[[Path], None]) -> tuple[Dialog, AnyContainer]:
-    app = get_app()
-
     def on_submit():
         continue_callback(get_long_path(Path(path_input.text)))
 
     def on_cancel():
-        app.exit()
+        get_app().exit()
 
     def ask_for_directory():
         _ = wx.App(False)

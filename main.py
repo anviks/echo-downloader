@@ -162,4 +162,4 @@ if __name__ == '__main__':
     app = create_app(url_dialog, None)
     run_result = app.run()
     logger.info(f'Application exited with result: {run_result}')
-    print(run_result)
+    print(run_result or '', end='\n' if run_result else '')
