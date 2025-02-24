@@ -5,6 +5,7 @@ from datetime import datetime
 from pathlib import Path
 
 import aiohttp
+import platformdirs
 from dotenv import load_dotenv
 from prompt_toolkit.eventloop import run_in_executor_with_context
 from prompt_toolkit.layout import Layout
@@ -69,7 +70,6 @@ async def get_lecture_selection(course_uuid: str):
                         file_name = f'{source}{quality}.m4s'
                         url = f'https://content.echo360.org.uk/0000.{institution_id}/{media_id}/1/{file_name}'
                         async with sess.head(url) as head_response:
-                            logger.debug(f'{source}{quality}.m4s - {head_response.status}')
                             if head_response.status == 200:
                                 file_size = int(head_response.headers['Content-Length'])
                                 lecture.file_infos.append(FileInfo(file_name, file_size, url=url))
@@ -127,8 +127,20 @@ def continue_to_download(lectures: list[Echo360Lecture], path: Path):
 
 
 if __name__ == '__main__':
+    config = load_config()
+
+    log_dir = platformdirs.user_log_path('echo_downloader', appauthor=False)
+    log_dir.mkdir(parents=True, exist_ok=True)
+
+    log_files: list[Path] = sorted(log_dir.glob('echo_downloader_*.log'), key=lambda f: f.stat().st_mtime, reverse=True)
+    for old_log in log_files[config.max_logs:]:
+        old_log.unlink()
+
+    timestamp = datetime.now().strftime('%Y-%m-%d_%H-%M-%S')
+    log_file = log_dir / f'echo_downloader_{timestamp}.log'
+
     logging.basicConfig(
-        filename='echo_downloader.log',
+        filename=log_file,
         level=logging.DEBUG,
         format='%(asctime)s - %(name)s - %(levelname)-8s - %(message)s',
         datefmt='%Y-%m-%d %H:%M:%S'
@@ -137,8 +149,6 @@ if __name__ == '__main__':
 
     load_dotenv()
     arbitrary_url = os.getenv('ECHO_O')
-
-    config = load_config()
 
     url_dialog = create_url_dialog(lambda course_uuid: asyncio.get_running_loop().create_task(continue_to_lecture_selection(course_uuid)))
     app = create_app(url_dialog, None)

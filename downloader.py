@@ -32,8 +32,6 @@ async def download_lecture_files(
         progresses: list[tuple[int, int] | None] = []
 
         for lecture in lectures:
-            logger.info(jsonpickle.encode(lecture, False, indent=2))
-
             if not lecture.file_infos:
                 continue
 
