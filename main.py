@@ -111,7 +111,7 @@ async def continue_to_lecture_selection(course_uuid: str):
 
 
 def continue_to_path_selection(lectures: list[Echo360Lecture]):
-    path_dialog, element_to_focus = create_path_dialog(lambda path: continue_to_download(lectures, path))
+    path_dialog, element_to_focus = create_path_dialog(config, lambda path: continue_to_download(lectures, path))
     app.layout = Layout(path_dialog)
     app.layout.focus(element_to_focus)
     app.invalidate()
@@ -127,7 +127,7 @@ def continue_to_download(lectures: list[Echo360Lecture], path: Path):
         asyncio.run(download_lecture_files(path, lectures, set_progress))
         download_dialog.title = 'Muxing files...'
         app.invalidate()
-        output_files = merge_files_concurrently(config, path, lectures, False)
+        output_files = merge_files_concurrently(config, path, lectures)
         result = f'Lectures downloaded and muxed to\n{'\n'.join(map(str, output_files))}' if output_files else 'Muxed files already exist'
         app.exit(result=result)
 

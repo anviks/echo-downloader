@@ -15,6 +15,7 @@ from prompt_toolkit.styles import BaseStyle
 from prompt_toolkit.validation import Validator
 from prompt_toolkit.widgets import Button, CheckboxList, Dialog, Label, ProgressBar, TextArea
 
+from config import EchoDownloaderConfig
 from domain import Echo360Lecture, FileInfo
 from helpers import get_file_size_string, get_long_path
 
@@ -125,7 +126,7 @@ def create_lectures_dialog(
     return dialog, cb_list
 
 
-def create_path_dialog(continue_callback: Callable[[Path], None]) -> tuple[Dialog, AnyContainer]:
+def create_path_dialog(config: EchoDownloaderConfig, continue_callback: Callable[[Path], None]) -> tuple[Dialog, AnyContainer]:
     app = get_app()
 
     def on_submit():
@@ -154,7 +155,11 @@ def create_path_dialog(continue_callback: Callable[[Path], None]) -> tuple[Dialo
         if selected_path:
             path_input.text = selected_path
 
-    path_completer = PathCompleter(only_directories=True, expanduser=True)
+    if config.path_completion:
+        path_completer = PathCompleter(only_directories=True, expanduser=True)
+    else:
+        path_completer = None
+
     path_input = TextArea(
         completer=path_completer,
         multiline=False,

@@ -13,15 +13,14 @@ logger = logging.getLogger(__name__)
 def merge_files_concurrently(
         config: EchoDownloaderConfig,
         output_dir: Path,
-        lectures: list[Echo360Lecture],
-        delete_originals: bool = True
+        lectures: list[Echo360Lecture]
 ) -> list[Path]:
     file_infos = get_file_infos(config, output_dir, lectures)
 
     with Pool() as pool:
         list(pool.imap_unordered(merge_files_wrapper, file_infos))
 
-    if delete_originals:
+    if config.delete_source_files:
         directories = set()
 
         for info in file_infos:

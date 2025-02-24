@@ -7,6 +7,8 @@ from objectify import dict_to_object
 
 class EchoDownloaderConfig:
     max_logs: int
+    path_completion: bool
+    delete_source_files: bool
     title_suffixes: dict[str, str]
 
 
