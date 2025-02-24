@@ -71,7 +71,7 @@ def get_file_infos(
 
     for lecture in lectures:
         encoded_title = encode_path(repr(lecture))
-        course_folder = output_dir / encode_path(lecture.course_uuid)
+        course_folder = output_dir / encode_path(lecture.course_name)
         info: FileInfo
         file_names = {info.file_name for info in lecture.file_infos}
 

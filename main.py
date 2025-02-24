@@ -6,6 +6,7 @@ from pathlib import Path
 
 import aiohttp
 import platformdirs
+from bs4 import BeautifulSoup
 from dotenv import load_dotenv
 from prompt_toolkit.eventloop import run_in_executor_with_context
 from prompt_toolkit.layout import Layout
@@ -38,8 +39,14 @@ async def get_lecture_selection(course_uuid: str):
     async with aiohttp.ClientSession() as sess:
         await sess.get(arbitrary_url)
 
-        async with sess.get(f'https://echo360.org.uk/section/{course_uuid}/syllabus') as response:
-            json_data = await response.json()
+        async with (sess.get(f'https://echo360.org.uk/section/{course_uuid}/syllabus') as syllabus,
+                    sess.get(f'https://echo360.org.uk/section/{course_uuid}/home') as homepage):
+            html = await homepage.text()
+            soup = BeautifulSoup(html, features='html.parser')
+            section_header = soup.select_one('body > div.main-content > div.course-section-header > h1')
+            course_name = list(section_header.children)[2].text.strip()
+
+            json_data = await syllabus.json()
             for lesson in json_data['data']:
                 if not lesson['lesson']['medias']:
                     continue
@@ -50,6 +57,7 @@ async def get_lecture_selection(course_uuid: str):
                 lecture = Echo360Lecture()
                 lecture.title = lesson['lesson']['lesson']['name']
                 lecture.course_uuid = lesson['lesson']['lesson']['sectionId']
+                lecture.course_name = course_name
 
                 if lesson['lesson']['isScheduled']:
                     start_dt_str = lesson['lesson']['captureStartedAt']

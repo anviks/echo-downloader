@@ -6,7 +6,6 @@ from typing import Callable
 
 import aiofiles
 import aiohttp
-import jsonpickle
 from dotenv import load_dotenv
 
 from domain import Echo360Lecture
@@ -35,7 +34,7 @@ async def download_lecture_files(
             if not lecture.file_infos:
                 continue
 
-            folder = output_dir / lecture.course_uuid / encode_path(repr(lecture))
+            folder = output_dir / encode_path(lecture.course_name) / encode_path(repr(lecture))
             folder.mkdir(parents=True, exist_ok=True)
 
             for info in lecture.file_infos:
