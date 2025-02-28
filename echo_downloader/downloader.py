@@ -6,8 +6,8 @@ from typing import Callable
 import aiofiles
 import aiohttp
 
-from domain import Echo360Lecture
-from helpers import encode_path
+from .domain import Echo360Lecture
+from .helpers import encode_path
 
 logger = logging.getLogger(__name__)
 

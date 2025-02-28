@@ -35,7 +35,7 @@ dev = [
 ]
 
 [project.scripts]
-echo-downloader = "echo_downloader.main"
+echo-downloader = "echo_downloader.main:main"
 
 [tool.setuptools]
 packages = ["echo_downloader"]
