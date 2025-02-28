@@ -1,12 +1,15 @@
 import sys
 from pathlib import Path
-from urllib.parse import quote
 
-SAFE_CHARS = ' #[]'
+_SAFE_CHARS = frozenset('ABCDEFGHIJKLMNOPQRSTUVWXYZ'
+                        'abcdefghijklmnopqrstuvwxyz'
+                        '0123456789'
+                        '_.-~'
+                        ' #[]õäöüÕÄÖÜ')
 
 
 def encode_path(s: str) -> str:
-    return quote(s, safe=SAFE_CHARS)
+    return ''.join(f'%{ord(c):02X}' if c not in _SAFE_CHARS else c for c in s)
 
 
 def get_long_path(path: Path) -> Path:
