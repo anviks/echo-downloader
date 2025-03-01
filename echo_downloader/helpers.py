@@ -13,9 +13,14 @@ def encode_path(s: str) -> str:
 
 
 def get_long_path(path: Path) -> Path:
-    if sys.platform == 'win32' and not str(path).startswith('\\\\?\\'):
-        return Path(f'\\\\?\\{path.resolve()}')
-    return path.resolve()
+    abs_path = path.resolve()
+    if (
+            sys.platform == 'win32'
+            and not str(path).startswith('\\\\?\\')
+            and len(str(abs_path)) >= 260
+    ):
+        return Path(f'\\\\?\\{abs_path}')
+    return abs_path
 
 
 def get_file_size_string(size: int) -> str:
