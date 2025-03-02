@@ -1,11 +1,15 @@
 # Echo Downloader
 
-This project is a command-line tool for downloading lectures from `echo360.org.uk` website.
-It supports downloading multiple lectures simultaneously and provides a simple UI for selecting lectures to download.
+[![PyPI](https://img.shields.io/pypi/v/echo-downloader)](https://pypi.org/project/echo-downloader/)
+[![Python Versions](https://img.shields.io/pypi/pyversions/echo-downloader)](https://pypi.org/project/echo-downloader/)
+[![Release Build Status](https://img.shields.io/github/actions/workflow/status/anviks/echo-downloader/release.yml?branch=main&label=release%20build)](https://github.com/anviks/echo-downloader/actions/workflows/release.yml)
+
+Echo Downloader is an interactive command-line tool for downloading lectures from the `echo360.org.uk` website.
+It supports downloading multiple lectures at once and provides an intuitive user-friendly interface.
 
 ## Features
 
-- **Simple UI**: The downloader provides a simple UI for selecting lectures to download.
+- **Simple UI**: The downloader provides a simple UI for downloading lectures.
 - **Multiple Downloads**: You can download multiple lectures simultaneously.
 - **Download Progress**: The downloader shows the download progress for each lecture.
 - **Path Completion**: The downloader provides path completion when selecting the download directory.
