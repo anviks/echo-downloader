@@ -19,6 +19,8 @@ from .ui import create_app, create_download_dialog, create_lectures_dialog, crea
 
 
 class EchoDownloaderApp:
+    app_name = 'EchoDownloader'
+
     def __init__(self):
         # Arbitrary '/public' URL to get the cookies
         self.arbitrary_url = 'https://echo360.org.uk/section/6432fa3a-61e1-4cfe-b7c3-94c72e1b6386/public'
@@ -27,16 +29,16 @@ class EchoDownloaderApp:
         self.app = None
 
     def get_logger(self):
-        log_dir = platformdirs.user_log_path('echo_downloader', appauthor=False)
+        log_dir = platformdirs.user_log_path(self.app_name, appauthor=False)
         log_dir.mkdir(parents=True, exist_ok=True)
 
-        log_files: list[Path] = sorted(log_dir.glob('echo_downloader_*.log'),
+        log_files: list[Path] = sorted(log_dir.glob(f'{self.app_name}_*.log'),
                                        key=lambda f: f.stat().st_mtime, reverse=True)
         for old_log in log_files[self.config.max_logs:]:
             old_log.unlink()
 
         timestamp = datetime.now().strftime('%Y-%m-%d_%H-%M-%S')
-        log_file = log_dir / f'echo_downloader_{timestamp}.log'
+        log_file = log_dir / f'{self.app_name}_{timestamp}.log'
 
         logging.basicConfig(
             filename=log_file,
