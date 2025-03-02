@@ -162,7 +162,7 @@ class EchoDownloaderApp:
             self.app.invalidate()
             output_files = merge_files_concurrently(self.config, path, lectures)
             if output_files:
-                result = f'Lectures downloaded and muxed to\n{"\n".join(map(str, output_files))}'
+                result = f'Lectures downloaded and muxed to\n{chr(10).join(map(str, output_files))}'
             else:
                 result = 'Muxed files already exist'
             self.app.exit(result=result)
