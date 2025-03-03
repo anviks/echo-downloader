@@ -20,6 +20,7 @@ It supports downloading multiple lectures at once and provides an intuitive user
 
 - Python 3.10 or higher
 - Python package installer (`pip`)
+- FFmpeg (must be added to the system PATH)
 
 ## Installation
 
