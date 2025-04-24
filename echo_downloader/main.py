@@ -178,7 +178,7 @@ class EchoDownloaderApp:
             if output_files:
                 result = f'Lectures downloaded and muxed to\n{chr(10).join(map(str, output_files))}'
             else:
-                result = 'Muxed files already exist'
+                result = 'No lectures were muxed'
             self.app.exit(result=result)
 
         run_in_executor_with_context(download_and_merge)
