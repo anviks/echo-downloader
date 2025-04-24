@@ -65,6 +65,7 @@ def get_file_infos(
         lectures: list[Echo360Lecture]
 ) -> list[dict[str, Path]]:
     file_infos = []
+    extensions = ['m4s', 'mp4']
     qualities = ['q1', 'q0']
     sources = {'screen': 's1', 'camera': 's2'}
 
@@ -74,27 +75,32 @@ def get_file_infos(
         info: FileInfo
         file_names = {info.file_name for info in lecture.file_infos}
 
-        for q_audio in qualities:
-            audio = f's0{q_audio}.m4s'
-            if audio not in file_names:
-                continue
-
-            for source_type, source in sources.items():
-                title_suffix = config.title_suffixes[source_type]
-                output_path = course_folder / (encoded_title + title_suffix + '.mp4')
-                if output_path.exists():
-                    logger.info(f'File already exists: {output_path}, skipping...')
+        for ext in extensions:
+            for q_audio in qualities:
+                audio = f's0{q_audio}.{ext}'
+                if audio not in file_names:
                     continue
 
-                for q_video in qualities:
-                    video = f'{source}{q_video}.m4s'
+                for source_type, source in sources.items():
+                    title_suffix = config.title_suffixes[source_type]
+                    output_path = course_folder / (encoded_title + title_suffix + '.mp4')
+                    if output_path.exists():
+                        logger.info(f'File already exists: {output_path}, skipping...')
+                        continue
 
-                    if video in file_names:
-                        file_infos.append({
-                            'audio_path': course_folder / encoded_title / audio,
-                            'video_path': course_folder / encoded_title / video,
-                            'output_path': output_path
-                        })
-                        break
+                    for q_video in qualities:
+                        video = f'{source}{q_video}.{ext}'
+                        logger.debug(f'Checking for video: {video}')
+
+                        if video in file_names:
+                            logger.debug(f'Found video: {video}')
+                            file_infos.append({
+                                'audio_path': course_folder / encoded_title / audio,
+                                'video_path': course_folder / encoded_title / video,
+                                'output_path': output_path
+                            })
+                            break
+                        else:
+                            logger.debug(f'Video not found: {video}')
 
     return file_infos

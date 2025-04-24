@@ -97,15 +97,29 @@ class EchoDownloaderApp:
                     lecture.start_time = start_dt.time()
                     lecture.end_time = end_dt.time()
 
-                    for source in ['s0', 's1', 's2']:
-                        for quality in ['q1', 'q0']:
-                            file_name = f'{source}{quality}.m4s'
-                            url = f'https://content.echo360.org.uk/0000.{institution_id}/{media_id}/1/{file_name}'
-                            async with sess.head(url) as head_response:
-                                if head_response.status == 200:
-                                    file_size = int(head_response.headers['Content-Length'])
-                                    lecture.file_infos.append(FileInfo(file_name, file_size, url=url))
-                                    break
+                    for ext in ['mp4', 'm4s']:
+                        for source in ['s0', 's1', 's2']:
+                            for quality in ['q1', 'q0']:
+                                file_name = f'{source}{quality}.{ext}'
+                                url = f'https://content.echo360.org.uk/0000.{institution_id}/{media_id}/1/{file_name}'
+                                async with sess.head(url) as head_response:
+                                    if head_response.status == 200:
+                                        file_size = int(head_response.headers['Content-Length'])
+                                        lecture.file_infos.append(FileInfo(file_name, file_size, url=url))
+                                        break  # Ignore q0 (lower quality) if q1 (higher quality) exists
+
+                    if not lecture.file_infos:
+                        self.logger.warning(f'No files found for lecture: {lecture}')
+                        continue
+
+                    # Keep only mp4 or only m4s, whichever has more files
+                    if len(lecture.file_infos) > 1:
+                        mp4_files = [info for info in lecture.file_infos if info.file_name.endswith('.mp4')]
+                        m4s_files = [info for info in lecture.file_infos if info.file_name.endswith('.m4s')]
+                        if len(mp4_files) >= len(m4s_files):
+                            lecture.file_infos = mp4_files
+                        else:
+                            lecture.file_infos = m4s_files
 
                     date_str = lecture.date.strftime('%B %d, %Y')
                     time_range_str = f'{lecture.start_time:%H:%M}-{lecture.end_time:%H:%M}'
