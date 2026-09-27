@@ -71,7 +71,7 @@ async def download_file(
             response.raise_for_status()
 
             async with aiofiles.open(destination_path, 'wb') as f:
-                async for chunk in response.content.iter_any():  # type: bytes
+                async for chunk in response.content.iter_any():
                     await f.write(chunk)
                     downloaded_size += len(chunk)
                     progress_update_callback(downloaded_size)
