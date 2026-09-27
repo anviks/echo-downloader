@@ -27,7 +27,6 @@ dependencies = [
     "objectify>=1.1.0",
     "platformdirs>=4.12.0",
     "prompt-toolkit>=3.0.53",
-    "pyyaml>=6.0.3",
     "requests>=2.34.2",
 ]
 
@@ -44,7 +43,7 @@ echo-downloader = "echo_downloader.main:main"
 packages = ["echo_downloader"]
 
 [tool.setuptools.package-data]
-"echo_downloader" = ["config.yaml"]
+"echo_downloader" = ["config.toml"]
 
 [project.urls]
 "Homepage" = "https://github.com/anviks/echo-downloader/"

@@ -1,7 +1,7 @@
 from pathlib import Path
 
 import platformdirs
-import yaml
+import tomllib
 from objectify import dict_to_object
 
 
@@ -13,21 +13,21 @@ class EchoDownloaderConfig:
 
 
 def load_config() -> EchoDownloaderConfig:
-    default_config_path = Path(__file__).parent / 'config.yaml'
+    default_config_path = Path(__file__).parent / 'config.toml'
     config_dir = platformdirs.user_config_path('EchoDownloader', appauthor=False, roaming=True)
     config_dir.mkdir(parents=True, exist_ok=True)
-    custom_config_path = config_dir / 'config.yaml'
+    custom_config_path = config_dir / 'config.toml'
 
     with open(default_config_path) as f:
         file_contents = f.read()
 
-    config_dict = yaml.safe_load(file_contents)
+    config_dict = tomllib.loads(file_contents)
 
     if not custom_config_path.exists():
         with open(custom_config_path, 'w') as f:
             f.write(file_contents)
     else:
-        with open(custom_config_path, 'r') as f:
-            config_dict.update(yaml.safe_load(f))
+        with open(custom_config_path, 'rb') as f:
+            config_dict.update(tomllib.load(f))
 
     return dict_to_object(config_dict, EchoDownloaderConfig)

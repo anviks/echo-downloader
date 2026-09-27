@@ -63,11 +63,11 @@ echo-downloader
 
 The downloader uses a configuration file to store preferences and settings. The configuration file is located at:
 
-- **Windows**: `C:\Users\<username>\AppData\Roaming\EchoDownloader\config.yaml`
-- **Linux**: `/home/<username>/.config/EchoDownloader/config.yaml`
-- **macOS**: `/Users/<username>/Library/Application Support/EchoDownloader/config.yaml`
+- **Windows**: `C:\Users\<username>\AppData\Roaming\EchoDownloader\config.toml`
+- **Linux**: `/home/<username>/.config/EchoDownloader/config.toml`
+- **macOS**: `/Users/<username>/Library/Application Support/EchoDownloader/config.toml`
 
-The default configuration file can be found [here](./echo_downloader/config.yaml).
+The default configuration file can be found [here](./echo_downloader/config.toml).
 
 ## Logging
 
