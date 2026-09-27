@@ -1,0 +1,1942 @@
+{
+  "status": "ok",
+  "message": "",
+  "data": [
+    {
+      "lesson": {
+        "lesson": {
+          "id": "G_678d016d-c4fd-4f8d-94e7-b83bf35c9f3d_9503e372-45af-40cc-8e9e-425677924bfb_2024-09-03T14:00:00.000_2024-09-03T15:35:00.000",
+          "institutionId": "6e001bc4-e8b9-46a6-be8f-719c0bd6d290",
+          "sectionId": "9503e372-45af-40cc-8e9e-425677924bfb",
+          "captureOccurrenceId": "678d016d-c4fd-4f8d-94e7-b83bf35c9f3d_20240903T1100",
+          "name": "ICO-2024-SP-ICD0011 - Veebirakendused Java baasil",
+          "timing": {
+            "start": "2024-09-03T14:00:00.000",
+            "end": "2024-09-03T15:35:00.000"
+          },
+          "timeZone": {
+            "id": "Europe/Tallinn",
+            "name": "(+02:00) Europe/Tallinn",
+            "standardOffset": "PT2H"
+          },
+          "fromSchedule": true,
+          "shouldStreamLive": true,
+          "createdAt": "2024-09-03T11:00:02.547Z",
+          "updatedAt": "2024-09-03T11:00:02.547Z",
+          "isFolderLesson": false,
+          "displayName": "ICO-2024-SP-ICD0011 - Veebirakendused Java baasil",
+          "lessonHasName": true
+        },
+        "medias": [
+          {
+            "id": "fca6f9fc-5e20-43ff-8120-af7cd973411d",
+            "mediaType": "Video",
+            "title": "ICO-2024-SP-ICD0011 - Veebirakendused Java baasil",
+            "isAvailable": true,
+            "isHiddenDueToCaptions": false,
+            "isRead": false,
+            "isScheduled": false,
+            "isProcessing": false,
+            "isFailed": false,
+            "isPreliminary": false,
+            "isInteractiveMedia": false,
+            "is360Video": false,
+            "thumbnailUri": "https://uk-org-echo360-alpprod-eu-west-upload.s3.amazonaws.com/0000.6e001bc4-e8b9-46a6-be8f-719c0bd6d290/fca6f9fc-5e20-43ff-8120-af7cd973411d/1/poster1.jpg"
+          }
+        ],
+        "userSectionRole": "Student",
+        "captureStartedAt": "2024-09-03T14:00:00.012",
+        "captureEndedAt": "2024-09-03T15:27:53.635",
+        "questionCount": 0,
+        "isScheduled": true,
+        "hasContent": true,
+        "hasVideo": true,
+        "hasVideoHiddenDueToCaptions": false,
+        "hasSlideDeck": false,
+        "isLive": false,
+        "isInteractiveMedia": false,
+        "isPast": true,
+        "isFuture": false,
+        "is360Video": false,
+        "startTimeUTC": "2024-09-03T11:00:00.000Z",
+        "endTimeUTC": "2024-09-03T12:35:00.000Z"
+      },
+      "type": "SyllabusLessonType"
+    },
+    {
+      "lesson": {
+        "lesson": {
+          "id": "G_2b643ecd-55dc-401f-b118-9e7e6d95bcb6_9503e372-45af-40cc-8e9e-425677924bfb_2024-09-03T16:00:00.000_2024-09-03T17:35:00.000",
+          "institutionId": "6e001bc4-e8b9-46a6-be8f-719c0bd6d290",
+          "sectionId": "9503e372-45af-40cc-8e9e-425677924bfb",
+          "captureOccurrenceId": "2b643ecd-55dc-401f-b118-9e7e6d95bcb6_20240903T1300",
+          "name": "ICO-2024-SP-ICD0011 - Veebirakendused Java baasil",
+          "timing": {
+            "start": "2024-09-03T16:00:00.000",
+            "end": "2024-09-03T17:35:00.000"
+          },
+          "timeZone": {
+            "id": "Europe/Tallinn",
+            "name": "(+02:00) Europe/Tallinn",
+            "standardOffset": "PT2H"
+          },
+          "fromSchedule": true,
+          "shouldStreamLive": true,
+          "createdAt": "2024-09-03T13:00:02.916Z",
+          "updatedAt": "2024-09-03T13:00:02.916Z",
+          "isFolderLesson": false,
+          "displayName": "ICO-2024-SP-ICD0011 - Veebirakendused Java baasil",
+          "lessonHasName": true
+        },
+        "medias": [
+          {
+            "id": "9a3c4e93-2bc5-4ccc-9db4-c1eb24fdfedb",
+            "mediaType": "Video",
+            "title": "ICO-2024-SP-ICD0011 - Veebirakendused Java baasil",
+            "isAvailable": true,
+            "isHiddenDueToCaptions": false,
+            "isRead": false,
+            "isScheduled": false,
+            "isProcessing": false,
+            "isFailed": false,
+            "isPreliminary": false,
+            "isInteractiveMedia": false,
+            "is360Video": false,
+            "thumbnailUri": "https://uk-org-echo360-alpprod-eu-west-upload.s3.amazonaws.com/0000.6e001bc4-e8b9-46a6-be8f-719c0bd6d290/9a3c4e93-2bc5-4ccc-9db4-c1eb24fdfedb/1/poster1.jpg"
+          }
+        ],
+        "userSectionRole": "Student",
+        "captureStartedAt": "2024-09-03T16:00:00.011",
+        "captureEndedAt": "2024-09-03T16:00:22.894",
+        "questionCount": 0,
+        "isScheduled": true,
+        "hasContent": true,
+        "hasVideo": true,
+        "hasVideoHiddenDueToCaptions": false,
+        "hasSlideDeck": false,
+        "isLive": false,
+        "isInteractiveMedia": false,
+        "isPast": true,
+        "isFuture": false,
+        "is360Video": false,
+        "startTimeUTC": "2024-09-03T13:00:00.000Z",
+        "endTimeUTC": "2024-09-03T14:35:00.000Z"
+      },
+      "type": "SyllabusLessonType"
+    },
+    {
+      "lesson": {
+        "lesson": {
+          "id": "G_678d016d-c4fd-4f8d-94e7-b83bf35c9f3d_9503e372-45af-40cc-8e9e-425677924bfb_2024-09-10T14:00:00.000_2024-09-10T15:35:00.000",
+          "institutionId": "6e001bc4-e8b9-46a6-be8f-719c0bd6d290",
+          "sectionId": "9503e372-45af-40cc-8e9e-425677924bfb",
+          "captureOccurrenceId": "678d016d-c4fd-4f8d-94e7-b83bf35c9f3d_20240910T1100",
+          "name": "ICO-2024-SP-ICD0011 - Veebirakendused Java baasil",
+          "timing": {
+            "start": "2024-09-10T14:00:00.000",
+            "end": "2024-09-10T15:35:00.000"
+          },
+          "timeZone": {
+            "id": "Europe/Tallinn",
+            "name": "(+02:00) Europe/Tallinn",
+            "standardOffset": "PT2H"
+          },
+          "fromSchedule": true,
+          "shouldStreamLive": true,
+          "createdAt": "2024-09-10T11:00:02.438Z",
+          "updatedAt": "2024-09-10T11:00:02.438Z",
+          "isFolderLesson": false,
+          "displayName": "ICO-2024-SP-ICD0011 - Veebirakendused Java baasil",
+          "lessonHasName": true
+        },
+        "medias": [
+          {
+            "id": "4cc9f680-91e8-45c5-8e3f-79d35a6622f3",
+            "mediaType": "Video",
+            "title": "ICO-2024-SP-ICD0011 - Veebirakendused Java baasil",
+            "isAvailable": true,
+            "isHiddenDueToCaptions": false,
+            "isRead": false,
+            "isScheduled": false,
+            "isProcessing": false,
+            "isFailed": false,
+            "isPreliminary": false,
+            "isInteractiveMedia": false,
+            "is360Video": false,
+            "thumbnailUri": "https://uk-org-echo360-alpprod-eu-west-upload.s3.amazonaws.com/0000.6e001bc4-e8b9-46a6-be8f-719c0bd6d290/4cc9f680-91e8-45c5-8e3f-79d35a6622f3/1/poster1.jpg"
+          }
+        ],
+        "userSectionRole": "Student",
+        "captureStartedAt": "2024-09-10T14:00:00.009",
+        "captureEndedAt": "2024-09-10T15:26:42.698",
+        "questionCount": 0,
+        "isScheduled": true,
+        "hasContent": true,
+        "hasVideo": true,
+        "hasVideoHiddenDueToCaptions": false,
+        "hasSlideDeck": false,
+        "isLive": false,
+        "isInteractiveMedia": false,
+        "isPast": true,
+        "isFuture": false,
+        "is360Video": false,
+        "startTimeUTC": "2024-09-10T11:00:00.000Z",
+        "endTimeUTC": "2024-09-10T12:35:00.000Z"
+      },
+      "type": "SyllabusLessonType"
+    },
+    {
+      "lesson": {
+        "lesson": {
+          "id": "G_2b643ecd-55dc-401f-b118-9e7e6d95bcb6_9503e372-45af-40cc-8e9e-425677924bfb_2024-09-10T16:00:00.000_2024-09-10T17:35:00.000",
+          "institutionId": "6e001bc4-e8b9-46a6-be8f-719c0bd6d290",
+          "sectionId": "9503e372-45af-40cc-8e9e-425677924bfb",
+          "captureOccurrenceId": "2b643ecd-55dc-401f-b118-9e7e6d95bcb6_20240910T1300",
+          "name": "ICO-2024-SP-ICD0011 - Veebirakendused Java baasil",
+          "timing": {
+            "start": "2024-09-10T16:00:00.000",
+            "end": "2024-09-10T17:35:00.000"
+          },
+          "timeZone": {
+            "id": "Europe/Tallinn",
+            "name": "(+02:00) Europe/Tallinn",
+            "standardOffset": "PT2H"
+          },
+          "fromSchedule": true,
+          "shouldStreamLive": true,
+          "createdAt": "2024-09-10T13:00:01.678Z",
+          "updatedAt": "2024-09-10T13:00:01.678Z",
+          "isFolderLesson": false,
+          "displayName": "ICO-2024-SP-ICD0011 - Veebirakendused Java baasil",
+          "lessonHasName": true
+        },
+        "medias": [
+          {
+            "id": "46d6a5f7-bd73-437b-8d63-ae75f0cd7f7c",
+            "mediaType": "Video",
+            "title": "ICO-2024-SP-ICD0011 - Veebirakendused Java baasil",
+            "isAvailable": true,
+            "isHiddenDueToCaptions": false,
+            "isRead": false,
+            "isScheduled": false,
+            "isProcessing": false,
+            "isFailed": false,
+            "isPreliminary": false,
+            "isInteractiveMedia": false,
+            "is360Video": false,
+            "thumbnailUri": "https://uk-org-echo360-alpprod-eu-west-upload.s3.amazonaws.com/0000.6e001bc4-e8b9-46a6-be8f-719c0bd6d290/46d6a5f7-bd73-437b-8d63-ae75f0cd7f7c/1/poster1.jpg"
+          }
+        ],
+        "userSectionRole": "Student",
+        "captureStartedAt": "2024-09-10T16:00:00.008",
+        "captureEndedAt": "2024-09-10T16:00:14.688",
+        "questionCount": 0,
+        "isScheduled": true,
+        "hasContent": true,
+        "hasVideo": true,
+        "hasVideoHiddenDueToCaptions": false,
+        "hasSlideDeck": false,
+        "isLive": false,
+        "isInteractiveMedia": false,
+        "isPast": true,
+        "isFuture": false,
+        "is360Video": false,
+        "startTimeUTC": "2024-09-10T13:00:00.000Z",
+        "endTimeUTC": "2024-09-10T14:35:00.000Z"
+      },
+      "type": "SyllabusLessonType"
+    },
+    {
+      "lesson": {
+        "lesson": {
+          "id": "G_678d016d-c4fd-4f8d-94e7-b83bf35c9f3d_9503e372-45af-40cc-8e9e-425677924bfb_2024-09-17T14:00:00.000_2024-09-17T15:35:00.000",
+          "institutionId": "6e001bc4-e8b9-46a6-be8f-719c0bd6d290",
+          "sectionId": "9503e372-45af-40cc-8e9e-425677924bfb",
+          "captureOccurrenceId": "678d016d-c4fd-4f8d-94e7-b83bf35c9f3d_20240917T1100",
+          "name": "ICO-2024-SP-ICD0011 - Veebirakendused Java baasil",
+          "timing": {
+            "start": "2024-09-17T14:00:00.000",
+            "end": "2024-09-17T15:35:00.000"
+          },
+          "timeZone": {
+            "id": "Europe/Tallinn",
+            "name": "(+02:00) Europe/Tallinn",
+            "standardOffset": "PT2H"
+          },
+          "fromSchedule": true,
+          "shouldStreamLive": true,
+          "createdAt": "2024-09-17T11:00:02.407Z",
+          "updatedAt": "2024-09-17T11:00:02.407Z",
+          "isFolderLesson": false,
+          "displayName": "ICO-2024-SP-ICD0011 - Veebirakendused Java baasil",
+          "lessonHasName": true
+        },
+        "medias": [
+          {
+            "id": "10ca197d-8a7d-4365-820f-be0f2ede12dc",
+            "mediaType": "Video",
+            "title": "ICO-2024-SP-ICD0011 - Veebirakendused Java baasil",
+            "isAvailable": true,
+            "isHiddenDueToCaptions": false,
+            "isRead": false,
+            "isScheduled": false,
+            "isProcessing": false,
+            "isFailed": false,
+            "isPreliminary": false,
+            "isInteractiveMedia": false,
+            "is360Video": false,
+            "thumbnailUri": "https://uk-org-echo360-alpprod-eu-west-upload.s3.amazonaws.com/0000.6e001bc4-e8b9-46a6-be8f-719c0bd6d290/10ca197d-8a7d-4365-820f-be0f2ede12dc/1/poster1.jpg"
+          }
+        ],
+        "userSectionRole": "Student",
+        "captureStartedAt": "2024-09-17T14:00:00.006",
+        "captureEndedAt": "2024-09-17T15:30:18.932",
+        "questionCount": 0,
+        "isScheduled": true,
+        "hasContent": true,
+        "hasVideo": true,
+        "hasVideoHiddenDueToCaptions": false,
+        "hasSlideDeck": false,
+        "isLive": false,
+        "isInteractiveMedia": false,
+        "isPast": true,
+        "isFuture": false,
+        "is360Video": false,
+        "startTimeUTC": "2024-09-17T11:00:00.000Z",
+        "endTimeUTC": "2024-09-17T12:35:00.000Z"
+      },
+      "type": "SyllabusLessonType"
+    },
+    {
+      "lesson": {
+        "lesson": {
+          "id": "G_2b643ecd-55dc-401f-b118-9e7e6d95bcb6_9503e372-45af-40cc-8e9e-425677924bfb_2024-09-17T16:00:00.000_2024-09-17T17:35:00.000",
+          "institutionId": "6e001bc4-e8b9-46a6-be8f-719c0bd6d290",
+          "sectionId": "9503e372-45af-40cc-8e9e-425677924bfb",
+          "captureOccurrenceId": "2b643ecd-55dc-401f-b118-9e7e6d95bcb6_20240917T1300",
+          "name": "ICO-2024-SP-ICD0011 - Veebirakendused Java baasil",
+          "timing": {
+            "start": "2024-09-17T16:00:00.000",
+            "end": "2024-09-17T17:35:00.000"
+          },
+          "timeZone": {
+            "id": "Europe/Tallinn",
+            "name": "(+02:00) Europe/Tallinn",
+            "standardOffset": "PT2H"
+          },
+          "fromSchedule": true,
+          "shouldStreamLive": true,
+          "createdAt": "2024-09-17T13:00:01.749Z",
+          "updatedAt": "2024-09-17T13:00:01.749Z",
+          "isFolderLesson": false,
+          "displayName": "ICO-2024-SP-ICD0011 - Veebirakendused Java baasil",
+          "lessonHasName": true
+        },
+        "medias": [
+          {
+            "id": "858d44de-43f7-418a-99e8-eccb0dd8737c",
+            "mediaType": "Video",
+            "title": "ICO-2024-SP-ICD0011 - Veebirakendused Java baasil",
+            "isAvailable": true,
+            "isHiddenDueToCaptions": false,
+            "isRead": false,
+            "isScheduled": false,
+            "isProcessing": false,
+            "isFailed": false,
+            "isPreliminary": false,
+            "isInteractiveMedia": false,
+            "is360Video": false,
+            "thumbnailUri": "https://uk-org-echo360-alpprod-eu-west-upload.s3.amazonaws.com/0000.6e001bc4-e8b9-46a6-be8f-719c0bd6d290/858d44de-43f7-418a-99e8-eccb0dd8737c/1/poster1.jpg"
+          }
+        ],
+        "userSectionRole": "Student",
+        "captureStartedAt": "2024-09-17T16:00:00.006",
+        "captureEndedAt": "2024-09-17T16:00:05.622",
+        "questionCount": 0,
+        "isScheduled": true,
+        "hasContent": true,
+        "hasVideo": true,
+        "hasVideoHiddenDueToCaptions": false,
+        "hasSlideDeck": false,
+        "isLive": false,
+        "isInteractiveMedia": false,
+        "isPast": true,
+        "isFuture": false,
+        "is360Video": false,
+        "startTimeUTC": "2024-09-17T13:00:00.000Z",
+        "endTimeUTC": "2024-09-17T14:35:00.000Z"
+      },
+      "type": "SyllabusLessonType"
+    },
+    {
+      "lesson": {
+        "lesson": {
+          "id": "G_678d016d-c4fd-4f8d-94e7-b83bf35c9f3d_9503e372-45af-40cc-8e9e-425677924bfb_2024-09-24T14:00:00.000_2024-09-24T15:35:00.000",
+          "institutionId": "6e001bc4-e8b9-46a6-be8f-719c0bd6d290",
+          "sectionId": "9503e372-45af-40cc-8e9e-425677924bfb",
+          "captureOccurrenceId": "678d016d-c4fd-4f8d-94e7-b83bf35c9f3d_20240924T1100",
+          "name": "ICO-2024-SP-ICD0011 - Veebirakendused Java baasil",
+          "timing": {
+            "start": "2024-09-24T14:00:00.000",
+            "end": "2024-09-24T15:35:00.000"
+          },
+          "timeZone": {
+            "id": "Europe/Tallinn",
+            "name": "(+02:00) Europe/Tallinn",
+            "standardOffset": "PT2H"
+          },
+          "fromSchedule": true,
+          "shouldStreamLive": true,
+          "createdAt": "2024-09-24T11:00:02.461Z",
+          "updatedAt": "2024-09-24T11:00:02.461Z",
+          "isFolderLesson": false,
+          "displayName": "ICO-2024-SP-ICD0011 - Veebirakendused Java baasil",
+          "lessonHasName": true
+        },
+        "medias": [
+          {
+            "id": "7f15be1e-4a8c-4ee7-a2d6-5a899f1f9d41",
+            "mediaType": "Video",
+            "title": "ICO-2024-SP-ICD0011 - Veebirakendused Java baasil",
+            "isAvailable": true,
+            "isHiddenDueToCaptions": false,
+            "isRead": false,
+            "isScheduled": false,
+            "isProcessing": false,
+            "isFailed": false,
+            "isPreliminary": false,
+            "isInteractiveMedia": false,
+            "is360Video": false,
+            "thumbnailUri": "https://uk-org-echo360-alpprod-eu-west-upload.s3.amazonaws.com/0000.6e001bc4-e8b9-46a6-be8f-719c0bd6d290/7f15be1e-4a8c-4ee7-a2d6-5a899f1f9d41/1/poster1.jpg"
+          }
+        ],
+        "userSectionRole": "Student",
+        "captureStartedAt": "2024-09-24T14:00:00.006",
+        "captureEndedAt": "2024-09-24T15:28:20.181",
+        "questionCount": 0,
+        "isScheduled": true,
+        "hasContent": true,
+        "hasVideo": true,
+        "hasVideoHiddenDueToCaptions": false,
+        "hasSlideDeck": false,
+        "isLive": false,
+        "isInteractiveMedia": false,
+        "isPast": true,
+        "isFuture": false,
+        "is360Video": false,
+        "startTimeUTC": "2024-09-24T11:00:00.000Z",
+        "endTimeUTC": "2024-09-24T12:35:00.000Z"
+      },
+      "type": "SyllabusLessonType"
+    },
+    {
+      "lesson": {
+        "lesson": {
+          "id": "G_2b643ecd-55dc-401f-b118-9e7e6d95bcb6_9503e372-45af-40cc-8e9e-425677924bfb_2024-09-24T16:00:00.000_2024-09-24T17:35:00.000",
+          "institutionId": "6e001bc4-e8b9-46a6-be8f-719c0bd6d290",
+          "sectionId": "9503e372-45af-40cc-8e9e-425677924bfb",
+          "captureOccurrenceId": "2b643ecd-55dc-401f-b118-9e7e6d95bcb6_20240924T1300",
+          "name": "ICO-2024-SP-ICD0011 - Veebirakendused Java baasil",
+          "timing": {
+            "start": "2024-09-24T16:00:00.000",
+            "end": "2024-09-24T17:35:00.000"
+          },
+          "timeZone": {
+            "id": "Europe/Tallinn",
+            "name": "(+02:00) Europe/Tallinn",
+            "standardOffset": "PT2H"
+          },
+          "fromSchedule": true,
+          "shouldStreamLive": true,
+          "createdAt": "2024-09-24T13:00:02.214Z",
+          "updatedAt": "2024-09-24T13:00:02.214Z",
+          "isFolderLesson": false,
+          "displayName": "ICO-2024-SP-ICD0011 - Veebirakendused Java baasil",
+          "lessonHasName": true
+        },
+        "medias": [
+          {
+            "id": "7ed93434-e65d-4953-ad40-f2c76ccd7f9b",
+            "mediaType": "Video",
+            "title": "ICO-2024-SP-ICD0011 - Veebirakendused Java baasil",
+            "isAvailable": true,
+            "isHiddenDueToCaptions": false,
+            "isRead": false,
+            "isScheduled": false,
+            "isProcessing": false,
+            "isFailed": false,
+            "isPreliminary": false,
+            "isInteractiveMedia": false,
+            "is360Video": false,
+            "thumbnailUri": "https://uk-org-echo360-alpprod-eu-west-upload.s3.amazonaws.com/0000.6e001bc4-e8b9-46a6-be8f-719c0bd6d290/7ed93434-e65d-4953-ad40-f2c76ccd7f9b/1/poster1.jpg"
+          }
+        ],
+        "userSectionRole": "Student",
+        "captureStartedAt": "2024-09-24T16:00:00.010",
+        "captureEndedAt": "2024-09-24T16:00:05.156",
+        "questionCount": 0,
+        "isScheduled": true,
+        "hasContent": true,
+        "hasVideo": true,
+        "hasVideoHiddenDueToCaptions": false,
+        "hasSlideDeck": false,
+        "isLive": false,
+        "isInteractiveMedia": false,
+        "isPast": true,
+        "isFuture": false,
+        "is360Video": false,
+        "startTimeUTC": "2024-09-24T13:00:00.000Z",
+        "endTimeUTC": "2024-09-24T14:35:00.000Z"
+      },
+      "type": "SyllabusLessonType"
+    },
+    {
+      "lesson": {
+        "lesson": {
+          "id": "G_678d016d-c4fd-4f8d-94e7-b83bf35c9f3d_9503e372-45af-40cc-8e9e-425677924bfb_2024-10-01T14:00:00.000_2024-10-01T15:35:00.000",
+          "institutionId": "6e001bc4-e8b9-46a6-be8f-719c0bd6d290",
+          "sectionId": "9503e372-45af-40cc-8e9e-425677924bfb",
+          "captureOccurrenceId": "678d016d-c4fd-4f8d-94e7-b83bf35c9f3d_20241001T1100",
+          "name": "ICO-2024-SP-ICD0011 - Veebirakendused Java baasil",
+          "timing": {
+            "start": "2024-10-01T14:00:00.000",
+            "end": "2024-10-01T15:35:00.000"
+          },
+          "timeZone": {
+            "id": "Europe/Tallinn",
+            "name": "(+02:00) Europe/Tallinn",
+            "standardOffset": "PT2H"
+          },
+          "fromSchedule": true,
+          "shouldStreamLive": true,
+          "createdAt": "2024-10-01T11:00:01.967Z",
+          "updatedAt": "2024-10-01T11:00:01.967Z",
+          "isFolderLesson": false,
+          "displayName": "ICO-2024-SP-ICD0011 - Veebirakendused Java baasil",
+          "lessonHasName": true
+        },
+        "medias": [
+          {
+            "id": "91e58911-0698-4684-a84c-9bf0da7c24b1",
+            "mediaType": "Video",
+            "title": "ICO-2024-SP-ICD0011 - Veebirakendused Java baasil",
+            "isAvailable": true,
+            "isHiddenDueToCaptions": false,
+            "isRead": false,
+            "isScheduled": false,
+            "isProcessing": false,
+            "isFailed": false,
+            "isPreliminary": false,
+            "isInteractiveMedia": false,
+            "is360Video": false,
+            "thumbnailUri": "https://uk-org-echo360-alpprod-eu-west-upload.s3.amazonaws.com/0000.6e001bc4-e8b9-46a6-be8f-719c0bd6d290/91e58911-0698-4684-a84c-9bf0da7c24b1/1/poster1.jpg"
+          }
+        ],
+        "userSectionRole": "Student",
+        "captureStartedAt": "2024-10-01T14:00:00.006",
+        "captureEndedAt": "2024-10-01T15:27:32.245",
+        "questionCount": 0,
+        "isScheduled": true,
+        "hasContent": true,
+        "hasVideo": true,
+        "hasVideoHiddenDueToCaptions": false,
+        "hasSlideDeck": false,
+        "isLive": false,
+        "isInteractiveMedia": false,
+        "isPast": true,
+        "isFuture": false,
+        "is360Video": false,
+        "startTimeUTC": "2024-10-01T11:00:00.000Z",
+        "endTimeUTC": "2024-10-01T12:35:00.000Z"
+      },
+      "type": "SyllabusLessonType"
+    },
+    {
+      "lesson": {
+        "lesson": {
+          "id": "G_2b643ecd-55dc-401f-b118-9e7e6d95bcb6_9503e372-45af-40cc-8e9e-425677924bfb_2024-10-01T16:00:00.000_2024-10-01T17:35:00.000",
+          "institutionId": "6e001bc4-e8b9-46a6-be8f-719c0bd6d290",
+          "sectionId": "9503e372-45af-40cc-8e9e-425677924bfb",
+          "captureOccurrenceId": "2b643ecd-55dc-401f-b118-9e7e6d95bcb6_20241001T1300",
+          "name": "ICO-2024-SP-ICD0011 - Veebirakendused Java baasil",
+          "timing": {
+            "start": "2024-10-01T16:00:00.000",
+            "end": "2024-10-01T17:35:00.000"
+          },
+          "timeZone": {
+            "id": "Europe/Tallinn",
+            "name": "(+02:00) Europe/Tallinn",
+            "standardOffset": "PT2H"
+          },
+          "fromSchedule": true,
+          "shouldStreamLive": true,
+          "createdAt": "2024-10-01T13:00:02.148Z",
+          "updatedAt": "2024-10-01T13:00:02.148Z",
+          "isFolderLesson": false,
+          "displayName": "ICO-2024-SP-ICD0011 - Veebirakendused Java baasil",
+          "lessonHasName": true
+        },
+        "medias": [
+          {
+            "id": "f43c925e-e620-43f1-ae8e-1ae51e2533b5",
+            "mediaType": "Video",
+            "title": "ICO-2024-SP-ICD0011 - Veebirakendused Java baasil",
+            "isAvailable": true,
+            "isHiddenDueToCaptions": false,
+            "isRead": false,
+            "isScheduled": false,
+            "isProcessing": false,
+            "isFailed": false,
+            "isPreliminary": false,
+            "isInteractiveMedia": false,
+            "is360Video": false,
+            "thumbnailUri": "https://uk-org-echo360-alpprod-eu-west-upload.s3.amazonaws.com/0000.6e001bc4-e8b9-46a6-be8f-719c0bd6d290/f43c925e-e620-43f1-ae8e-1ae51e2533b5/1/poster1.jpg"
+          }
+        ],
+        "userSectionRole": "Student",
+        "captureStartedAt": "2024-10-01T16:00:00.004",
+        "captureEndedAt": "2024-10-01T16:00:02.537",
+        "questionCount": 0,
+        "isScheduled": true,
+        "hasContent": true,
+        "hasVideo": true,
+        "hasVideoHiddenDueToCaptions": false,
+        "hasSlideDeck": false,
+        "isLive": false,
+        "isInteractiveMedia": false,
+        "isPast": true,
+        "isFuture": false,
+        "is360Video": false,
+        "startTimeUTC": "2024-10-01T13:00:00.000Z",
+        "endTimeUTC": "2024-10-01T14:35:00.000Z"
+      },
+      "type": "SyllabusLessonType"
+    },
+    {
+      "lesson": {
+        "lesson": {
+          "id": "G_678d016d-c4fd-4f8d-94e7-b83bf35c9f3d_9503e372-45af-40cc-8e9e-425677924bfb_2024-10-08T14:00:00.000_2024-10-08T15:35:00.000",
+          "institutionId": "6e001bc4-e8b9-46a6-be8f-719c0bd6d290",
+          "sectionId": "9503e372-45af-40cc-8e9e-425677924bfb",
+          "captureOccurrenceId": "678d016d-c4fd-4f8d-94e7-b83bf35c9f3d_20241008T1100",
+          "name": "ICO-2024-SP-ICD0011 - Veebirakendused Java baasil",
+          "timing": {
+            "start": "2024-10-08T14:00:00.000",
+            "end": "2024-10-08T15:35:00.000"
+          },
+          "timeZone": {
+            "id": "Europe/Tallinn",
+            "name": "(+02:00) Europe/Tallinn",
+            "standardOffset": "PT2H"
+          },
+          "fromSchedule": true,
+          "shouldStreamLive": true,
+          "createdAt": "2024-10-08T11:00:02.263Z",
+          "updatedAt": "2024-10-08T11:00:02.263Z",
+          "isFolderLesson": false,
+          "displayName": "ICO-2024-SP-ICD0011 - Veebirakendused Java baasil",
+          "lessonHasName": true
+        },
+        "medias": [
+          {
+            "id": "0c085ccd-e798-41ba-9fc3-ee636591fa43",
+            "mediaType": "Video",
+            "title": "ICO-2024-SP-ICD0011 - Veebirakendused Java baasil",
+            "isAvailable": true,
+            "isHiddenDueToCaptions": false,
+            "isRead": false,
+            "isScheduled": false,
+            "isProcessing": false,
+            "isFailed": false,
+            "isPreliminary": false,
+            "isInteractiveMedia": false,
+            "is360Video": false,
+            "thumbnailUri": "https://uk-org-echo360-alpprod-eu-west-upload.s3.amazonaws.com/0000.6e001bc4-e8b9-46a6-be8f-719c0bd6d290/0c085ccd-e798-41ba-9fc3-ee636591fa43/1/poster1.jpg"
+          }
+        ],
+        "userSectionRole": "Student",
+        "captureStartedAt": "2024-10-08T14:00:00.008",
+        "captureEndedAt": "2024-10-08T15:27:07.665",
+        "questionCount": 0,
+        "isScheduled": true,
+        "hasContent": true,
+        "hasVideo": true,
+        "hasVideoHiddenDueToCaptions": false,
+        "hasSlideDeck": false,
+        "isLive": false,
+        "isInteractiveMedia": false,
+        "isPast": true,
+        "isFuture": false,
+        "is360Video": false,
+        "startTimeUTC": "2024-10-08T11:00:00.000Z",
+        "endTimeUTC": "2024-10-08T12:35:00.000Z"
+      },
+      "type": "SyllabusLessonType"
+    },
+    {
+      "lesson": {
+        "lesson": {
+          "id": "G_2b643ecd-55dc-401f-b118-9e7e6d95bcb6_9503e372-45af-40cc-8e9e-425677924bfb_2024-10-08T16:00:00.000_2024-10-08T17:35:00.000",
+          "institutionId": "6e001bc4-e8b9-46a6-be8f-719c0bd6d290",
+          "sectionId": "9503e372-45af-40cc-8e9e-425677924bfb",
+          "captureOccurrenceId": "2b643ecd-55dc-401f-b118-9e7e6d95bcb6_20241008T1300",
+          "name": "ICO-2024-SP-ICD0011 - Veebirakendused Java baasil",
+          "timing": {
+            "start": "2024-10-08T16:00:00.000",
+            "end": "2024-10-08T17:35:00.000"
+          },
+          "timeZone": {
+            "id": "Europe/Tallinn",
+            "name": "(+02:00) Europe/Tallinn",
+            "standardOffset": "PT2H"
+          },
+          "fromSchedule": true,
+          "shouldStreamLive": true,
+          "createdAt": "2024-10-08T13:00:01.627Z",
+          "updatedAt": "2024-10-08T13:00:01.627Z",
+          "isFolderLesson": false,
+          "displayName": "ICO-2024-SP-ICD0011 - Veebirakendused Java baasil",
+          "lessonHasName": true
+        },
+        "medias": [
+          {
+            "id": "c84a9868-e149-4171-8097-281450762626",
+            "mediaType": "Video",
+            "title": "ICO-2024-SP-ICD0011 - Veebirakendused Java baasil",
+            "isAvailable": true,
+            "isHiddenDueToCaptions": false,
+            "isRead": false,
+            "isScheduled": false,
+            "isProcessing": false,
+            "isFailed": false,
+            "isPreliminary": false,
+            "isInteractiveMedia": false,
+            "is360Video": false,
+            "thumbnailUri": "https://uk-org-echo360-alpprod-eu-west-upload.s3.amazonaws.com/0000.6e001bc4-e8b9-46a6-be8f-719c0bd6d290/c84a9868-e149-4171-8097-281450762626/1/poster1.jpg"
+          }
+        ],
+        "userSectionRole": "Student",
+        "captureStartedAt": "2024-10-08T16:00:00.005",
+        "captureEndedAt": "2024-10-08T16:00:04.080",
+        "questionCount": 0,
+        "isScheduled": true,
+        "hasContent": true,
+        "hasVideo": true,
+        "hasVideoHiddenDueToCaptions": false,
+        "hasSlideDeck": false,
+        "isLive": false,
+        "isInteractiveMedia": false,
+        "isPast": true,
+        "isFuture": false,
+        "is360Video": false,
+        "startTimeUTC": "2024-10-08T13:00:00.000Z",
+        "endTimeUTC": "2024-10-08T14:35:00.000Z"
+      },
+      "type": "SyllabusLessonType"
+    },
+    {
+      "lesson": {
+        "lesson": {
+          "id": "G_678d016d-c4fd-4f8d-94e7-b83bf35c9f3d_9503e372-45af-40cc-8e9e-425677924bfb_2024-10-15T14:00:00.000_2024-10-15T15:35:00.000",
+          "institutionId": "6e001bc4-e8b9-46a6-be8f-719c0bd6d290",
+          "sectionId": "9503e372-45af-40cc-8e9e-425677924bfb",
+          "captureOccurrenceId": "678d016d-c4fd-4f8d-94e7-b83bf35c9f3d_20241015T1100",
+          "name": "ICO-2024-SP-ICD0011 - Veebirakendused Java baasil",
+          "timing": {
+            "start": "2024-10-15T14:00:00.000",
+            "end": "2024-10-15T15:35:00.000"
+          },
+          "timeZone": {
+            "id": "Europe/Tallinn",
+            "name": "(+02:00) Europe/Tallinn",
+            "standardOffset": "PT2H"
+          },
+          "fromSchedule": true,
+          "shouldStreamLive": true,
+          "createdAt": "2024-10-15T11:00:02.371Z",
+          "updatedAt": "2024-10-15T11:00:02.371Z",
+          "isFolderLesson": false,
+          "displayName": "ICO-2024-SP-ICD0011 - Veebirakendused Java baasil",
+          "lessonHasName": true
+        },
+        "medias": [
+          {
+            "id": "5a783b50-5a34-402c-8031-1bd504638ebb",
+            "mediaType": "Video",
+            "title": "ICO-2024-SP-ICD0011 - Veebirakendused Java baasil",
+            "isAvailable": true,
+            "isHiddenDueToCaptions": false,
+            "isRead": false,
+            "isScheduled": false,
+            "isProcessing": false,
+            "isFailed": false,
+            "isPreliminary": false,
+            "isInteractiveMedia": false,
+            "is360Video": false,
+            "thumbnailUri": "https://uk-org-echo360-alpprod-eu-west-upload.s3.amazonaws.com/0000.6e001bc4-e8b9-46a6-be8f-719c0bd6d290/5a783b50-5a34-402c-8031-1bd504638ebb/1/poster1.jpg"
+          }
+        ],
+        "userSectionRole": "Student",
+        "captureStartedAt": "2024-10-15T14:00:00.002",
+        "captureEndedAt": "2024-10-15T15:27:44.601",
+        "questionCount": 0,
+        "isScheduled": true,
+        "hasContent": true,
+        "hasVideo": true,
+        "hasVideoHiddenDueToCaptions": false,
+        "hasSlideDeck": false,
+        "isLive": false,
+        "isInteractiveMedia": false,
+        "isPast": true,
+        "isFuture": false,
+        "is360Video": false,
+        "startTimeUTC": "2024-10-15T11:00:00.000Z",
+        "endTimeUTC": "2024-10-15T12:35:00.000Z"
+      },
+      "type": "SyllabusLessonType"
+    },
+    {
+      "lesson": {
+        "lesson": {
+          "id": "G_2b643ecd-55dc-401f-b118-9e7e6d95bcb6_9503e372-45af-40cc-8e9e-425677924bfb_2024-10-15T16:00:00.000_2024-10-15T17:35:00.000",
+          "institutionId": "6e001bc4-e8b9-46a6-be8f-719c0bd6d290",
+          "sectionId": "9503e372-45af-40cc-8e9e-425677924bfb",
+          "captureOccurrenceId": "2b643ecd-55dc-401f-b118-9e7e6d95bcb6_20241015T1300",
+          "name": "ICO-2024-SP-ICD0011 - Veebirakendused Java baasil",
+          "timing": {
+            "start": "2024-10-15T16:00:00.000",
+            "end": "2024-10-15T17:35:00.000"
+          },
+          "timeZone": {
+            "id": "Europe/Tallinn",
+            "name": "(+02:00) Europe/Tallinn",
+            "standardOffset": "PT2H"
+          },
+          "fromSchedule": true,
+          "shouldStreamLive": true,
+          "createdAt": "2024-10-15T13:00:01.553Z",
+          "updatedAt": "2024-10-15T13:00:01.553Z",
+          "isFolderLesson": false,
+          "displayName": "ICO-2024-SP-ICD0011 - Veebirakendused Java baasil",
+          "lessonHasName": true
+        },
+        "medias": [
+          {
+            "id": "715bdac0-660d-45e5-85dc-6ae3dd5ec173",
+            "mediaType": "Video",
+            "title": "ICO-2024-SP-ICD0011 - Veebirakendused Java baasil",
+            "isAvailable": true,
+            "isHiddenDueToCaptions": false,
+            "isRead": false,
+            "isScheduled": false,
+            "isProcessing": false,
+            "isFailed": false,
+            "isPreliminary": false,
+            "isInteractiveMedia": false,
+            "is360Video": false,
+            "thumbnailUri": "https://uk-org-echo360-alpprod-eu-west-upload.s3.amazonaws.com/0000.6e001bc4-e8b9-46a6-be8f-719c0bd6d290/715bdac0-660d-45e5-85dc-6ae3dd5ec173/1/poster1.jpg"
+          }
+        ],
+        "userSectionRole": "Student",
+        "captureStartedAt": "2024-10-15T16:00:00.007",
+        "captureEndedAt": "2024-10-15T16:00:03.768",
+        "questionCount": 0,
+        "isScheduled": true,
+        "hasContent": true,
+        "hasVideo": true,
+        "hasVideoHiddenDueToCaptions": false,
+        "hasSlideDeck": false,
+        "isLive": false,
+        "isInteractiveMedia": false,
+        "isPast": true,
+        "isFuture": false,
+        "is360Video": false,
+        "startTimeUTC": "2024-10-15T13:00:00.000Z",
+        "endTimeUTC": "2024-10-15T14:35:00.000Z"
+      },
+      "type": "SyllabusLessonType"
+    },
+    {
+      "lesson": {
+        "lesson": {
+          "id": "G_678d016d-c4fd-4f8d-94e7-b83bf35c9f3d_9503e372-45af-40cc-8e9e-425677924bfb_2024-10-22T14:00:00.000_2024-10-22T15:35:00.000",
+          "institutionId": "6e001bc4-e8b9-46a6-be8f-719c0bd6d290",
+          "sectionId": "9503e372-45af-40cc-8e9e-425677924bfb",
+          "captureOccurrenceId": "678d016d-c4fd-4f8d-94e7-b83bf35c9f3d_20241022T1100",
+          "name": "ICO-2024-SP-ICD0011 - Veebirakendused Java baasil",
+          "timing": {
+            "start": "2024-10-22T14:00:00.000",
+            "end": "2024-10-22T15:35:00.000"
+          },
+          "timeZone": {
+            "id": "Europe/Tallinn",
+            "name": "(+02:00) Europe/Tallinn",
+            "standardOffset": "PT2H"
+          },
+          "fromSchedule": true,
+          "shouldStreamLive": true,
+          "createdAt": "2024-10-22T11:00:02.569Z",
+          "updatedAt": "2024-10-22T11:00:02.569Z",
+          "isFolderLesson": false,
+          "displayName": "ICO-2024-SP-ICD0011 - Veebirakendused Java baasil",
+          "lessonHasName": true
+        },
+        "medias": [
+          {
+            "id": "f36ff415-0b0c-48eb-bd36-475ead380352",
+            "mediaType": "Video",
+            "title": "ICO-2024-SP-ICD0011 - Veebirakendused Java baasil",
+            "isAvailable": true,
+            "isHiddenDueToCaptions": false,
+            "isRead": false,
+            "isScheduled": false,
+            "isProcessing": false,
+            "isFailed": false,
+            "isPreliminary": false,
+            "isInteractiveMedia": false,
+            "is360Video": false,
+            "thumbnailUri": "https://uk-org-echo360-alpprod-eu-west-upload.s3.amazonaws.com/0000.6e001bc4-e8b9-46a6-be8f-719c0bd6d290/f36ff415-0b0c-48eb-bd36-475ead380352/1/poster1.jpg"
+          }
+        ],
+        "userSectionRole": "Student",
+        "captureStartedAt": "2024-10-22T14:00:00.005",
+        "captureEndedAt": "2024-10-22T15:29:11.172",
+        "questionCount": 0,
+        "isScheduled": true,
+        "hasContent": true,
+        "hasVideo": true,
+        "hasVideoHiddenDueToCaptions": false,
+        "hasSlideDeck": false,
+        "isLive": false,
+        "isInteractiveMedia": false,
+        "isPast": true,
+        "isFuture": false,
+        "is360Video": false,
+        "startTimeUTC": "2024-10-22T11:00:00.000Z",
+        "endTimeUTC": "2024-10-22T12:35:00.000Z"
+      },
+      "type": "SyllabusLessonType"
+    },
+    {
+      "lesson": {
+        "lesson": {
+          "id": "G_2b643ecd-55dc-401f-b118-9e7e6d95bcb6_9503e372-45af-40cc-8e9e-425677924bfb_2024-10-22T16:00:00.000_2024-10-22T17:35:00.000",
+          "institutionId": "6e001bc4-e8b9-46a6-be8f-719c0bd6d290",
+          "sectionId": "9503e372-45af-40cc-8e9e-425677924bfb",
+          "captureOccurrenceId": "2b643ecd-55dc-401f-b118-9e7e6d95bcb6_20241022T1300",
+          "name": "ICO-2024-SP-ICD0011 - Veebirakendused Java baasil",
+          "timing": {
+            "start": "2024-10-22T16:00:00.000",
+            "end": "2024-10-22T17:35:00.000"
+          },
+          "timeZone": {
+            "id": "Europe/Tallinn",
+            "name": "(+02:00) Europe/Tallinn",
+            "standardOffset": "PT2H"
+          },
+          "fromSchedule": true,
+          "shouldStreamLive": true,
+          "createdAt": "2024-10-22T13:00:02.305Z",
+          "updatedAt": "2024-10-22T13:00:02.305Z",
+          "isFolderLesson": false,
+          "displayName": "ICO-2024-SP-ICD0011 - Veebirakendused Java baasil",
+          "lessonHasName": true
+        },
+        "medias": [
+          {
+            "id": "adac461f-0b62-426b-9c72-fc85dd2b1d11",
+            "mediaType": "Video",
+            "title": "ICO-2024-SP-ICD0011 - Veebirakendused Java baasil",
+            "isAvailable": true,
+            "isHiddenDueToCaptions": false,
+            "isRead": false,
+            "isScheduled": false,
+            "isProcessing": false,
+            "isFailed": false,
+            "isPreliminary": false,
+            "isInteractiveMedia": false,
+            "is360Video": false,
+            "thumbnailUri": "https://uk-org-echo360-alpprod-eu-west-upload.s3.amazonaws.com/0000.6e001bc4-e8b9-46a6-be8f-719c0bd6d290/adac461f-0b62-426b-9c72-fc85dd2b1d11/1/poster1.jpg"
+          }
+        ],
+        "userSectionRole": "Student",
+        "captureStartedAt": "2024-10-22T16:00:00.006",
+        "captureEndedAt": "2024-10-22T16:00:04.472",
+        "questionCount": 0,
+        "isScheduled": true,
+        "hasContent": true,
+        "hasVideo": true,
+        "hasVideoHiddenDueToCaptions": false,
+        "hasSlideDeck": false,
+        "isLive": false,
+        "isInteractiveMedia": false,
+        "isPast": true,
+        "isFuture": false,
+        "is360Video": false,
+        "startTimeUTC": "2024-10-22T13:00:00.000Z",
+        "endTimeUTC": "2024-10-22T14:35:00.000Z"
+      },
+      "type": "SyllabusLessonType"
+    },
+    {
+      "lesson": {
+        "lesson": {
+          "id": "G_678d016d-c4fd-4f8d-94e7-b83bf35c9f3d_9503e372-45af-40cc-8e9e-425677924bfb_2024-10-29T14:00:00.000_2024-10-29T15:35:00.000",
+          "institutionId": "6e001bc4-e8b9-46a6-be8f-719c0bd6d290",
+          "sectionId": "9503e372-45af-40cc-8e9e-425677924bfb",
+          "captureOccurrenceId": "678d016d-c4fd-4f8d-94e7-b83bf35c9f3d_20241029T1200",
+          "name": "ICO-2024-SP-ICD0011 - Veebirakendused Java baasil",
+          "timing": {
+            "start": "2024-10-29T14:00:00.000",
+            "end": "2024-10-29T15:35:00.000"
+          },
+          "timeZone": {
+            "id": "Europe/Tallinn",
+            "name": "(+02:00) Europe/Tallinn",
+            "standardOffset": "PT2H"
+          },
+          "fromSchedule": true,
+          "shouldStreamLive": true,
+          "createdAt": "2024-10-29T12:00:02.388Z",
+          "updatedAt": "2024-10-29T12:00:02.388Z",
+          "isFolderLesson": false,
+          "displayName": "ICO-2024-SP-ICD0011 - Veebirakendused Java baasil",
+          "lessonHasName": true
+        },
+        "medias": [
+          {
+            "id": "df6016d6-b2a9-4eb9-9c72-931cf7c39cdb",
+            "mediaType": "Video",
+            "title": "ICO-2024-SP-ICD0011 - Veebirakendused Java baasil",
+            "isAvailable": true,
+            "isHiddenDueToCaptions": false,
+            "isRead": false,
+            "isScheduled": false,
+            "isProcessing": false,
+            "isFailed": false,
+            "isPreliminary": false,
+            "isInteractiveMedia": false,
+            "is360Video": false,
+            "thumbnailUri": "https://uk-org-echo360-alpprod-eu-west-upload.s3.amazonaws.com/0000.6e001bc4-e8b9-46a6-be8f-719c0bd6d290/df6016d6-b2a9-4eb9-9c72-931cf7c39cdb/1/poster1.jpg"
+          }
+        ],
+        "userSectionRole": "Student",
+        "captureStartedAt": "2024-10-29T14:00:00.010",
+        "captureEndedAt": "2024-10-29T15:29:20.214",
+        "questionCount": 0,
+        "isScheduled": true,
+        "hasContent": true,
+        "hasVideo": true,
+        "hasVideoHiddenDueToCaptions": false,
+        "hasSlideDeck": false,
+        "isLive": false,
+        "isInteractiveMedia": false,
+        "isPast": true,
+        "isFuture": false,
+        "is360Video": false,
+        "startTimeUTC": "2024-10-29T12:00:00.000Z",
+        "endTimeUTC": "2024-10-29T13:35:00.000Z"
+      },
+      "type": "SyllabusLessonType"
+    },
+    {
+      "lesson": {
+        "lesson": {
+          "id": "G_2b643ecd-55dc-401f-b118-9e7e6d95bcb6_9503e372-45af-40cc-8e9e-425677924bfb_2024-10-29T16:00:00.000_2024-10-29T17:35:00.000",
+          "institutionId": "6e001bc4-e8b9-46a6-be8f-719c0bd6d290",
+          "sectionId": "9503e372-45af-40cc-8e9e-425677924bfb",
+          "captureOccurrenceId": "2b643ecd-55dc-401f-b118-9e7e6d95bcb6_20241029T1400",
+          "name": "ICO-2024-SP-ICD0011 - Veebirakendused Java baasil",
+          "timing": {
+            "start": "2024-10-29T16:00:00.000",
+            "end": "2024-10-29T17:35:00.000"
+          },
+          "timeZone": {
+            "id": "Europe/Tallinn",
+            "name": "(+02:00) Europe/Tallinn",
+            "standardOffset": "PT2H"
+          },
+          "fromSchedule": true,
+          "shouldStreamLive": true,
+          "createdAt": "2024-10-29T14:00:02.168Z",
+          "updatedAt": "2024-10-29T14:00:02.168Z",
+          "isFolderLesson": false,
+          "displayName": "ICO-2024-SP-ICD0011 - Veebirakendused Java baasil",
+          "lessonHasName": true
+        },
+        "medias": [
+          {
+            "id": "42fd53c3-b146-4154-b9df-b73993e23d69",
+            "mediaType": "Video",
+            "title": "ICO-2024-SP-ICD0011 - Veebirakendused Java baasil",
+            "isAvailable": true,
+            "isHiddenDueToCaptions": false,
+            "isRead": false,
+            "isScheduled": false,
+            "isProcessing": false,
+            "isFailed": false,
+            "isPreliminary": false,
+            "isInteractiveMedia": false,
+            "is360Video": false,
+            "thumbnailUri": "https://uk-org-echo360-alpprod-eu-west-upload.s3.amazonaws.com/0000.6e001bc4-e8b9-46a6-be8f-719c0bd6d290/42fd53c3-b146-4154-b9df-b73993e23d69/1/poster1.jpg"
+          }
+        ],
+        "userSectionRole": "Student",
+        "captureStartedAt": "2024-10-29T16:00:00.006",
+        "captureEndedAt": "2024-10-29T16:25:11.372",
+        "questionCount": 0,
+        "isScheduled": true,
+        "hasContent": true,
+        "hasVideo": true,
+        "hasVideoHiddenDueToCaptions": false,
+        "hasSlideDeck": false,
+        "isLive": false,
+        "isInteractiveMedia": false,
+        "isPast": true,
+        "isFuture": false,
+        "is360Video": false,
+        "startTimeUTC": "2024-10-29T14:00:00.000Z",
+        "endTimeUTC": "2024-10-29T15:35:00.000Z"
+      },
+      "type": "SyllabusLessonType"
+    },
+    {
+      "lesson": {
+        "lesson": {
+          "id": "G_678d016d-c4fd-4f8d-94e7-b83bf35c9f3d_9503e372-45af-40cc-8e9e-425677924bfb_2024-11-05T14:00:00.000_2024-11-05T15:35:00.000",
+          "institutionId": "6e001bc4-e8b9-46a6-be8f-719c0bd6d290",
+          "sectionId": "9503e372-45af-40cc-8e9e-425677924bfb",
+          "captureOccurrenceId": "678d016d-c4fd-4f8d-94e7-b83bf35c9f3d_20241105T1200",
+          "name": "ICO-2024-SP-ICD0011 - Veebirakendused Java baasil",
+          "timing": {
+            "start": "2024-11-05T14:00:00.000",
+            "end": "2024-11-05T15:35:00.000"
+          },
+          "timeZone": {
+            "id": "Europe/Tallinn",
+            "name": "(+02:00) Europe/Tallinn",
+            "standardOffset": "PT2H"
+          },
+          "fromSchedule": true,
+          "shouldStreamLive": true,
+          "createdAt": "2024-11-05T12:00:02.797Z",
+          "updatedAt": "2024-11-05T12:00:02.797Z",
+          "isFolderLesson": false,
+          "displayName": "ICO-2024-SP-ICD0011 - Veebirakendused Java baasil",
+          "lessonHasName": true
+        },
+        "medias": [
+          {
+            "id": "727e1913-4ddf-4961-8645-6c7350d21827",
+            "mediaType": "Video",
+            "title": "ICO-2024-SP-ICD0011 - Veebirakendused Java baasil",
+            "isAvailable": true,
+            "isHiddenDueToCaptions": false,
+            "isRead": false,
+            "isScheduled": false,
+            "isProcessing": false,
+            "isFailed": false,
+            "isPreliminary": false,
+            "isInteractiveMedia": false,
+            "is360Video": false,
+            "thumbnailUri": "https://uk-org-echo360-alpprod-eu-west-upload.s3.amazonaws.com/0000.6e001bc4-e8b9-46a6-be8f-719c0bd6d290/727e1913-4ddf-4961-8645-6c7350d21827/1/poster1.jpg"
+          }
+        ],
+        "userSectionRole": "Student",
+        "captureStartedAt": "2024-11-05T14:00:00.005",
+        "captureEndedAt": "2024-11-05T15:27:50.592",
+        "questionCount": 0,
+        "isScheduled": true,
+        "hasContent": true,
+        "hasVideo": true,
+        "hasVideoHiddenDueToCaptions": false,
+        "hasSlideDeck": false,
+        "isLive": false,
+        "isInteractiveMedia": false,
+        "isPast": true,
+        "isFuture": false,
+        "is360Video": false,
+        "startTimeUTC": "2024-11-05T12:00:00.000Z",
+        "endTimeUTC": "2024-11-05T13:35:00.000Z"
+      },
+      "type": "SyllabusLessonType"
+    },
+    {
+      "lesson": {
+        "lesson": {
+          "id": "G_2b643ecd-55dc-401f-b118-9e7e6d95bcb6_9503e372-45af-40cc-8e9e-425677924bfb_2024-11-05T16:00:00.000_2024-11-05T17:35:00.000",
+          "institutionId": "6e001bc4-e8b9-46a6-be8f-719c0bd6d290",
+          "sectionId": "9503e372-45af-40cc-8e9e-425677924bfb",
+          "captureOccurrenceId": "2b643ecd-55dc-401f-b118-9e7e6d95bcb6_20241105T1400",
+          "name": "ICO-2024-SP-ICD0011 - Veebirakendused Java baasil",
+          "timing": {
+            "start": "2024-11-05T16:00:00.000",
+            "end": "2024-11-05T17:35:00.000"
+          },
+          "timeZone": {
+            "id": "Europe/Tallinn",
+            "name": "(+02:00) Europe/Tallinn",
+            "standardOffset": "PT2H"
+          },
+          "fromSchedule": true,
+          "shouldStreamLive": true,
+          "createdAt": "2024-11-05T14:00:02.638Z",
+          "updatedAt": "2024-11-05T16:36:33.195Z",
+          "isFolderLesson": false,
+          "displayName": "ICO-2024-SP-ICD0011 - Veebirakendused Java baasil",
+          "lessonHasName": true
+        },
+        "medias": [],
+        "userSectionRole": "Student",
+        "captureStartedAt": "2024-11-05T16:00:00.005",
+        "captureEndedAt": "2024-11-05T16:05:05.820",
+        "questionCount": 0,
+        "isScheduled": true,
+        "hasContent": false,
+        "hasVideo": true,
+        "hasVideoHiddenDueToCaptions": false,
+        "hasSlideDeck": false,
+        "isLive": false,
+        "isInteractiveMedia": false,
+        "isPast": true,
+        "isFuture": false,
+        "is360Video": false,
+        "startTimeUTC": "2024-11-05T14:00:00.000Z",
+        "endTimeUTC": "2024-11-05T15:35:00.000Z"
+      },
+      "type": "SyllabusLessonType"
+    },
+    {
+      "lesson": {
+        "lesson": {
+          "id": "G_678d016d-c4fd-4f8d-94e7-b83bf35c9f3d_9503e372-45af-40cc-8e9e-425677924bfb_2024-11-12T14:00:00.000_2024-11-12T15:35:00.000",
+          "institutionId": "6e001bc4-e8b9-46a6-be8f-719c0bd6d290",
+          "sectionId": "9503e372-45af-40cc-8e9e-425677924bfb",
+          "captureOccurrenceId": "678d016d-c4fd-4f8d-94e7-b83bf35c9f3d_20241112T1200",
+          "name": "ICO-2024-SP-ICD0011 - Veebirakendused Java baasil",
+          "timing": {
+            "start": "2024-11-12T14:00:00.000",
+            "end": "2024-11-12T15:35:00.000"
+          },
+          "timeZone": {
+            "id": "Europe/Tallinn",
+            "name": "(+02:00) Europe/Tallinn",
+            "standardOffset": "PT2H"
+          },
+          "fromSchedule": true,
+          "shouldStreamLive": true,
+          "createdAt": "2024-11-12T12:00:02.213Z",
+          "updatedAt": "2024-11-12T12:00:02.213Z",
+          "isFolderLesson": false,
+          "displayName": "ICO-2024-SP-ICD0011 - Veebirakendused Java baasil",
+          "lessonHasName": true
+        },
+        "medias": [
+          {
+            "id": "9302cad7-53bf-4937-9702-b7e6775a610b",
+            "mediaType": "Video",
+            "title": "ICO-2024-SP-ICD0011 - Veebirakendused Java baasil",
+            "isAvailable": true,
+            "isHiddenDueToCaptions": false,
+            "isRead": false,
+            "isScheduled": false,
+            "isProcessing": false,
+            "isFailed": false,
+            "isPreliminary": false,
+            "isInteractiveMedia": false,
+            "is360Video": false,
+            "thumbnailUri": "https://uk-org-echo360-alpprod-eu-west-upload.s3.amazonaws.com/0000.6e001bc4-e8b9-46a6-be8f-719c0bd6d290/9302cad7-53bf-4937-9702-b7e6775a610b/1/poster1.jpg"
+          }
+        ],
+        "userSectionRole": "Student",
+        "captureStartedAt": "2024-11-12T14:00:00.001",
+        "captureEndedAt": "2024-11-12T15:30:36.778",
+        "questionCount": 0,
+        "isScheduled": true,
+        "hasContent": true,
+        "hasVideo": true,
+        "hasVideoHiddenDueToCaptions": false,
+        "hasSlideDeck": false,
+        "isLive": false,
+        "isInteractiveMedia": false,
+        "isPast": true,
+        "isFuture": false,
+        "is360Video": false,
+        "startTimeUTC": "2024-11-12T12:00:00.000Z",
+        "endTimeUTC": "2024-11-12T13:35:00.000Z"
+      },
+      "type": "SyllabusLessonType"
+    },
+    {
+      "lesson": {
+        "lesson": {
+          "id": "G_2b643ecd-55dc-401f-b118-9e7e6d95bcb6_9503e372-45af-40cc-8e9e-425677924bfb_2024-11-12T16:00:00.000_2024-11-12T17:35:00.000",
+          "institutionId": "6e001bc4-e8b9-46a6-be8f-719c0bd6d290",
+          "sectionId": "9503e372-45af-40cc-8e9e-425677924bfb",
+          "captureOccurrenceId": "2b643ecd-55dc-401f-b118-9e7e6d95bcb6_20241112T1400",
+          "name": "ICO-2024-SP-ICD0011 - Veebirakendused Java baasil",
+          "timing": {
+            "start": "2024-11-12T16:00:00.000",
+            "end": "2024-11-12T17:35:00.000"
+          },
+          "timeZone": {
+            "id": "Europe/Tallinn",
+            "name": "(+02:00) Europe/Tallinn",
+            "standardOffset": "PT2H"
+          },
+          "fromSchedule": true,
+          "shouldStreamLive": true,
+          "createdAt": "2024-11-12T14:00:02.263Z",
+          "updatedAt": "2024-11-12T14:00:02.263Z",
+          "isFolderLesson": false,
+          "displayName": "ICO-2024-SP-ICD0011 - Veebirakendused Java baasil",
+          "lessonHasName": true
+        },
+        "medias": [
+          {
+            "id": "b3f7e5f0-d70e-44b4-abf5-a1afa2d9ab36",
+            "mediaType": "Video",
+            "title": "ICO-2024-SP-ICD0011 - Veebirakendused Java baasil",
+            "isAvailable": true,
+            "isHiddenDueToCaptions": false,
+            "isRead": false,
+            "isScheduled": false,
+            "isProcessing": false,
+            "isFailed": false,
+            "isPreliminary": false,
+            "isInteractiveMedia": false,
+            "is360Video": false,
+            "thumbnailUri": "https://uk-org-echo360-alpprod-eu-west-upload.s3.amazonaws.com/0000.6e001bc4-e8b9-46a6-be8f-719c0bd6d290/b3f7e5f0-d70e-44b4-abf5-a1afa2d9ab36/1/poster1.jpg"
+          }
+        ],
+        "userSectionRole": "Student",
+        "captureStartedAt": "2024-11-12T16:00:00.005",
+        "captureEndedAt": "2024-11-12T16:00:12.517",
+        "questionCount": 0,
+        "isScheduled": true,
+        "hasContent": true,
+        "hasVideo": true,
+        "hasVideoHiddenDueToCaptions": false,
+        "hasSlideDeck": false,
+        "isLive": false,
+        "isInteractiveMedia": false,
+        "isPast": true,
+        "isFuture": false,
+        "is360Video": false,
+        "startTimeUTC": "2024-11-12T14:00:00.000Z",
+        "endTimeUTC": "2024-11-12T15:35:00.000Z"
+      },
+      "type": "SyllabusLessonType"
+    },
+    {
+      "lesson": {
+        "lesson": {
+          "id": "G_678d016d-c4fd-4f8d-94e7-b83bf35c9f3d_9503e372-45af-40cc-8e9e-425677924bfb_2024-11-19T14:00:00.000_2024-11-19T15:35:00.000",
+          "institutionId": "6e001bc4-e8b9-46a6-be8f-719c0bd6d290",
+          "sectionId": "9503e372-45af-40cc-8e9e-425677924bfb",
+          "captureOccurrenceId": "678d016d-c4fd-4f8d-94e7-b83bf35c9f3d_20241119T1200",
+          "name": "ICO-2024-SP-ICD0011 - Veebirakendused Java baasil",
+          "timing": {
+            "start": "2024-11-19T14:00:00.000",
+            "end": "2024-11-19T15:35:00.000"
+          },
+          "timeZone": {
+            "id": "Europe/Tallinn",
+            "name": "(+02:00) Europe/Tallinn",
+            "standardOffset": "PT2H"
+          },
+          "fromSchedule": true,
+          "shouldStreamLive": true,
+          "createdAt": "2024-11-19T12:00:02.505Z",
+          "updatedAt": "2024-11-19T12:00:02.505Z",
+          "isFolderLesson": false,
+          "displayName": "ICO-2024-SP-ICD0011 - Veebirakendused Java baasil",
+          "lessonHasName": true
+        },
+        "medias": [
+          {
+            "id": "dbe389dd-f1c8-48f9-b0b7-14a7d95c3156",
+            "mediaType": "Video",
+            "title": "ICO-2024-SP-ICD0011 - Veebirakendused Java baasil",
+            "isAvailable": true,
+            "isHiddenDueToCaptions": false,
+            "isRead": false,
+            "isScheduled": false,
+            "isProcessing": false,
+            "isFailed": false,
+            "isPreliminary": false,
+            "isInteractiveMedia": false,
+            "is360Video": false,
+            "thumbnailUri": "https://uk-org-echo360-alpprod-eu-west-upload.s3.amazonaws.com/0000.6e001bc4-e8b9-46a6-be8f-719c0bd6d290/dbe389dd-f1c8-48f9-b0b7-14a7d95c3156/1/poster1.jpg"
+          }
+        ],
+        "userSectionRole": "Student",
+        "captureStartedAt": "2024-11-19T14:00:00.013",
+        "captureEndedAt": "2024-11-19T15:29:31.825",
+        "questionCount": 0,
+        "isScheduled": true,
+        "hasContent": true,
+        "hasVideo": true,
+        "hasVideoHiddenDueToCaptions": false,
+        "hasSlideDeck": false,
+        "isLive": false,
+        "isInteractiveMedia": false,
+        "isPast": true,
+        "isFuture": false,
+        "is360Video": false,
+        "startTimeUTC": "2024-11-19T12:00:00.000Z",
+        "endTimeUTC": "2024-11-19T13:35:00.000Z"
+      },
+      "type": "SyllabusLessonType"
+    },
+    {
+      "lesson": {
+        "lesson": {
+          "id": "G_2b643ecd-55dc-401f-b118-9e7e6d95bcb6_9503e372-45af-40cc-8e9e-425677924bfb_2024-11-19T16:00:00.000_2024-11-19T17:35:00.000",
+          "institutionId": "6e001bc4-e8b9-46a6-be8f-719c0bd6d290",
+          "sectionId": "9503e372-45af-40cc-8e9e-425677924bfb",
+          "captureOccurrenceId": "2b643ecd-55dc-401f-b118-9e7e6d95bcb6_20241119T1400",
+          "name": "ICO-2024-SP-ICD0011 - Veebirakendused Java baasil",
+          "timing": {
+            "start": "2024-11-19T16:00:00.000",
+            "end": "2024-11-19T17:35:00.000"
+          },
+          "timeZone": {
+            "id": "Europe/Tallinn",
+            "name": "(+02:00) Europe/Tallinn",
+            "standardOffset": "PT2H"
+          },
+          "fromSchedule": true,
+          "shouldStreamLive": true,
+          "createdAt": "2024-11-19T14:00:02.701Z",
+          "updatedAt": "2024-11-19T14:00:02.701Z",
+          "isFolderLesson": false,
+          "displayName": "ICO-2024-SP-ICD0011 - Veebirakendused Java baasil",
+          "lessonHasName": true
+        },
+        "medias": [
+          {
+            "id": "8893d9d1-c06f-4c93-bef7-a0ea498d062e",
+            "mediaType": "Video",
+            "title": "ICO-2024-SP-ICD0011 - Veebirakendused Java baasil",
+            "isAvailable": true,
+            "isHiddenDueToCaptions": false,
+            "isRead": false,
+            "isScheduled": false,
+            "isProcessing": false,
+            "isFailed": false,
+            "isPreliminary": false,
+            "isInteractiveMedia": false,
+            "is360Video": false,
+            "thumbnailUri": "https://uk-org-echo360-alpprod-eu-west-upload.s3.amazonaws.com/0000.6e001bc4-e8b9-46a6-be8f-719c0bd6d290/8893d9d1-c06f-4c93-bef7-a0ea498d062e/1/poster1.jpg"
+          }
+        ],
+        "userSectionRole": "Student",
+        "captureStartedAt": "2024-11-19T16:00:00.010",
+        "captureEndedAt": "2024-11-19T16:00:04.894",
+        "questionCount": 0,
+        "isScheduled": true,
+        "hasContent": true,
+        "hasVideo": true,
+        "hasVideoHiddenDueToCaptions": false,
+        "hasSlideDeck": false,
+        "isLive": false,
+        "isInteractiveMedia": false,
+        "isPast": true,
+        "isFuture": false,
+        "is360Video": false,
+        "startTimeUTC": "2024-11-19T14:00:00.000Z",
+        "endTimeUTC": "2024-11-19T15:35:00.000Z"
+      },
+      "type": "SyllabusLessonType"
+    },
+    {
+      "lesson": {
+        "lesson": {
+          "id": "G_678d016d-c4fd-4f8d-94e7-b83bf35c9f3d_9503e372-45af-40cc-8e9e-425677924bfb_2024-11-26T14:00:00.000_2024-11-26T15:35:00.000",
+          "institutionId": "6e001bc4-e8b9-46a6-be8f-719c0bd6d290",
+          "sectionId": "9503e372-45af-40cc-8e9e-425677924bfb",
+          "captureOccurrenceId": "678d016d-c4fd-4f8d-94e7-b83bf35c9f3d_20241126T1200",
+          "name": "ICO-2024-SP-ICD0011 - Veebirakendused Java baasil",
+          "timing": {
+            "start": "2024-11-26T14:00:00.000",
+            "end": "2024-11-26T15:35:00.000"
+          },
+          "timeZone": {
+            "id": "Europe/Tallinn",
+            "name": "(+02:00) Europe/Tallinn",
+            "standardOffset": "PT2H"
+          },
+          "fromSchedule": true,
+          "shouldStreamLive": true,
+          "createdAt": "2024-11-26T12:00:02.581Z",
+          "updatedAt": "2024-11-26T12:00:02.581Z",
+          "isFolderLesson": false,
+          "displayName": "ICO-2024-SP-ICD0011 - Veebirakendused Java baasil",
+          "lessonHasName": true
+        },
+        "medias": [
+          {
+            "id": "8a1875df-ad7a-43bf-a48a-c8b8a557fd0b",
+            "mediaType": "Video",
+            "title": "ICO-2024-SP-ICD0011 - Veebirakendused Java baasil",
+            "isAvailable": true,
+            "isHiddenDueToCaptions": false,
+            "isRead": false,
+            "isScheduled": false,
+            "isProcessing": false,
+            "isFailed": false,
+            "isPreliminary": false,
+            "isInteractiveMedia": false,
+            "is360Video": false,
+            "thumbnailUri": "https://uk-org-echo360-alpprod-eu-west-upload.s3.amazonaws.com/0000.6e001bc4-e8b9-46a6-be8f-719c0bd6d290/8a1875df-ad7a-43bf-a48a-c8b8a557fd0b/1/poster1.jpg"
+          }
+        ],
+        "userSectionRole": "Student",
+        "captureStartedAt": "2024-11-26T14:00:00.011",
+        "captureEndedAt": "2024-11-26T15:34:55.173",
+        "questionCount": 0,
+        "isScheduled": true,
+        "hasContent": true,
+        "hasVideo": true,
+        "hasVideoHiddenDueToCaptions": false,
+        "hasSlideDeck": false,
+        "isLive": false,
+        "isInteractiveMedia": false,
+        "isPast": true,
+        "isFuture": false,
+        "is360Video": false,
+        "startTimeUTC": "2024-11-26T12:00:00.000Z",
+        "endTimeUTC": "2024-11-26T13:35:00.000Z"
+      },
+      "type": "SyllabusLessonType"
+    },
+    {
+      "lesson": {
+        "lesson": {
+          "id": "G_2b643ecd-55dc-401f-b118-9e7e6d95bcb6_9503e372-45af-40cc-8e9e-425677924bfb_2024-11-26T16:00:00.000_2024-11-26T17:35:00.000",
+          "institutionId": "6e001bc4-e8b9-46a6-be8f-719c0bd6d290",
+          "sectionId": "9503e372-45af-40cc-8e9e-425677924bfb",
+          "captureOccurrenceId": "2b643ecd-55dc-401f-b118-9e7e6d95bcb6_20241126T1400",
+          "name": "ICO-2024-SP-ICD0011 - Veebirakendused Java baasil",
+          "timing": {
+            "start": "2024-11-26T16:00:00.000",
+            "end": "2024-11-26T17:35:00.000"
+          },
+          "timeZone": {
+            "id": "Europe/Tallinn",
+            "name": "(+02:00) Europe/Tallinn",
+            "standardOffset": "PT2H"
+          },
+          "fromSchedule": true,
+          "shouldStreamLive": true,
+          "createdAt": "2024-11-26T14:00:02.303Z",
+          "updatedAt": "2024-11-26T14:00:02.303Z",
+          "isFolderLesson": false,
+          "displayName": "ICO-2024-SP-ICD0011 - Veebirakendused Java baasil",
+          "lessonHasName": true
+        },
+        "medias": [
+          {
+            "id": "d0e400a1-dbd5-426f-aa1a-7807cd487625",
+            "mediaType": "Video",
+            "title": "ICO-2024-SP-ICD0011 - Veebirakendused Java baasil",
+            "isAvailable": true,
+            "isHiddenDueToCaptions": false,
+            "isRead": false,
+            "isScheduled": false,
+            "isProcessing": false,
+            "isFailed": false,
+            "isPreliminary": false,
+            "isInteractiveMedia": false,
+            "is360Video": false,
+            "thumbnailUri": "https://uk-org-echo360-alpprod-eu-west-upload.s3.amazonaws.com/0000.6e001bc4-e8b9-46a6-be8f-719c0bd6d290/d0e400a1-dbd5-426f-aa1a-7807cd487625/1/poster1.jpg"
+          }
+        ],
+        "userSectionRole": "Student",
+        "captureStartedAt": "2024-11-26T16:00:00.011",
+        "captureEndedAt": "2024-11-26T16:00:06.515",
+        "questionCount": 0,
+        "isScheduled": true,
+        "hasContent": true,
+        "hasVideo": true,
+        "hasVideoHiddenDueToCaptions": false,
+        "hasSlideDeck": false,
+        "isLive": false,
+        "isInteractiveMedia": false,
+        "isPast": true,
+        "isFuture": false,
+        "is360Video": false,
+        "startTimeUTC": "2024-11-26T14:00:00.000Z",
+        "endTimeUTC": "2024-11-26T15:35:00.000Z"
+      },
+      "type": "SyllabusLessonType"
+    },
+    {
+      "lesson": {
+        "lesson": {
+          "id": "G_678d016d-c4fd-4f8d-94e7-b83bf35c9f3d_9503e372-45af-40cc-8e9e-425677924bfb_2024-12-03T14:00:00.000_2024-12-03T15:35:00.000",
+          "institutionId": "6e001bc4-e8b9-46a6-be8f-719c0bd6d290",
+          "sectionId": "9503e372-45af-40cc-8e9e-425677924bfb",
+          "captureOccurrenceId": "678d016d-c4fd-4f8d-94e7-b83bf35c9f3d_20241203T1200",
+          "name": "ICO-2024-SP-ICD0011 - Veebirakendused Java baasil",
+          "timing": {
+            "start": "2024-12-03T14:00:00.000",
+            "end": "2024-12-03T15:35:00.000"
+          },
+          "timeZone": {
+            "id": "Europe/Tallinn",
+            "name": "(+02:00) Europe/Tallinn",
+            "standardOffset": "PT2H"
+          },
+          "fromSchedule": true,
+          "shouldStreamLive": true,
+          "createdAt": "2024-12-03T12:00:02.999Z",
+          "updatedAt": "2024-12-03T12:00:02.999Z",
+          "isFolderLesson": false,
+          "displayName": "ICO-2024-SP-ICD0011 - Veebirakendused Java baasil",
+          "lessonHasName": true
+        },
+        "medias": [
+          {
+            "id": "f2110c07-d50c-43b8-b6bf-a6b283c57e0e",
+            "mediaType": "Video",
+            "title": "ICO-2024-SP-ICD0011 - Veebirakendused Java baasil",
+            "isAvailable": true,
+            "isHiddenDueToCaptions": false,
+            "isRead": false,
+            "isScheduled": false,
+            "isProcessing": false,
+            "isFailed": false,
+            "isPreliminary": false,
+            "isInteractiveMedia": false,
+            "is360Video": false,
+            "thumbnailUri": "https://uk-org-echo360-alpprod-eu-west-upload.s3.amazonaws.com/0000.6e001bc4-e8b9-46a6-be8f-719c0bd6d290/f2110c07-d50c-43b8-b6bf-a6b283c57e0e/1/poster1.jpg"
+          }
+        ],
+        "userSectionRole": "Student",
+        "captureStartedAt": "2024-12-03T14:00:00.009",
+        "captureEndedAt": "2024-12-03T15:28:21.090",
+        "questionCount": 0,
+        "isScheduled": true,
+        "hasContent": true,
+        "hasVideo": true,
+        "hasVideoHiddenDueToCaptions": false,
+        "hasSlideDeck": false,
+        "isLive": false,
+        "isInteractiveMedia": false,
+        "isPast": true,
+        "isFuture": false,
+        "is360Video": false,
+        "startTimeUTC": "2024-12-03T12:00:00.000Z",
+        "endTimeUTC": "2024-12-03T13:35:00.000Z"
+      },
+      "type": "SyllabusLessonType"
+    },
+    {
+      "lesson": {
+        "lesson": {
+          "id": "G_2b643ecd-55dc-401f-b118-9e7e6d95bcb6_9503e372-45af-40cc-8e9e-425677924bfb_2024-12-03T16:00:00.000_2024-12-03T17:35:00.000",
+          "institutionId": "6e001bc4-e8b9-46a6-be8f-719c0bd6d290",
+          "sectionId": "9503e372-45af-40cc-8e9e-425677924bfb",
+          "captureOccurrenceId": "2b643ecd-55dc-401f-b118-9e7e6d95bcb6_20241203T1400",
+          "name": "ICO-2024-SP-ICD0011 - Veebirakendused Java baasil",
+          "timing": {
+            "start": "2024-12-03T16:00:00.000",
+            "end": "2024-12-03T17:35:00.000"
+          },
+          "timeZone": {
+            "id": "Europe/Tallinn",
+            "name": "(+02:00) Europe/Tallinn",
+            "standardOffset": "PT2H"
+          },
+          "fromSchedule": true,
+          "shouldStreamLive": true,
+          "createdAt": "2024-12-03T14:00:01.356Z",
+          "updatedAt": "2024-12-03T14:00:01.356Z",
+          "isFolderLesson": false,
+          "displayName": "ICO-2024-SP-ICD0011 - Veebirakendused Java baasil",
+          "lessonHasName": true
+        },
+        "medias": [
+          {
+            "id": "2f41a5e2-07d0-4565-958c-3965b18e775b",
+            "mediaType": "Video",
+            "title": "ICO-2024-SP-ICD0011 - Veebirakendused Java baasil",
+            "isAvailable": true,
+            "isHiddenDueToCaptions": false,
+            "isRead": false,
+            "isScheduled": false,
+            "isProcessing": false,
+            "isFailed": false,
+            "isPreliminary": false,
+            "isInteractiveMedia": false,
+            "is360Video": false,
+            "thumbnailUri": "https://uk-org-echo360-alpprod-eu-west-upload.s3.amazonaws.com/0000.6e001bc4-e8b9-46a6-be8f-719c0bd6d290/2f41a5e2-07d0-4565-958c-3965b18e775b/1/poster1.jpg"
+          }
+        ],
+        "userSectionRole": "Student",
+        "captureStartedAt": "2024-12-03T16:00:00.007",
+        "captureEndedAt": "2024-12-03T16:00:03.716",
+        "questionCount": 0,
+        "isScheduled": true,
+        "hasContent": true,
+        "hasVideo": true,
+        "hasVideoHiddenDueToCaptions": false,
+        "hasSlideDeck": false,
+        "isLive": false,
+        "isInteractiveMedia": false,
+        "isPast": true,
+        "isFuture": false,
+        "is360Video": false,
+        "startTimeUTC": "2024-12-03T14:00:00.000Z",
+        "endTimeUTC": "2024-12-03T15:35:00.000Z"
+      },
+      "type": "SyllabusLessonType"
+    },
+    {
+      "lesson": {
+        "lesson": {
+          "id": "G_678d016d-c4fd-4f8d-94e7-b83bf35c9f3d_9503e372-45af-40cc-8e9e-425677924bfb_2024-12-10T14:00:00.000_2024-12-10T15:35:00.000",
+          "institutionId": "6e001bc4-e8b9-46a6-be8f-719c0bd6d290",
+          "sectionId": "9503e372-45af-40cc-8e9e-425677924bfb",
+          "captureOccurrenceId": "678d016d-c4fd-4f8d-94e7-b83bf35c9f3d_20241210T1200",
+          "name": "ICO-2024-SP-ICD0011 - Veebirakendused Java baasil",
+          "timing": {
+            "start": "2024-12-10T14:00:00.000",
+            "end": "2024-12-10T15:35:00.000"
+          },
+          "timeZone": {
+            "id": "Europe/Tallinn",
+            "name": "(+02:00) Europe/Tallinn",
+            "standardOffset": "PT2H"
+          },
+          "fromSchedule": true,
+          "shouldStreamLive": true,
+          "createdAt": "2024-12-10T12:00:01.652Z",
+          "updatedAt": "2024-12-10T12:00:01.652Z",
+          "isFolderLesson": false,
+          "displayName": "ICO-2024-SP-ICD0011 - Veebirakendused Java baasil",
+          "lessonHasName": true
+        },
+        "medias": [
+          {
+            "id": "674ffa65-c9e8-437f-91aa-d18ce80e49c6",
+            "mediaType": "Video",
+            "title": "ICO-2024-SP-ICD0011 - Veebirakendused Java baasil",
+            "isAvailable": true,
+            "isHiddenDueToCaptions": false,
+            "isRead": false,
+            "isScheduled": false,
+            "isProcessing": false,
+            "isFailed": false,
+            "isPreliminary": false,
+            "isInteractiveMedia": false,
+            "is360Video": false,
+            "thumbnailUri": "https://uk-org-echo360-alpprod-eu-west-upload.s3.amazonaws.com/0000.6e001bc4-e8b9-46a6-be8f-719c0bd6d290/674ffa65-c9e8-437f-91aa-d18ce80e49c6/1/poster1.jpg"
+          }
+        ],
+        "userSectionRole": "Student",
+        "captureStartedAt": "2024-12-10T14:00:00.008",
+        "captureEndedAt": "2024-12-10T15:34:55.075",
+        "questionCount": 0,
+        "isScheduled": true,
+        "hasContent": true,
+        "hasVideo": true,
+        "hasVideoHiddenDueToCaptions": false,
+        "hasSlideDeck": false,
+        "isLive": false,
+        "isInteractiveMedia": false,
+        "isPast": true,
+        "isFuture": false,
+        "is360Video": false,
+        "startTimeUTC": "2024-12-10T12:00:00.000Z",
+        "endTimeUTC": "2024-12-10T13:35:00.000Z"
+      },
+      "type": "SyllabusLessonType"
+    },
+    {
+      "lesson": {
+        "lesson": {
+          "id": "G_2b643ecd-55dc-401f-b118-9e7e6d95bcb6_9503e372-45af-40cc-8e9e-425677924bfb_2024-12-10T16:00:00.000_2024-12-10T17:35:00.000",
+          "institutionId": "6e001bc4-e8b9-46a6-be8f-719c0bd6d290",
+          "sectionId": "9503e372-45af-40cc-8e9e-425677924bfb",
+          "captureOccurrenceId": "2b643ecd-55dc-401f-b118-9e7e6d95bcb6_20241210T1400",
+          "name": "ICO-2024-SP-ICD0011 - Veebirakendused Java baasil",
+          "timing": {
+            "start": "2024-12-10T16:00:00.000",
+            "end": "2024-12-10T17:35:00.000"
+          },
+          "timeZone": {
+            "id": "Europe/Tallinn",
+            "name": "(+02:00) Europe/Tallinn",
+            "standardOffset": "PT2H"
+          },
+          "fromSchedule": true,
+          "shouldStreamLive": true,
+          "createdAt": "2024-12-10T14:00:03.054Z",
+          "updatedAt": "2024-12-10T14:00:03.054Z",
+          "isFolderLesson": false,
+          "displayName": "ICO-2024-SP-ICD0011 - Veebirakendused Java baasil",
+          "lessonHasName": true
+        },
+        "medias": [
+          {
+            "id": "8bf6561e-8b02-438d-8160-6835fc210b09",
+            "mediaType": "Video",
+            "title": "ICO-2024-SP-ICD0011 - Veebirakendused Java baasil",
+            "isAvailable": true,
+            "isHiddenDueToCaptions": false,
+            "isRead": false,
+            "isScheduled": false,
+            "isProcessing": false,
+            "isFailed": false,
+            "isPreliminary": false,
+            "isInteractiveMedia": false,
+            "is360Video": false,
+            "thumbnailUri": "https://uk-org-echo360-alpprod-eu-west-upload.s3.amazonaws.com/0000.6e001bc4-e8b9-46a6-be8f-719c0bd6d290/8bf6561e-8b02-438d-8160-6835fc210b09/1/poster1.jpg"
+          }
+        ],
+        "userSectionRole": "Student",
+        "captureStartedAt": "2024-12-10T16:00:00.007",
+        "captureEndedAt": "2024-12-10T17:34:55.111",
+        "questionCount": 0,
+        "isScheduled": true,
+        "hasContent": true,
+        "hasVideo": true,
+        "hasVideoHiddenDueToCaptions": false,
+        "hasSlideDeck": false,
+        "isLive": false,
+        "isInteractiveMedia": false,
+        "isPast": true,
+        "isFuture": false,
+        "is360Video": false,
+        "startTimeUTC": "2024-12-10T14:00:00.000Z",
+        "endTimeUTC": "2024-12-10T15:35:00.000Z"
+      },
+      "type": "SyllabusLessonType"
+    },
+    {
+      "lesson": {
+        "lesson": {
+          "id": "G_678d016d-c4fd-4f8d-94e7-b83bf35c9f3d_9503e372-45af-40cc-8e9e-425677924bfb_2024-12-17T14:00:00.000_2024-12-17T15:35:00.000",
+          "institutionId": "6e001bc4-e8b9-46a6-be8f-719c0bd6d290",
+          "sectionId": "9503e372-45af-40cc-8e9e-425677924bfb",
+          "captureOccurrenceId": "678d016d-c4fd-4f8d-94e7-b83bf35c9f3d_20241217T1200",
+          "name": "ICO-2024-SP-ICD0011 - Veebirakendused Java baasil",
+          "timing": {
+            "start": "2024-12-17T14:00:00.000",
+            "end": "2024-12-17T15:35:00.000"
+          },
+          "timeZone": {
+            "id": "Europe/Tallinn",
+            "name": "(+02:00) Europe/Tallinn",
+            "standardOffset": "PT2H"
+          },
+          "fromSchedule": true,
+          "shouldStreamLive": true,
+          "createdAt": "2024-12-17T12:00:02.190Z",
+          "updatedAt": "2024-12-17T12:00:02.190Z",
+          "isFolderLesson": false,
+          "displayName": "ICO-2024-SP-ICD0011 - Veebirakendused Java baasil",
+          "lessonHasName": true
+        },
+        "medias": [
+          {
+            "id": "6734916a-1e02-46e9-b2d9-709cbdb63a0b",
+            "mediaType": "Video",
+            "title": "ICO-2024-SP-ICD0011 - Veebirakendused Java baasil",
+            "isAvailable": true,
+            "isHiddenDueToCaptions": false,
+            "isRead": false,
+            "isScheduled": false,
+            "isProcessing": false,
+            "isFailed": false,
+            "isPreliminary": false,
+            "isInteractiveMedia": false,
+            "is360Video": false,
+            "thumbnailUri": "https://uk-org-echo360-alpprod-eu-west-upload.s3.amazonaws.com/0000.6e001bc4-e8b9-46a6-be8f-719c0bd6d290/6734916a-1e02-46e9-b2d9-709cbdb63a0b/1/poster1.jpg"
+          }
+        ],
+        "userSectionRole": "Student",
+        "captureStartedAt": "2024-12-17T14:00:00.008",
+        "captureEndedAt": "2024-12-17T15:34:55.111",
+        "questionCount": 0,
+        "isScheduled": true,
+        "hasContent": true,
+        "hasVideo": true,
+        "hasVideoHiddenDueToCaptions": false,
+        "hasSlideDeck": false,
+        "isLive": false,
+        "isInteractiveMedia": false,
+        "isPast": true,
+        "isFuture": false,
+        "is360Video": false,
+        "startTimeUTC": "2024-12-17T12:00:00.000Z",
+        "endTimeUTC": "2024-12-17T13:35:00.000Z"
+      },
+      "type": "SyllabusLessonType"
+    },
+    {
+      "lesson": {
+        "lesson": {
+          "id": "G_2b643ecd-55dc-401f-b118-9e7e6d95bcb6_9503e372-45af-40cc-8e9e-425677924bfb_2024-12-17T16:00:00.000_2024-12-17T17:35:00.000",
+          "institutionId": "6e001bc4-e8b9-46a6-be8f-719c0bd6d290",
+          "sectionId": "9503e372-45af-40cc-8e9e-425677924bfb",
+          "captureOccurrenceId": "2b643ecd-55dc-401f-b118-9e7e6d95bcb6_20241217T1400",
+          "name": "ICO-2024-SP-ICD0011 - Veebirakendused Java baasil",
+          "timing": {
+            "start": "2024-12-17T16:00:00.000",
+            "end": "2024-12-17T17:35:00.000"
+          },
+          "timeZone": {
+            "id": "Europe/Tallinn",
+            "name": "(+02:00) Europe/Tallinn",
+            "standardOffset": "PT2H"
+          },
+          "fromSchedule": true,
+          "shouldStreamLive": true,
+          "createdAt": "2024-12-17T14:00:01.513Z",
+          "updatedAt": "2024-12-17T14:00:01.513Z",
+          "isFolderLesson": false,
+          "displayName": "ICO-2024-SP-ICD0011 - Veebirakendused Java baasil",
+          "lessonHasName": true
+        },
+        "medias": [
+          {
+            "id": "79e0b7af-bc66-403f-946c-74282bbb2b8b",
+            "mediaType": "Video",
+            "title": "ICO-2024-SP-ICD0011 - Veebirakendused Java baasil",
+            "isAvailable": true,
+            "isHiddenDueToCaptions": false,
+            "isRead": false,
+            "isScheduled": false,
+            "isProcessing": false,
+            "isFailed": false,
+            "isPreliminary": false,
+            "isInteractiveMedia": false,
+            "is360Video": false,
+            "thumbnailUri": "https://uk-org-echo360-alpprod-eu-west-upload.s3.amazonaws.com/0000.6e001bc4-e8b9-46a6-be8f-719c0bd6d290/79e0b7af-bc66-403f-946c-74282bbb2b8b/1/poster1.jpg"
+          }
+        ],
+        "userSectionRole": "Student",
+        "captureStartedAt": "2024-12-17T16:00:00.011",
+        "captureEndedAt": "2024-12-17T16:00:06.306",
+        "questionCount": 0,
+        "isScheduled": true,
+        "hasContent": true,
+        "hasVideo": true,
+        "hasVideoHiddenDueToCaptions": false,
+        "hasSlideDeck": false,
+        "isLive": false,
+        "isInteractiveMedia": false,
+        "isPast": true,
+        "isFuture": false,
+        "is360Video": false,
+        "startTimeUTC": "2024-12-17T14:00:00.000Z",
+        "endTimeUTC": "2024-12-17T15:35:00.000Z"
+      },
+      "type": "SyllabusLessonType"
+    }
+  ]
+}
