@@ -3,7 +3,7 @@ requires = ["setuptools"]
 build-backend = "setuptools.build_meta"
 
 [project]
-name = "echo_downloader"
+name = "echo-downloader"
 version = "1.0.3"
 authors = [
     { name = "Andreas Marten Viks", email = "andreasviks0@gmail.com" },
@@ -21,15 +21,14 @@ classifiers = [
     "Operating System :: OS Independent",
 ]
 dependencies = [
-    "aiofiles",
-    "aiohttp",
-    "beautifulsoup4",
-    "objectify",
-    "platformdirs",
-    "prompt-toolkit",
-    "pyyaml",
-    "requests",
-    "wxpython",
+    "aiofiles>=25.1.0",
+    "aiohttp>=3.14.3",
+    "beautifulsoup4>=4.15.0",
+    "objectify>=1.1.0",
+    "platformdirs>=4.12.0",
+    "prompt-toolkit>=3.0.53",
+    "pyyaml>=6.0.3",
+    "requests>=2.34.2",
 ]
 
 [project.optional-dependencies]

@@ -1,10 +1,10 @@
 import logging
+import math
 import re
 from pathlib import Path
 from typing import Any, Callable
 
 import requests
-import wx
 from prompt_toolkit.application import Application, get_app
 from prompt_toolkit.completion import PathCompleter
 from prompt_toolkit.key_binding import KeyBindings
@@ -57,11 +57,13 @@ def create_url_dialog(continue_callback: Callable[[str], Any]) -> Dialog:
         logger.debug(f'Echo360 URL entered: {url_input.text}')
 
         match = echo_url_regex.search(url_input.text)
+        assert match is not None
         if match.group(2) == 'home':
             course_uuid = match.group(1)
         else:  # 'public'
             response = requests.get(url_input.text, allow_redirects=False)
             redirect_match = echo_url_regex.search('https://echo360.org.uk' + response.headers['Location'])
+            assert redirect_match is not None
             course_uuid = redirect_match.group(1)
 
         continue_callback(course_uuid)
@@ -140,30 +142,6 @@ def create_path_dialog(
     def on_cancel():
         get_app().exit()
 
-    def ask_for_directory():
-        logger.debug('Opening directory selection dialog...')
-        _ = wx.App(False)
-
-        dir_dialog = wx.DirDialog(
-            None,
-            'Select directory',
-            style=(wx.DD_DEFAULT_STYLE | wx.DD_DIR_MUST_EXIST)
-        )
-
-        if dir_dialog.ShowModal() == wx.ID_OK:
-            chosen_dir = dir_dialog.GetPath()
-        else:
-            chosen_dir = None
-
-        dir_dialog.Destroy()
-
-        return chosen_dir
-
-    def open_selector():
-        selected_path = ask_for_directory()
-        if selected_path:
-            path_input.text = selected_path
-
     if config.path_completion:
         path_completer = PathCompleter(only_directories=True, expanduser=True)
     else:
@@ -177,7 +155,7 @@ def create_path_dialog(
 
     dialog = Dialog(
         title='Enter output path',
-        body=VSplit([Button(text='Select directory', width=20, handler=open_selector), path_input], padding=2),
+        body=path_input,
         width=Dimension(min=85),
         buttons=[
             Button(text="Begin download", width=18, handler=on_submit),
@@ -212,7 +190,7 @@ def create_download_dialog(files: list[FileInfo]):
     )
 
     def set_progress(i: int, downloaded: int) -> None:
-        progress_bars[i].percentage = (downloaded / total_sizes[i]) * 100
+        progress_bars[i].percentage = math.floor(downloaded / total_sizes[i] * 100)
         downloaded_str = get_file_size_string(downloaded)
         labels[i].text = f'{downloaded_str} / {total_size_strings[i]}'
         app.invalidate()

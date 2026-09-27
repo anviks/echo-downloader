@@ -19,7 +19,7 @@ from .ui import create_app, create_download_dialog, create_lectures_dialog, crea
 
 
 class EchoDownloaderApp:
-    app_name = 'EchoDownloader'
+    app_name = 'echo-downloader'
 
     def __init__(self):
         # Arbitrary '/public' URL to get the cookies
